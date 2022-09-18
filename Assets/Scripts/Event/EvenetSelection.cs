@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EvenetSelection : MonoBehaviour
 {
-    public enum EventType { First, Second, Third};
+    public enum EventType { First, Second, Third, Gear};
 
     public EventType _eventType;
 }

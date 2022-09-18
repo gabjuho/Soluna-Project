@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c88e76926c9a64b92874e628e03a83, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  m_Texture: {fileID: 2800000, guid: 616414cd5ade8014583067fe892b8a18, type: 3}
+  m_Padding: 1
+  m_MaxSize: 128
+  m_PackingMethod: 0
+  m_DefaultPivot: 0
+  m_DefaultCustomPivot: {x: 0.5, y: 0.5}
+  m_Sprites:
+  - source: {fileID: 21300000, guid: 01aaf0b2629b69844bc28fa048190c53, type: 3}
+    targetSprite: {fileID: -1963194474334864640, guid: 616414cd5ade8014583067fe892b8a18, type: 3}
+  - source: {fileID: 2800000, guid: 49af67e317a0abf46a9a50c25dbed1c6, type: 3}
+    targetSprite: {fileID: 4950771914363914767, guid: 616414cd5ade8014583067fe892b8a18, type: 3}
+  m_PendingActions: []

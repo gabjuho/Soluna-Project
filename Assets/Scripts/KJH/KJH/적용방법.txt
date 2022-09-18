@@ -1,0 +1,9 @@
+CharacterEvenetTrigger.cs 파일에서 수정
+	주석달아놨으니 필요한것만 뽑아서 쓰기
+
+프리펩에 있는 InventoryCanvas랑 ItemDataBaseObject 하이라키에 제일 외부에 적용시키기
+
+새로만든 cs파일
+	스크립트 파일안쪽에 인벤토리 파일안쪽의 모든cs파일 아이템파일안쪽의 모든cs파일
+	프리펩 파일안쪽의 Slot.cs 파일(슬롯 프리펩에사용된 cs파일) 
+이미지 파일 보고 인스펙터 적용 확인하기
