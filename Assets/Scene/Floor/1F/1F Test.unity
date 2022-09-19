@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 228846225}
   m_Layer: 6
   m_Name: Cylinder033 (1)
-  m_TagString: Item_Obj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -645,6 +645,7 @@ MonoBehaviour:
   isAlt: 0
   ObjectTriger: 0
   AltKey: 0
+  mainCamera: {fileID: 0}
 --- !u!1 &303876045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4275852366765788601, guid: efd51e5bd84bf77419a1f196d62adc6f, type: 3}

@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     public KeyCode AltKey;
 
     UI_Manager Um;
+
+    [SerializeField]
+    Camera mainCamera;
+
+    Quaternion camera_rotateLock;
     #endregion
 
     private void Awake()
@@ -36,12 +41,16 @@ public class GameManager : MonoBehaviour
         {
             if (!Input.GetKey(AltKey)) isAlt = false;
             else isAlt = true;
+            /*if (Input.GetKeyDown(AltKey))
+            {
+                camera_rotateLock = mainCamera.transform.rotation;
+            }*/
 
             //마우스 관련
             if (isAlt)
             {
                 Um.MouseImage();
-
+                //mainCamera.transform.rotation = camera_rotateLock;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }

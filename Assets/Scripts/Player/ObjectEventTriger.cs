@@ -53,7 +53,11 @@ public class ObjectEventTriger : MonoBehaviour
 
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
-            if (Input.GetKey(KeyCode.E)) ClickTriger(other);
+            if (Input.GetKey(KeyCode.E)) 
+            {
+                ClickTriger(other);
+                TrigerAbleUI.SetActive(false);
+            } 
 
 
         }
@@ -73,6 +77,13 @@ public class ObjectEventTriger : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("EventTriger"))
+        {
+            //트리거 UI  범위 에서 나가면 비활성화
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
+            #endregion
+        }
+        if (other.gameObject.CompareTag("Item_Obj"))
         {
             //트리거 UI  범위 에서 나가면 비활성화
             #region TrigrUI
