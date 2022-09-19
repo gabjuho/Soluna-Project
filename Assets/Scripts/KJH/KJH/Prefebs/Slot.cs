@@ -14,13 +14,20 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     public ObjectEventTriger E_Trigger;
 
-    public GearLozic gear;
+    GearLozic gear;
+    ColorButtonLozic color_lozic;
+    SteamLozic steam;
+    SundialLozic sundial;
+
 
 
     private void Start()
     {
         E_Trigger = GameObject.Find("Player").GetComponentInChildren<ObjectEventTriger>();
         gear = GameObject.Find("Gear_Plane").GetComponent<GearLozic>();
+        color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
+        steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
+        sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
         inven = Inventory.instance;
     }
     public void UpdateSlotUI()                    //인벤토리에 탬먹을시 해당 아이콘 출력
@@ -64,33 +71,79 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                         case ItemType.Object_Gear:
                             if (gear.on_triger)
                             {
-                                gear.gearObj.SetActive(true);
-                                item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
-                                RemoveSlot();
-                                Inventory.instance.RemoveItem(slotNum);
-                                clickTime = -1;
+                                if(gear.lozicClear == false)
+                                {
+                                    //실행시킬내용
+                                    //--------------------------
+                                    gear.GearSetActive(true);
+                                    gear.on_gear = true;
+                                    //--------------------------
+                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
+                                    clickTime = -1;
+                                }
+                                
                             }
-                            //톱니바퀴 넣은뒤 할행동
-                            
+                            break;
+                        case ItemType.Object_Fuel:
+                            if (steam.on_triger)
+                            {
+                                if (color_lozic.lozicClear && steam.lozicClear == false)
+                                {
+                                    //실행시킬내용
+                                    //--------------------------
+                                    steam.on_starFuel = true;
+                                    Debug.Log("별연료 사용");
+                                    //--------------------------
+                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
+                                    clickTime = -1;
+                                }
+                                
+                            }
+                            break;
+                        case ItemType.Object_ToolBox:
+                            if (steam.on_triger)
+                            {
+                                if (color_lozic.lozicClear && steam.lozicClear == false)
+                                {
+                                    //실행시킬내용
+                                    //--------------------------
+                                    steam.on_toolBox = true;
+                                    Debug.Log("공구박스 사용");
+                                    //--------------------------
+                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
+                                    clickTime = -1;
+                                }
+                                    
+                            }
+                            break;
+                        case ItemType.Object_StarPiece:
+                            if (sundial.on_triger)
+                            {
+                                if (steam.lozicClear && sundial.lozicClear == false)
+                                {
+                                    //실행시킬내용
+                                    //--------------------------
+                                    sundial.on_starPiece = true;
+                                    Debug.Log("해시계 사용");
+                                    //--------------------------
+                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
+                                    clickTime = -1;
+                                }
+                                
+                            }
                             break;
                     }
                     
                     
                 }
-                #region by Triglavian
-                /*
-                //Debug.Log($"{OnButtonDoubleClick() != ItemType.ErrorType}, {E_Trigger.IsValidPuzzle()}, { E_Trigger.IsSameType(item.itemType)}");
-                if (OnButtonDoubleClick() != ItemType.ErrorType)// && E_Trigger.IsValidPuzzle() && E_Trigger.IsSameType(item.itemType)
-                {
-                    //E_Trigger.ActiveKeyObject();
-                    //item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
-                    RemoveSlot();
-                    Inventory.instance.RemoveItem(slotNum);
-                    //E_Trigger.currentKeyObject = null;
-                    clickTime = -1;
-                }
-                */
-                #endregion
             }
             else                                            //클릭 ->해당아이템 들기
             {

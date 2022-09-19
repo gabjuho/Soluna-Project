@@ -74,6 +74,9 @@ namespace StarterAssets
 
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
+        #region MikangMark
+        GameManager gm;
+        #endregion
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -150,15 +153,34 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-        }
 
+            #region MikangMark
+            gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            #endregion
+        }
+        private void FixedUpdate()
+        {
+            if (gm.isAlt)
+            {
+                LockCameraPosition = true;
+            }
+            else
+            {
+                LockCameraPosition = false;
+            }
+            
+        }
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
             GroundedCheck();
-            Move();
+            if (!gm.isAlt)
+            {
+                Move();
+            }
+                
         }
 
         private void LateUpdate()

@@ -14,6 +14,8 @@ public class ObjectEventTriger : MonoBehaviour
     Elevator elevator;
     public bool onTriger;
     public Inventory inventory;
+
+   
     #endregion
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class ObjectEventTriger : MonoBehaviour
 
     private void Start()
     {
+        
         TrigerAbleUI.SetActive(false);
     }
 
@@ -114,7 +117,7 @@ public class ObjectEventTriger : MonoBehaviour
             case EvenetSelection.EventType.Third:
                 Debug.Log("Third");
                 break;
-            case EvenetSelection.EventType.Gear:
+            case EvenetSelection.EventType.Item:
                 FieldItem fieldItems = other.GetComponent<FieldItem>();                //타겟아이템을 변수에 저장
                 if (inventory.AddItem(fieldItems.GetItem()))                            //그아이템을 저장 제대로 저장시 true 아닐시 false
                 {
@@ -122,6 +125,7 @@ public class ObjectEventTriger : MonoBehaviour
                 }
                 Debug.Log("Gear");
                 break;
+
         }
 
         Debug.Log("check");

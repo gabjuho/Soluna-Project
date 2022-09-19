@@ -2,42 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearLozic : MonoBehaviour
+public class SteamLozic : MonoBehaviour
 {
-    //[SerializeField]
-    //GameObject gear_plane;
     public bool on_triger;
-    public GameObject gearObj;
-    public bool on_gear;
-
+    public bool on_starFuel;
+    public bool on_toolBox;
     public bool lozicClear;
-
     private void Awake()
     {
         on_triger = false;
-        on_gear = false;
+        on_starFuel = false;
+        on_toolBox = false;
         lozicClear = false;
     }
-    private void Start()
+    private void FixedUpdate()
     {
-        gearObj.SetActive(false);
+        if (on_starFuel && on_toolBox)
+        {
+            lozicClear = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         on_triger = true;
-        
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         on_triger = false;
     }
-
-    public void GearSetActive(bool on)
-    {
-        gearObj.SetActive(on);
-        lozicClear = true;
-    }
-
 }

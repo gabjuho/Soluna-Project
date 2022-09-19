@@ -13,6 +13,13 @@ public class ColorButtonLozic : MonoBehaviour
     int right;
 
     [SerializeField]
+    bool[] answer; //왼쪽 true 오른쪽 false
+    [SerializeField]
+    int answser_index;
+
+    public bool lozicClear;
+
+    [SerializeField]
     Color[] rightColor;
     [SerializeField]
     Color[] leftColor;
@@ -25,6 +32,9 @@ public class ColorButtonLozic : MonoBehaviour
     public Camera getCamera;
 
     private RaycastHit hit;
+
+    [SerializeField]
+    GameObject on_gear;
 
 
     private void Awake()
@@ -120,9 +130,9 @@ public class ColorButtonLozic : MonoBehaviour
         leftColor[7].a = 255;
         */
         #endregion
-
+        lozicClear = false;
         is_lock = true;
-
+        answser_index = 0;
         left = 0;
         right = 0;
     }
@@ -151,22 +161,71 @@ public class ColorButtonLozic : MonoBehaviour
 
     void OnObjectClick(GameObject target)
     {
-        if (target.name.Equals("Cylinder037_ButtonObj"))    //오른쪽버튼
+        if (on_gear.activeSelf)
         {
-            right++;
-            m_rightbutton.color = rightColor[right % 8];           
+            if(lozicClear == false)
+            {
+                if (target.name.Equals("Cylinder037_ButtonObj"))    //오른쪽버튼
+                {
+                    if (!CheckAnswer(false))
+                    {
+                        ResetLozic();
+                        return;
+                    }
+                    answser_index++;
+                    right++;
+                    m_rightbutton.color = rightColor[right % 8];
+                    left++;
+                    m_leftbutton.color = leftColor[left % 8];
+                }
+                if (target.name.Equals("Object053_ButtonObj"))    //왼쪽버튼
+                {
+                    if (!CheckAnswer(true))
+                    {
+                        ResetLozic();
+                        return;
+                    }
+                    answser_index++;
+                    right++;
+                    m_rightbutton.color = rightColor[right % 8];
+                    left++;
+                    m_leftbutton.color = leftColor[left % 8];
+                }
+                if (target.name.Equals("Object052_ButtonObj"))    //초기화버튼
+                {
+                    ResetLozic();
+                }
+                if (answser_index == 8)
+                {
+                    Debug.Log("색상로직 클리어");
+                    lozicClear = true;
+                }
+            }
+            
         }
-        if (target.name.Equals("Object053_ButtonObj"))    //왼쪽버튼
+        
+    }
+
+    bool CheckAnswer(bool check)
+    {
+        if(answer[answser_index % 8] == check)
         {
-            left++;
-            m_leftbutton.color = leftColor[left % 8];
+            Debug.Log("정답");
+            
+            return true;
         }
-        if (target.name.Equals("Object052_ButtonObj"))    //초기화버튼
+        else
         {
-            left = 0;
-            m_leftbutton.color = leftColor[left % 8];
-            right = 0;
-            m_rightbutton.color = rightColor[right % 8];
+            Debug.Log("오답");
+            return false;
         }
+    }
+    void ResetLozic()
+    {
+        answser_index = 0;
+        left = 0;
+        m_leftbutton.color = leftColor[left % 8];
+        right = 0;
+        m_rightbutton.color = rightColor[right % 8];
     }
 }
