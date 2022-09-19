@@ -8,6 +8,7 @@ public class ChangeTimeButton : MonoBehaviour
     public float coolTime; //쿨타임 시간
     public Camera mainCamera; //스카이박스 보여질 카메라
     public Material day, night; //낮, 밤 스카이박스 메터리얼
+    public GameObject leftWall, rightWall, middleWall; //오른쪽, 왼쪽, 중앙 decoration 오브젝트
 
     void Start()
     {
@@ -24,6 +25,15 @@ public class ChangeTimeButton : MonoBehaviour
                 mainCamera.GetComponent<Skybox>().material = day;
             isCoolTime = true;
             StartCoroutine(CoolTime(coolTime)); //쿨타임 시작
+        }
+    }
+    void FixedUpdate()
+    {
+        if (isCoolTime)
+        {
+            leftWall.GetComponent<Transform>().position = Vector3.MoveTowards(leftWall.transform.position, new Vector3(5.0f, leftWall.transform.position.y, leftWall.transform.position.z), 0.1f);
+            middleWall.GetComponent<Transform>().position = Vector3.MoveTowards(middleWall.transform.position, new Vector3(middleWall.transform.position.x, middleWall.transform.position.y, -5.0f), 0.1f);
+            rightWall.GetComponent<Transform>().position = Vector3.MoveTowards(rightWall.transform.position, new Vector3(-5.0f, rightWall.transform.position.y, rightWall.transform.position.z), 0.1f);
         }
     }
 
