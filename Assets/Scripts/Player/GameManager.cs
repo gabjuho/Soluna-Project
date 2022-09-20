@@ -22,9 +22,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
-        Um = GameObject.Find("Ui_Manager").GetComponent<UI_Manager>();
-
         ObjectTriger = KeyCode.E;
         AltKey = KeyCode.LeftAlt;
     }
