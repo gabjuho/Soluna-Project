@@ -17,17 +17,20 @@ public class GameManager : MonoBehaviour
     public KeyCode AltKey;
 
     UI_Manager Um;
-    
+
     #endregion
 
     private void Awake()
     {
+
+        Um = GameObject.Find("Ui_Manager").GetComponent<UI_Manager>();
+
         ObjectTriger = KeyCode.E;
         AltKey = KeyCode.LeftAlt;
     }
     private void Start()
     {
-        
+
     }
     private void FixedUpdate()
     {
@@ -37,8 +40,7 @@ public class GameManager : MonoBehaviour
         {
             if (!Input.GetKey(AltKey)) isAlt = false;
             else isAlt = true;
-            
-            //마우스 관련
+
             if (isAlt)
             {
                 Um.MouseImage();
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         isDelayOn = true;
         yield return new WaitForSeconds(_time);
-        isDelayOn = false;  
+        isDelayOn = false;
     }
 
 }
