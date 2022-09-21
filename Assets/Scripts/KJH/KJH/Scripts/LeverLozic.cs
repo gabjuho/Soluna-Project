@@ -15,10 +15,12 @@ public class LeverLozic : MonoBehaviour
     public Camera getCamera;
     private RaycastHit hit;
 
+    
     public bool lozicClear;
 
     private void Awake()
     {
+        lever = new StarLever[4];
         for(int i = 0; i < lever.Length; i++)
         {
             string obj_name = "Lever" + i;
@@ -51,9 +53,18 @@ public class LeverLozic : MonoBehaviour
         {
             if (target.CompareTag("Lever"))
             {
+                StartCoroutine(MoveLever_Down(target));
                 //target.transform.Rotate(new Vector3())
                 //레버내리기 작업
             }
         }
+    }
+
+    public IEnumerator MoveLever_Down(GameObject target)
+    {
+        target.GetComponent<Animator>().Play("Lever_Down");
+        yield return new WaitForSeconds(1.5f);
+        target.GetComponent<Animator>().Play("New State");
+
     }
 }
