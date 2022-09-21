@@ -15,19 +15,20 @@ public class ObjectEventTriger : MonoBehaviour
     public bool onTriger;
     public Inventory inventory;
 
-   
+
     #endregion
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         #region MikangMark
+        //elevator = GameObject.Find("ElevatorManager").GetComponent<Elevator>();
         onTriger = false;
         #endregion
     }
 
     private void Start()
     {
-        
+
         TrigerAbleUI.SetActive(false);
     }
 
@@ -55,22 +56,26 @@ public class ObjectEventTriger : MonoBehaviour
 
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
-            if (Input.GetKey(KeyCode.E)) 
+            if (Input.GetKey(KeyCode.E))
             {
                 ClickTriger(other);
                 TrigerAbleUI.SetActive(false);
-            } 
+            }
 
 
         }
         #endregion
+
+        #endregion
+    }
+    public void OnTriggerEnter(Collider other)
+    {
         #region Elevator
         if (other.gameObject.CompareTag("Elevator"))
         {
-            elevator = other.gameObject.GetComponent<Elevator>();
-            StartCoroutine(elevator.MoveElevator_Down());
+
+            GameObject.Find("ElevatorManager").GetComponent<Elevator>().ControllAnimation();
         }
-        #endregion
         #endregion
     }
 
@@ -128,4 +133,3 @@ public class ObjectEventTriger : MonoBehaviour
         Debug.Log("check");
     }
 }
-

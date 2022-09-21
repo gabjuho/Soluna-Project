@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
             if (!Input.GetKey(AltKey)) isAlt = false;
             else isAlt = true;
 
+            //¸¶¿ì½º °ü·Ã
             if (isAlt)
             {
                 Um.MouseImage();
