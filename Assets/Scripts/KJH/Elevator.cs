@@ -7,16 +7,16 @@ public class Elevator : MonoBehaviour
     public GameObject elevator;
     public bool isRasing = false;
     
-    public IEnumerator MoveElevator_Down()
+    public void ControllAnimation()
     {
-        isRasing = true;
-        
-        yield return new WaitForSeconds(1f);
-        elevator.GetComponent<Animator>().Play("Elevator Down");
-        yield return new WaitForSeconds(3f);
-       
-        elevator.GetComponent<Animator>().Play("New State");
-        isRasing = false;
-        
+        if (!elevator.GetComponent<Animator>().GetBool("go_Down"))
+        {
+            elevator.GetComponent<Animator>().Play("Elevator Down");
+            elevator.GetComponent<Animator>().SetBool("go_Down", true);
+        }
+        else
+        {
+            elevator.GetComponent<Animator>().SetBool("go_Down", false);
+        }
     }
 }

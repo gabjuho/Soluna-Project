@@ -21,7 +21,7 @@ public class ObjectEventTriger : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         #region MikangMark
-        elevator = GameObject.Find("ElevatorManager").GetComponent<Elevator>();
+        //elevator = GameObject.Find("ElevatorManager").GetComponent<Elevator>();
         onTriger = false;
         #endregion
     }
@@ -65,15 +65,17 @@ public class ObjectEventTriger : MonoBehaviour
 
         }
         #endregion
+        
+        #endregion
+    }
+    public void OnTriggerEnter(Collider other)
+    {
         #region Elevator
         if (other.gameObject.CompareTag("Elevator"))
         {
 
-            StartCoroutine(elevator.MoveElevator_Down());
-
-
+            GameObject.Find("ElevatorManager").GetComponent<Elevator>().ControllAnimation();
         }
-        #endregion
         #endregion
     }
 
