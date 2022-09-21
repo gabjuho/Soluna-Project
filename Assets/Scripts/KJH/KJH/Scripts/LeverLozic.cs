@@ -15,10 +15,17 @@ public class LeverLozic : MonoBehaviour
     public Camera getCamera;
     private RaycastHit hit;
 
+    
     public bool lozicClear;
+
+    [SerializeField]
+    bool[] currentAnswer;
+
+    SundialLozic sundial;
 
     private void Awake()
     {
+        lever = new StarLever[4];
         for(int i = 0; i < lever.Length; i++)
         {
             string obj_name = "Lever" + i;
@@ -27,11 +34,10 @@ public class LeverLozic : MonoBehaviour
         }
         lozicClear = false;
     }
-    void Start()
+    private void Start()
     {
-        
+        sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -46,14 +52,41 @@ public class LeverLozic : MonoBehaviour
             }
         }
     }
-    void OnObjectClick(GameObject target) { 
-        if(lozicClear == false)
+    void OnObjectClick(GameObject target) {
+        if (sundial.lozicClear)
         {
-            if (target.CompareTag("Lever"))
+            if (lozicClear == false)
             {
-                //target.transform.Rotate(new Vector3())
-                //레버내리기 작업
+                if (target.CompareTag("Lever"))
+                {
+                    int lever_index = int.Parse(target.name[target.name.Length - 1].ToString());
+                    if (!target.GetComponent<Animator>().GetBool("is_Click"))
+                    {
+                        target.GetComponent<Animator>().Play("Lever_Down");
+                        target.GetComponent<Animator>().SetBool("is_Click", true);
+                        lever[lever_index].on_lever = true;
+
+                        ;
+                    }
+                    else
+                    {
+                        target.GetComponent<Animator>().SetBool("is_Click", false);
+                        lever[lever_index].on_lever = false;
+                    }
+                    CheckClearLozic();
+                    //target.transform.Rotate(new Vector3())
+                    //레버내리기 작업
+                }
             }
+        }
+        
+    }
+
+    void CheckClearLozic()
+    {
+        if(lever[0].on_lever == currentAnswer[0] && lever[1].on_lever == currentAnswer[1] && lever[2].on_lever == currentAnswer[2] && lever[3].on_lever == currentAnswer[3])
+        {
+            lozicClear = true;
         }
     }
 }

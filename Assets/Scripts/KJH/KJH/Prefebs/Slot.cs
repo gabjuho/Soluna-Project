@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Slot : MonoBehaviour, IPointerClickHandler
 {
+    Scene scene;
+
     public int slotNum;
     public Item item;                   //슬롯에 저장될 아이템의 정보
     public Image itemIcon;              //아이템의 아이콘
@@ -14,20 +17,29 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     public ObjectEventTriger E_Trigger;
 
+    #region 1F
     GearLozic gear;
     ColorButtonLozic color_lozic;
     SteamLozic steam;
     SundialLozic sundial;
-
-
+    #endregion
+    private void Awake()
+    {
+        scene = SceneManager.GetActiveScene();
+    }
 
     private void Start()
     {
         E_Trigger = GameObject.Find("Player").GetComponentInChildren<ObjectEventTriger>();
-        gear = GameObject.Find("Gear_Plane").GetComponent<GearLozic>();
-        color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
-        steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
-        sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
+        #region 1F
+        if (scene.name.Equals("1F Test"))                           //1층에서 사용
+        {
+            gear = GameObject.Find("Gear_Plane").GetComponent<GearLozic>();
+            color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
+            steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
+            sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
+        }
+        #endregion
         inven = Inventory.instance;
     }
     public void UpdateSlotUI()                    //인벤토리에 탬먹을시 해당 아이콘 출력
@@ -66,83 +78,86 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                 if (OnButtonDoubleClick() != ItemType.ErrorType)
                 {
                     Debug.Log("Del");
-                    switch (item.itemType)
+                    #region 1F
+                    if (scene.name.Equals("1F Test"))                   //1F Test씬에서만 작동
                     {
-                        case ItemType.Object_Gear:
-                            if (gear.on_triger)
-                            {
-                                if(gear.lozicClear == false)
+                        switch (item.itemType)
+                        {
+                            case ItemType.Object_Gear:
+                                if (gear.on_triger)
                                 {
-                                    //실행시킬내용
-                                    //--------------------------
-                                    gear.GearSetActive(true);
-                                    gear.on_gear = true;
-                                    //--------------------------
-                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
-                                    RemoveSlot();
-                                    Inventory.instance.RemoveItem(slotNum);
-                                    clickTime = -1;
+                                    if (gear.lozicClear == false)
+                                    {
+                                        //실행시킬내용
+                                        //--------------------------
+                                        gear.GearSetActive(true);
+                                        gear.on_gear = true;
+                                        //--------------------------
+                                        item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                        RemoveSlot();
+                                        Inventory.instance.RemoveItem(slotNum);
+                                        clickTime = -1;
+                                    }
+
                                 }
-                                
-                            }
-                            break;
-                        case ItemType.Object_Fuel:
-                            if (steam.on_triger)
-                            {
-                                if (color_lozic.lozicClear && steam.lozicClear == false)
+                                break;
+                            case ItemType.Object_Fuel:
+                                if (steam.on_triger)
                                 {
-                                    //실행시킬내용
-                                    //--------------------------
-                                    steam.on_starFuel = true;
-                                    Debug.Log("별연료 사용");
-                                    //--------------------------
-                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
-                                    RemoveSlot();
-                                    Inventory.instance.RemoveItem(slotNum);
-                                    clickTime = -1;
+                                    if (color_lozic.lozicClear && steam.lozicClear == false)
+                                    {
+                                        //실행시킬내용
+                                        //--------------------------
+                                        steam.on_starFuel = true;
+                                        Debug.Log("별연료 사용");
+                                        //--------------------------
+                                        item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                        RemoveSlot();
+                                        Inventory.instance.RemoveItem(slotNum);
+                                        clickTime = -1;
+                                    }
+
                                 }
-                                
-                            }
-                            break;
-                        case ItemType.Object_ToolBox:
-                            if (steam.on_triger)
-                            {
-                                if (color_lozic.lozicClear && steam.lozicClear == false)
+                                break;
+                            case ItemType.Object_ToolBox:
+                                if (steam.on_triger)
                                 {
-                                    //실행시킬내용
-                                    //--------------------------
-                                    steam.on_toolBox = true;
-                                    Debug.Log("공구박스 사용");
-                                    //--------------------------
-                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
-                                    RemoveSlot();
-                                    Inventory.instance.RemoveItem(slotNum);
-                                    clickTime = -1;
+                                    if (color_lozic.lozicClear && steam.lozicClear == false)
+                                    {
+                                        //실행시킬내용
+                                        //--------------------------
+                                        steam.on_toolBox = true;
+                                        Debug.Log("공구박스 사용");
+                                        //--------------------------
+                                        item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                        RemoveSlot();
+                                        Inventory.instance.RemoveItem(slotNum);
+                                        clickTime = -1;
+                                    }
+
                                 }
-                                    
-                            }
-                            break;
-                        case ItemType.Object_StarPiece:
-                            if (sundial.on_triger)
-                            {
-                                if (steam.lozicClear && sundial.lozicClear == false)
+                                break;
+                            case ItemType.Object_StarPiece:
+                                if (sundial.on_triger)
                                 {
-                                    //실행시킬내용
-                                    //--------------------------
-                                    sundial.on_starPiece = true;
-                                    Debug.Log("해시계 사용");
-                                    //--------------------------
-                                    item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
-                                    RemoveSlot();
-                                    Inventory.instance.RemoveItem(slotNum);
-                                    clickTime = -1;
+                                    if (steam.lozicClear && sundial.lozicClear == false)
+                                    {
+                                        //실행시킬내용
+                                        //--------------------------
+                                        sundial.on_starPiece = true;
+                                        Debug.Log("해시계 사용");
+                                        //--------------------------
+                                        item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
+                                        RemoveSlot();
+                                        Inventory.instance.RemoveItem(slotNum);
+                                        clickTime = -1;
+                                    }
+
                                 }
-                                
-                            }
-                            break;
+                                break;
+                        }
                     }
-                    
-                    
+                    #endregion
                 }
             }
             else                                            //클릭 ->해당아이템 들기
