@@ -9,8 +9,10 @@ public class ChangeTimeButton : MonoBehaviour
     private bool isDay; //낮, 밤 판별 변수
     public Camera mainCamera; //스카이박스 보여질 카메라
     public Material day, night; //낮, 밤 스카이박스 메터리얼
+    public Material red, green, blue, purple, black;
     public GameObject leftWall, rightWall, middleWall; //오른쪽, 왼쪽, 중앙 decoration 오브젝트
     public GameObject leftBookShelf, rightBookShelf, middleBookShelf;
+    public MeshRenderer RedCrystal, GreenCrystal, BlueCrystal, PurpleCrystal;
 
     void Start()
     {
@@ -33,6 +35,7 @@ public class ChangeTimeButton : MonoBehaviour
                 mainCamera.GetComponent<Skybox>().material = day;
                 isDay = true;
             }
+            ChangeCrystalColor();
             isCoolTime = true;
             StartCoroutine(CoolTime(coolTime)); //쿨타임 시작
         }
@@ -60,6 +63,23 @@ public class ChangeTimeButton : MonoBehaviour
             leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(5.0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 6f * Time.deltaTime);
             middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -28.0f), 6f * Time.deltaTime);
             rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(-5.0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 6f * Time.deltaTime);
+        }
+    }
+    void ChangeCrystalColor()
+    {
+        if (!isDay)
+        {
+            RedCrystal.material = red;
+            GreenCrystal.material = green;
+            BlueCrystal.material = blue;
+            PurpleCrystal.material = purple;
+        }
+        else
+        {
+            RedCrystal.material = black;
+            GreenCrystal.material = black;
+            BlueCrystal.material = black;
+            PurpleCrystal.material = black;
         }
     }
 
