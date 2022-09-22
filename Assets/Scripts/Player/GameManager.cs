@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public KeyCode AltKey;
 
     UI_Manager Um;
-    
+
     #endregion
 
     private void Awake()
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        
+
     }
     private void FixedUpdate()
     {
@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
         {
             if (!Input.GetKey(AltKey)) isAlt = false;
             else isAlt = true;
-            
-            //¸¶¿ì½º °ü·Ã
+
+            //Â¸Â¶Â¿Ã¬Â½Âº Â°Ã¼Â·Ãƒ
             if (isAlt)
             {
                 Um.MouseImage();
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         isDelayOn = true;
         yield return new WaitForSeconds(_time);
-        isDelayOn = false;  
+        isDelayOn = false;
     }
 
 }

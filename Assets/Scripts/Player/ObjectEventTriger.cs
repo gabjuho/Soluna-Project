@@ -15,7 +15,7 @@ public class ObjectEventTriger : MonoBehaviour
     public bool onTriger;
     public Inventory inventory;
 
-   
+
     #endregion
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class ObjectEventTriger : MonoBehaviour
 
     private void Start()
     {
-        
+
         TrigerAbleUI.SetActive(false);
     }
 
@@ -56,11 +56,11 @@ public class ObjectEventTriger : MonoBehaviour
 
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
-            if (Input.GetKey(KeyCode.E)) 
+            if (Input.GetKey(KeyCode.E))
             {
                 ClickTriger(other);
                 TrigerAbleUI.SetActive(false);
-            } 
+            }
 
 
         }
@@ -133,4 +133,3 @@ public class ObjectEventTriger : MonoBehaviour
         Debug.Log("check");
     }
 }
-
