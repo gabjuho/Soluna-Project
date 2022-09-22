@@ -65,7 +65,7 @@ public class ObjectEventTriger : MonoBehaviour
 
         }
         #endregion
-
+        
         #endregion
     }
     public void OnTriggerEnter(Collider other)
