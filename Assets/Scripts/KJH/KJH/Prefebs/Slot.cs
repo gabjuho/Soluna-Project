@@ -182,6 +182,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                 if(ChangeTimeButton.isDay && MiddleBookUsingPoint.on_trigger)
                                 {
                                     MiddleBookUsingPoint.isClear = true;
+                                    SecondFloorManager.CheckBookPuzzleClear();
                                     Debug.Log("마법책 사용");
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
@@ -191,6 +192,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                 if (ChangeTimeButton.isDay && RightBookUsingPoint.on_trigger)
                                 {
                                     RightBookUsingPoint.isClear = true;
+                                    SecondFloorManager.CheckBookPuzzleClear();
                                     Debug.Log("시계책 사용");
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
@@ -200,6 +202,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                 if (ChangeTimeButton.isDay && LeftBookUsingPoint.on_trigger)
                                 {
                                     LeftBookUsingPoint.isClear = true;
+                                    SecondFloorManager.CheckBookPuzzleClear();
                                     Debug.Log("톱니책 사용");
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
