@@ -179,7 +179,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                         switch(item.itemType)
                         {
                             case ItemType.Object_Book1:
-                                if(MiddleBookUsingPoint.on_trigger)
+                                if(ChangeTimeButton.isDay && MiddleBookUsingPoint.on_trigger)
                                 {
                                     MiddleBookUsingPoint.isClear = true;
                                     Debug.Log("마법책 사용");
@@ -188,7 +188,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                 }
                                 break;
                             case ItemType.Object_Book2:
-                                if (RightBookUsingPoint.on_trigger)
+                                if (ChangeTimeButton.isDay && RightBookUsingPoint.on_trigger)
                                 {
                                     RightBookUsingPoint.isClear = true;
                                     Debug.Log("시계책 사용");
@@ -197,7 +197,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                 }
                                 break;
                             case ItemType.Object_Book3:
-                                if (LeftBookUsingPoint.on_trigger)
+                                if (ChangeTimeButton.isDay && LeftBookUsingPoint.on_trigger)
                                 {
                                     LeftBookUsingPoint.isClear = true;
                                     Debug.Log("톱니책 사용");

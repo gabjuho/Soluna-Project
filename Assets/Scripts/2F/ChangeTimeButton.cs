@@ -6,7 +6,7 @@ public class ChangeTimeButton : MonoBehaviour
 {
     private bool isCoolTime; //R클릭 후 쿨타임 true/클릭 불가능, false/클릭 가능
     public float coolTime; //쿨타임 시간
-    private bool isDay; //낮, 밤 판별 변수
+    static public bool isDay; //낮, 밤 판별 변수
     public Camera mainCamera; //스카이박스 보여질 카메라
     public Material day, night; //낮, 밤 스카이박스 메터리얼
     public Material red, green, blue, purple, black;
