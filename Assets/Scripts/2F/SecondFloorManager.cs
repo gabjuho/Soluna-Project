@@ -24,7 +24,9 @@ public class SecondFloorManager: MonoBehaviour
     }
     void Start()
     {
-        
+        rightBookUsingPoint = GameObject.Find("RightBookUsingPoint");
+        leftBookUsingPoint = GameObject.Find("LeftBookUsingPoint");
+        middleBookUsingPoint = GameObject.Find("MiddleBookUsingPoint");
     }
 
     public static void CheckBookPuzzleClear() //책 퍼즐이 전부 완료되었는 지 확인하는 함수
