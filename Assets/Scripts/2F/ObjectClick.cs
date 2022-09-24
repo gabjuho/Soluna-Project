@@ -7,7 +7,6 @@ public class ObjectClick : MonoBehaviour
     Crystal_Puzzle crystal_Puzzle;
     Camera mainCamera = null;
     private GameObject target;
-    private Vector3 mousePos;
 
     void Awake()
     {
@@ -25,7 +24,8 @@ public class ObjectClick : MonoBehaviour
         if(!ChangeTimeButton.isDay && SecondFloorManager.currentState == SecondFloorManager.SecondFloorState.FirstPuzzle &&Input.GetMouseButtonDown(0)) //밤인 상태 + 1층 클리어 상태 + 좌클릭
         {
             target = GetClickedObject(); //타켓한 오브젝트 가져오기
-            if(gameObject.name.Equals(target.name))
+
+            if (gameObject.name.Equals(target.name) && gameObject.transform.GetChild(0).GetComponent<CrystalClickRange>().isTrigger)
             {
                 crystal_Puzzle.SetActiveCrystal(gameObject.name);
             }
