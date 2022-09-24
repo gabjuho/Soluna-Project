@@ -8,6 +8,7 @@ TagManager:
   - Item_Obj
   - Elevator
   - Lever
+  - Destroy_Rock
   layers:
   - Default
   - TransparentFX

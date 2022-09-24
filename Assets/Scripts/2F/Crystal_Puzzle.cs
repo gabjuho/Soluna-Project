@@ -7,6 +7,7 @@ public class Crystal_Puzzle : MonoBehaviour
     public string[] ActiveCrystalName = new string[4];
     private string[] AnswerCrystalName = new string[4];
     private int currentIndex;
+    private Rock_Puzzle rock_Puzzle;
     // Start is called before the first frame update
 
     private void Awake()
@@ -19,6 +20,7 @@ public class Crystal_Puzzle : MonoBehaviour
     }
     void Start()
     {
+        rock_Puzzle = GameObject.Find("2F_Rock_Puzzle").GetComponent<Rock_Puzzle>();
     }
 
     public void SetActiveCrystal(string pillar_name)
@@ -49,6 +51,7 @@ public class Crystal_Puzzle : MonoBehaviour
             if (CheckAllActive()) //답이 맞으면, 수정 퍼즐 클리어 상태로 바꿈
             {
                 SecondFloorManager.currentState = SecondFloorManager.SecondFloorState.SecondPuzzle;
+                rock_Puzzle.RockPuzzleSet();
                 Debug.Log("두번째 퍼즐 클리어");
             }
             else //답과 틀리면
