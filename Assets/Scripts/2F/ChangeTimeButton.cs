@@ -6,11 +6,14 @@ public class ChangeTimeButton : MonoBehaviour
 {
     private bool isCoolTime; //R클릭 후 쿨타임 true/클릭 불가능, false/클릭 가능
     public float coolTime; //쿨타임 시간
-    private bool isDay; //낮, 밤 판별 변수
+    static public bool isDay; //낮, 밤 판별 변수
     public Camera mainCamera; //스카이박스 보여질 카메라
     public Material day, night; //낮, 밤 스카이박스 메터리얼
+    public Material red, green, blue, purple, black;
     public GameObject leftWall, rightWall, middleWall; //오른쪽, 왼쪽, 중앙 decoration 오브젝트
     public GameObject leftBookShelf, rightBookShelf, middleBookShelf;
+    public MeshRenderer RedCrystal, GreenCrystal, BlueCrystal, PurpleCrystal;
+    public MeshRenderer RedRock, GreenRock, BlueRock, PurpleRock;
 
     void Start()
     {
@@ -33,6 +36,7 @@ public class ChangeTimeButton : MonoBehaviour
                 mainCamera.GetComponent<Skybox>().material = day;
                 isDay = true;
             }
+            ChangeCrystalRockColor();
             isCoolTime = true;
             StartCoroutine(CoolTime(coolTime)); //쿨타임 시작
         }
@@ -60,6 +64,37 @@ public class ChangeTimeButton : MonoBehaviour
             leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(5.0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 6f * Time.deltaTime);
             middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -28.0f), 6f * Time.deltaTime);
             rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(-5.0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 6f * Time.deltaTime);
+        }
+    }
+    void ChangeCrystalRockColor()
+    {
+        if (!isDay)
+        {
+            //수정 색깔 변경
+            RedCrystal.material = red;
+            GreenCrystal.material = green;
+            BlueCrystal.material = blue;
+            PurpleCrystal.material = purple;
+
+            //돌 색깔 변경
+            RedRock.material = red;
+            GreenRock.material = green;
+            BlueRock.material = blue;
+            PurpleRock.material = purple;
+        }
+        else
+        {
+            //수정 색깔 변경
+            RedCrystal.material = black;
+            GreenCrystal.material = black;
+            BlueCrystal.material = black;
+            PurpleCrystal.material = black;
+
+            //돌 색깔 변경
+            RedRock.material = black;
+            GreenRock.material = black;
+            BlueRock.material = black;
+            PurpleRock.material = black;
         }
     }
 

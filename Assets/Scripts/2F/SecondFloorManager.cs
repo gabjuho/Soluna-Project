@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SecondFloorManager: MonoBehaviour
 {
+    public static GameObject rightBookUsingPoint, leftBookUsingPoint, middleBookUsingPoint;
+    public static bool bookPuzzleClear;
+
     public enum SecondFloorState
     {
         NoSolve, //아무것도 클리어 하지 않은 초기 상태
@@ -12,16 +15,26 @@ public class SecondFloorManager: MonoBehaviour
         ThirdPuzzle //세번째 퍼즐 클리어 완료
     };
 
-    public SecondFloorState currentState; //현재 퍼즐 클리어 상태
-    // Start is called before the first frame update
+    public static SecondFloorState currentState; //현재 퍼즐 클리어 상태
+
+    private void Awake()
+    {
+        currentState = SecondFloorState.FirstPuzzle;
+        bookPuzzleClear = false;
+    }
     void Start()
     {
-        currentState = SecondFloorState.NoSolve;
+        rightBookUsingPoint = GameObject.Find("RightBookUsingPoint");
+        leftBookUsingPoint = GameObject.Find("LeftBookUsingPoint");
+        middleBookUsingPoint = GameObject.Find("MiddleBookUsingPoint");
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void CheckBookPuzzleClear() //책 퍼즐이 전부 완료되었는 지 확인하는 함수
     {
-        
+        if (rightBookUsingPoint.GetComponent<Book_Puzzle>().isClear && leftBookUsingPoint.GetComponent<Book_Puzzle>().isClear && middleBookUsingPoint.GetComponent<Book_Puzzle>().isClear)
+            bookPuzzleClear = true;
+
+        if (bookPuzzleClear)
+            currentState = SecondFloorState.FirstPuzzle;
     }
 }
