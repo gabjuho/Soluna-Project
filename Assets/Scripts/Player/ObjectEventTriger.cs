@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ObjectEventTriger : MonoBehaviour
@@ -15,7 +15,8 @@ public class ObjectEventTriger : MonoBehaviour
     public bool onTriger;
     public Inventory inventory;
 
-   
+    LeverLozic lever;
+
     #endregion
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class ObjectEventTriger : MonoBehaviour
 
     private void Start()
     {
-        
+        lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
         TrigerAbleUI.SetActive(false);
     }
 
@@ -77,6 +78,15 @@ public class ObjectEventTriger : MonoBehaviour
             GameObject.Find("ElevatorManager").GetComponent<Elevator>().ControllAnimation();
         }
         #endregion
+        if (other.gameObject.CompareTag("NextStage"))
+        {
+            if (lever.lozicClear)
+            {
+                Debug.Log("다음씬으로 이동");
+            }
+            
+            //SceneManager.LoadScene("2F");
+        }
     }
 
     public void OnTriggerExit(Collider other)
