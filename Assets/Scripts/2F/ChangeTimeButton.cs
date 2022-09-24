@@ -13,6 +13,7 @@ public class ChangeTimeButton : MonoBehaviour
     public GameObject leftWall, rightWall, middleWall; //오른쪽, 왼쪽, 중앙 decoration 오브젝트
     public GameObject leftBookShelf, rightBookShelf, middleBookShelf;
     public MeshRenderer RedCrystal, GreenCrystal, BlueCrystal, PurpleCrystal;
+    public MeshRenderer RedRock, GreenRock, BlueRock, PurpleRock;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class ChangeTimeButton : MonoBehaviour
                 mainCamera.GetComponent<Skybox>().material = day;
                 isDay = true;
             }
-            ChangeCrystalColor();
+            ChangeCrystalRockColor();
             isCoolTime = true;
             StartCoroutine(CoolTime(coolTime)); //쿨타임 시작
         }
@@ -65,21 +66,35 @@ public class ChangeTimeButton : MonoBehaviour
             rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(-5.0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 6f * Time.deltaTime);
         }
     }
-    void ChangeCrystalColor()
+    void ChangeCrystalRockColor()
     {
         if (!isDay)
         {
+            //수정 색깔 변경
             RedCrystal.material = red;
             GreenCrystal.material = green;
             BlueCrystal.material = blue;
             PurpleCrystal.material = purple;
+
+            //돌 색깔 변경
+            RedRock.material = red;
+            GreenRock.material = green;
+            BlueRock.material = blue;
+            PurpleRock.material = purple;
         }
         else
         {
+            //수정 색깔 변경
             RedCrystal.material = black;
             GreenCrystal.material = black;
             BlueCrystal.material = black;
             PurpleCrystal.material = black;
+
+            //돌 색깔 변경
+            RedRock.material = black;
+            GreenRock.material = black;
+            BlueRock.material = black;
+            PurpleRock.material = black;
         }
     }
 

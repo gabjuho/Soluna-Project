@@ -26,8 +26,7 @@ public class ObjectClick : MonoBehaviour
             target = GetClickedObject(); //타켓한 오브젝트 가져오기
 
             if (gameObject.name.Equals(target.name) && gameObject.transform.GetChild(0).GetComponent<CrystalClickRange>().isTrigger)
-            {
-                crystal_Puzzle.SetActiveCrystal(gameObject.name);
+            {                crystal_Puzzle.SetActiveCrystal(gameObject.name);
             }
         }
     }
