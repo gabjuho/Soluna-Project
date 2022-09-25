@@ -23,7 +23,10 @@ public class Rock_Puzzle : MonoBehaviour
     {
         movementRange.SetActive(true);
         for (int i = 0; i < 4; i++)
+        {
             rock[i].GetComponent<Rigidbody>().useGravity = true;
+            rock[i].transform.localScale = new Vector3(0.782992f, 0.782992f, 0.782992f);
+        }
 
         int length = destroyRock.Length;
 

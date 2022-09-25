@@ -9,6 +9,7 @@ TagManager:
   - Elevator
   - Lever
   - Destroy_Rock
+  - Puzzle_Rock
   layers:
   - Default
   - TransparentFX

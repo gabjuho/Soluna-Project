@@ -20,8 +20,9 @@ public class PushObstacle : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rigidbody = hit.collider.attachedRigidbody;
+        GameObject puzzle_rock = hit.gameObject;
 
-        if(rigidbody != null)
+        if(rigidbody != null && puzzle_rock.CompareTag("Puzzle_Rock"))
         {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
             forceDirection.y = 0;
