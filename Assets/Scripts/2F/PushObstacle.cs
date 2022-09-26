@@ -28,7 +28,7 @@ public class PushObstacle : MonoBehaviour
             forceDirection.y = 0;
             forceDirection.Normalize();
 
-            rigidbody.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
+            rigidbody.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.VelocityChange);
         }
     }
 }

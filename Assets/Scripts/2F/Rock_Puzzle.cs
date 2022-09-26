@@ -33,4 +33,17 @@ public class Rock_Puzzle : MonoBehaviour
         for (int i = 0; i < length; i++) //퍼즐에 사용할 오브젝트를 제외한 나머지 돌들은 비활성화 하기
             destroyRock[i].SetActive(false);
     }
+
+    public void CheckClear()
+    {
+        for (int i = 0; i < 4; i++)
+            if (!rock[i].GetComponent<Rock>().isCorrect)
+                return;
+
+        for(int i=0;i<4;i++)
+            rock[i].GetComponent<Rigidbody>().isKinematic = true;
+
+        SecondFloorManager.currentState = SecondFloorManager.SecondFloorState.ThirdPuzzle;
+        Debug.Log("3단계 퍼즐 클리어");
+    }
 }

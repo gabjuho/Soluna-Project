@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class RockPuzzleTrigger : MonoBehaviour
 {
-    private bool isCollide;
+    private Rock_Puzzle rock_Puzzle;
+    private bool isOn;
+    public enum RockType
+    {
+        Red,
+        Green,
+        Blue,
+        Purple
+    }
+    public RockType rockType;
     // Start is called before the first frame update
-
     private void Awake()
     {
-        isCollide = false;
+        isOn = true;
     }
+
     void Start()
     {
-
+        rock_Puzzle = GameObject.Find("2F_Rock_Puzzle").GetComponent<Rock_Puzzle>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        if (isCollide)
+        if (isOn && other.gameObject.CompareTag("Puzzle_Rock") && this.GetComponent<Collider>().bounds.Contains(other.bounds.min) && this.GetComponent<Collider>().bounds.Contains(other.bounds.max))
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -1.5f, transform.position.z), 1f * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -0.5f, transform.position.z), 1f * Time.deltaTime);
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Puzzle_Rock"))
-        {
-            isCollide = true;
-            collision.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
+            if (rockType == other.gameObject.GetComponent<Rock>().rockType)
+            {
+                Debug.Log("맞는 돌");
+                other.gameObject.GetComponent<Rock>().isCorrect = true;
+                rock_Puzzle.CheckClear();
+            }
+            isOn = false;
         }
     }
-    private void OnCollisionExit(Collision collision) //이 코드도 문제있음
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Puzzle_Rock"))
+        if(other.gameObject.CompareTag("Puzzle_Rock"))
         {
-            collision.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
-            isCollide = false;
+            isOn = true;
         }
     }
 }
