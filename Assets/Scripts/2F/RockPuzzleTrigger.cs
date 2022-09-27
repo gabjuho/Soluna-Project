@@ -34,12 +34,13 @@ public class RockPuzzleTrigger : MonoBehaviour
                 other.gameObject.GetComponent<Rock>().isCorrect = true;
                 rock_Puzzle.CheckClear();
             }
+            gameObject.GetComponent<AudioSource>().Play();
             isOn = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.CompareTag("Puzzle_Rock"))
+        if (other.gameObject.CompareTag("Puzzle_Rock"))
         {
             isOn = true;
         }

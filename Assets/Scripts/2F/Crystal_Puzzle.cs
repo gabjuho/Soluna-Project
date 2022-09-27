@@ -5,6 +5,7 @@ using UnityEngine;
 public class Crystal_Puzzle : MonoBehaviour
 {
     public string[] ActiveCrystalName = new string[4];
+    public AudioClip[] audioClips = new AudioClip[3];
     private string[] AnswerCrystalName = new string[4];
     private int currentIndex;
     private Rock_Puzzle rock_Puzzle;
@@ -52,6 +53,7 @@ public class Crystal_Puzzle : MonoBehaviour
             {
                 SecondFloorManager.currentState = SecondFloorManager.SecondFloorState.SecondPuzzle;
                 rock_Puzzle.RockPuzzleSet();
+                gameObject.GetComponent<AudioSource>().Play();
                 Debug.Log("두번째 퍼즐 클리어");
             }
             else //답과 틀리면

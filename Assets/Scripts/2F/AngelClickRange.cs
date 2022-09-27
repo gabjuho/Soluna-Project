@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalClickRange : MonoBehaviour
+public class AngelClickRange : MonoBehaviour
 {
     public bool isTrigger;
     private void Awake()
@@ -11,11 +11,13 @@ public class CrystalClickRange : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        isTrigger = true;
+        if(other.name.Equals("Player"))
+            isTrigger = true;
     }
 
     public void OnTriggerExit(Collider other)
     {
-        isTrigger = false;
+        if (other.name.Equals("Player"))    
+            isTrigger = false;
     }
 }

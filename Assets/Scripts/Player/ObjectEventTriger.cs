@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 using UnityEngine.UI;
 
 public class ObjectEventTriger : MonoBehaviour
@@ -14,7 +14,6 @@ public class ObjectEventTriger : MonoBehaviour
     Elevator elevator;
     public bool onTriger;
     public Inventory inventory;
-
 
     #endregion
     private void Awake()
@@ -48,8 +47,7 @@ public class ObjectEventTriger : MonoBehaviour
             #endregion
 
         }
-        #region MikangMark
-        #region Item_Obj
+        #region PuzzleTrigger
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             TrigerAbleUI.SetActive(true);
@@ -61,12 +59,23 @@ public class ObjectEventTriger : MonoBehaviour
                 ClickTriger(other);
                 TrigerAbleUI.SetActive(false);
             }
-
-
         }
         #endregion
-        
-        #endregion
+
+        if (other.gameObject.CompareTag("Puzzle_Rock") && !ChangeTimeButton.isDay)
+        {
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Q";
+            TrigerAbleUI.SetActive(true);
+
+            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
+            
+            if (Input.GetKey(KeyCode.Q))
+            {
+                other.gameObject.GetComponent<RockSound>().sound.Play();
+                ClickTriger(other);
+                TrigerAbleUI.SetActive(false);
+            }
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -93,6 +102,13 @@ public class ObjectEventTriger : MonoBehaviour
             //트리거 UI  범위 에서 나가면 비활성화
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
+            #endregion
+        }
+        if(other.gameObject.CompareTag("Puzzle_Rock"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             #endregion
         }
     }
@@ -126,6 +142,9 @@ public class ObjectEventTriger : MonoBehaviour
                     fieldItems.DestroyItem();                                           //필드의 아이템을 제거
                 }
                 Debug.Log("Gear");
+                break;
+            case EvenetSelection.EventType.Puzzle_Rock: //2층 3번째 퍼즐 돌 상호작용 시
+                
                 break;
 
         }
