@@ -8,12 +8,15 @@ public class SundialLozic : MonoBehaviour
     public bool on_starPiece;
 
     public bool lozicClear;
-    
+
+    public bool hintUsed;
+
     private void Awake()
     {
         on_triger = false;
         on_starPiece = false;
         lozicClear = false;
+        hintUsed = false;
     }
     private void FixedUpdate()
     {

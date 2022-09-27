@@ -11,8 +11,9 @@ public class Elevator : MonoBehaviour
     {
         if (!elevator.GetComponent<Animator>().GetBool("go_Down"))
         {
-            elevator.GetComponent<Animator>().Play("Elevator Down");
             elevator.GetComponent<Animator>().SetBool("go_Down", true);
+            elevator.GetComponent<Animator>().Play("Elevator Down");
+            
         }
         else
         {

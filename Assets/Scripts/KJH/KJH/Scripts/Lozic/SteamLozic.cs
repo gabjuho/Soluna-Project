@@ -8,12 +8,15 @@ public class SteamLozic : MonoBehaviour
     public bool on_starFuel;
     public bool on_toolBox;
     public bool lozicClear;
+
+    public bool hintUsed;
     private void Awake()
     {
         on_triger = false;
         on_starFuel = false;
         on_toolBox = false;
         lozicClear = false;
+        hintUsed = false;
     }
     private void FixedUpdate()
     {

@@ -12,11 +12,14 @@ public class GearLozic : MonoBehaviour
 
     public bool lozicClear;
 
+    public bool hintUsed;
+
     private void Awake()
     {
         on_triger = false;
         on_gear = false;
         lozicClear = false;
+        hintUsed = false;
     }
     private void Start()
     {

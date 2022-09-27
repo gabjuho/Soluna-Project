@@ -36,7 +36,7 @@ public class ColorButtonLozic : MonoBehaviour
     [SerializeField]
     GameObject on_gear;
 
-
+    public bool hintUsed;
     private void Awake()
     {
         /*
@@ -135,6 +135,8 @@ public class ColorButtonLozic : MonoBehaviour
         answser_index = 0;
         left = 0;
         right = 0;
+
+        hintUsed = false;
     }
 
     void Start()

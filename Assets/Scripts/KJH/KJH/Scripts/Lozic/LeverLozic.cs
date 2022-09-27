@@ -23,16 +23,30 @@ public class LeverLozic : MonoBehaviour
 
     SundialLozic sundial;
 
+    public bool hintUsed;
+
+    [SerializeField]
+    GameObject clearImage;
+
+    [SerializeField]
+    AudioClip downSound;
+
+    [SerializeField]
+    AudioClip upSound;
+
     private void Awake()
     {
+        
         lever = new StarLever[4];
-        for(int i = 0; i < lever.Length; i++)
+        clearImage.SetActive(false);
+        for (int i = 0; i < lever.Length; i++)
         {
             string obj_name = "Lever" + i;
             lever[i].starLever = GameObject.Find(obj_name);
             lever[i].on_lever = false;
         }
         lozicClear = false;
+        hintUsed = false;
     }
     private void Start()
     {
@@ -64,6 +78,9 @@ public class LeverLozic : MonoBehaviour
                     {
                         target.GetComponent<Animator>().Play("Lever_Down");
                         target.GetComponent<Animator>().SetBool("is_Click", true);
+                        
+                        target.GetComponent<AudioSource>().clip = downSound;
+                        target.GetComponent<AudioSource>().Play();
                         lever[lever_index].on_lever = true;
 
                         ;
@@ -71,6 +88,8 @@ public class LeverLozic : MonoBehaviour
                     else
                     {
                         target.GetComponent<Animator>().SetBool("is_Click", false);
+                        target.GetComponent<AudioSource>().clip = upSound;
+                        target.GetComponent<AudioSource>().Play();
                         lever[lever_index].on_lever = false;
                     }
                     CheckClearLozic();
@@ -87,6 +106,17 @@ public class LeverLozic : MonoBehaviour
         if(lever[0].on_lever == currentAnswer[0] && lever[1].on_lever == currentAnswer[1] && lever[2].on_lever == currentAnswer[2] && lever[3].on_lever == currentAnswer[3])
         {
             lozicClear = true;
+            
+            StartCoroutine(clearImageSetActive());
         }
+    }
+    
+    IEnumerator clearImageSetActive()
+    {
+        yield return new WaitForSeconds(1.5f);
+        clearImage.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        clearImage.SetActive(false);
+        StopCoroutine(clearImageSetActive());
     }
 }
