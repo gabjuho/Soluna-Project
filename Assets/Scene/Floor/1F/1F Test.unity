@@ -2179,7 +2179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3103,7 +3103,7 @@ MonoBehaviour:
   hintBtn: {fileID: 1767392140}
   hint_creat: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
   hint_used: {fileID: 8300000, guid: 7838a5aa9de2dd344a946d56816537f0, type: 3}
-  on_Hint: 0
+  on_Hint: 1
 --- !u!114 &1701479456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3121,7 +3121,7 @@ MonoBehaviour:
   player: {fileID: 919132148151639446}
   hintObj: {fileID: 1155998637}
   target:
-  - {fileID: 228846223}
+  - {fileID: 355530546}
   - {fileID: 52361804396241891}
   - {fileID: 8776054660495235825}
   - {fileID: 355530546}
