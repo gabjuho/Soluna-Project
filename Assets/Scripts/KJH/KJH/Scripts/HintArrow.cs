@@ -27,9 +27,9 @@ public class HintArrow : MonoBehaviour
                 if(lozicManager.solve_Lozic[i] == false)
                 {
                     hintObj.transform.LookAt(new Vector3(target[i].transform.position.x, player.transform.position.y, target[i].transform.position.z), Vector3.up);
+                    hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
 
-
-                    hintObj.transform.position = player.transform.position + hintObj.transform.forward * 1f;
+                    hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
 
                     break;
                 }
