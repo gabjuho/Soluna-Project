@@ -19,7 +19,7 @@ public class SecondFloorManager: MonoBehaviour
 
     private void Awake()
     {
-        currentState = SecondFloorState.NoSolve;
+        currentState = SecondFloorState.FirstPuzzle;
         bookPuzzleClear = false;
     }
     void Start()

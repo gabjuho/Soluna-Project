@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Rock_Puzzle : MonoBehaviour
 {
@@ -8,9 +9,17 @@ public class Rock_Puzzle : MonoBehaviour
     public GameObject[] rockTrigger = new GameObject[4];
     private GameObject[] destroyRock;
     public GameObject movementRange;
+    public GameObject clearImage;
     public bool angelIsCool;
     public int angelCoolTime;
+    private bool isFadeOut;
+    private float time;
+    public float animeTime; //페이드 아웃 실행시간
     // Start is called before the first frame update
+    private void Awake()
+    {
+        isFadeOut = false;
+    }
     void Start()
     {
         destroyRock = GameObject.FindGameObjectsWithTag("Destroy_Rock");
@@ -19,7 +28,14 @@ public class Rock_Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isFadeOut && time < 1)
+            ClearFadeOut();
+        else if (isFadeOut && time >= 1)
+        {
+            time = 0;
+            isFadeOut = false;
+            clearImage.SetActive(false);
+        }
     }
 
     public void RockPuzzleSet()
@@ -50,6 +66,10 @@ public class Rock_Puzzle : MonoBehaviour
             rock[i].GetComponent<Rigidbody>().isKinematic = true;
 
         SecondFloorManager.currentState = SecondFloorManager.SecondFloorState.ThirdPuzzle;
+
+        clearImage.SetActive(true);
+        Invoke("ChangeFadeOut", 2f);
+
         Debug.Log("3단계 퍼즐 클리어");
     }
     public void AngelResetPuzzle() //천사상으로 리셋
@@ -74,5 +94,18 @@ public class Rock_Puzzle : MonoBehaviour
     public void CoolIsDone()
     {
         angelIsCool = false;
+    }
+
+    public void ChangeFadeOut()//isFadeOut bool값 true로 변경
+    {
+        isFadeOut = true;
+    }
+
+    public void ClearFadeOut()
+    {
+        time += Time.deltaTime / animeTime;
+        Color color = clearImage.GetComponent<Image>().color;
+        color.a = Mathf.Lerp(1f, 0f, time);
+        clearImage.GetComponent<Image>().color = color;
     }
 }

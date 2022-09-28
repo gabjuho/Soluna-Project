@@ -5,7 +5,7 @@ using UnityEngine;
 public class RockPuzzleTrigger : MonoBehaviour
 {
     private Rock_Puzzle rock_Puzzle;
-    private bool isOn;
+    private bool isOn, isPlayerOn;
     public enum RockType
     {
         Red,
@@ -18,6 +18,7 @@ public class RockPuzzleTrigger : MonoBehaviour
     private void Awake()
     {
         isOn = true;
+        isPlayerOn = true;
     }
 
     void Start()
@@ -30,12 +31,17 @@ public class RockPuzzleTrigger : MonoBehaviour
         {
             if (rockType == other.gameObject.GetComponent<Rock>().rockType)
             {
+                gameObject.GetComponent<AudioSource>().Play();
                 Debug.Log("¸Â´Â µ¹");
                 other.gameObject.GetComponent<Rock>().isCorrect = true;
                 rock_Puzzle.CheckClear();
             }
-            gameObject.GetComponent<AudioSource>().Play();
             isOn = false;
+        }
+        else if(isOn && other.gameObject.CompareTag("Player") && SecondFloorManager.currentState == SecondFloorManager.SecondFloorState.SecondPuzzle)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            isPlayerOn = false;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -44,5 +50,7 @@ public class RockPuzzleTrigger : MonoBehaviour
         {
             isOn = true;
         }
+        else if (other.gameObject.CompareTag("Player"))
+            isPlayerOn = true;
     }
 }
