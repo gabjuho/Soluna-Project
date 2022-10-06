@@ -23,6 +23,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     SteamLozic steam;
     SundialLozic sundial;
     #endregion
+    #region 2F
+    Book_Puzzle RightBookUsingPoint;
+    Book_Puzzle LeftBookUsingPoint;
+    Book_Puzzle MiddleBookUsingPoint;
+    #endregion
     private void Awake()
     {
         scene = SceneManager.GetActiveScene();
@@ -40,6 +45,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
         }
         #endregion
+
+        #region 2F
+        if(scene.name.Equals("2F"))
+        {
+            RightBookUsingPoint = GameObject.Find("RightBookUsingPoint").GetComponent<Book_Puzzle>();
+            LeftBookUsingPoint = GameObject.Find("LeftBookUsingPoint").GetComponent<Book_Puzzle>();
+            MiddleBookUsingPoint = GameObject.Find("MiddleBookUsingPoint").GetComponent<Book_Puzzle>();
+        }
+        #endregion
+
         inven = Inventory.instance;
     }
     public void UpdateSlotUI()                    //인벤토리에 탬먹을시 해당 아이콘 출력
@@ -153,6 +168,44 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         clickTime = -1;
                                     }
 
+                                }
+                                break;
+                        }
+                    }
+                    #endregion
+                    #region 2F
+                    if(scene.name.Equals("2F"))
+                    {
+                        switch(item.itemType)
+                        {
+                            case ItemType.Object_Book1:
+                                if(ChangeTimeButton.isDay && MiddleBookUsingPoint.on_trigger)
+                                {
+                                    MiddleBookUsingPoint.isClear = true;
+                                    SecondFloorManager.CheckBookPuzzleClear();
+                                    Debug.Log("마법책 사용");
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
+                                }
+                                break;
+                            case ItemType.Object_Book2:
+                                if (ChangeTimeButton.isDay && RightBookUsingPoint.on_trigger)
+                                {
+                                    RightBookUsingPoint.isClear = true;
+                                    SecondFloorManager.CheckBookPuzzleClear();
+                                    Debug.Log("시계책 사용");
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
+                                }
+                                break;
+                            case ItemType.Object_Book3:
+                                if (ChangeTimeButton.isDay && LeftBookUsingPoint.on_trigger)
+                                {
+                                    LeftBookUsingPoint.isClear = true;
+                                    SecondFloorManager.CheckBookPuzzleClear();
+                                    Debug.Log("톱니책 사용");
+                                    RemoveSlot();
+                                    Inventory.instance.RemoveItem(slotNum);
                                 }
                                 break;
                         }
