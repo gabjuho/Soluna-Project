@@ -8,6 +8,7 @@ TagManager:
   - Item_Obj
   - Elevator
   - Lever
+  - NextStage
   layers:
   - Default
   - TransparentFX
