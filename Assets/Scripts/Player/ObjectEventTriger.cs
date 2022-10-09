@@ -50,6 +50,7 @@ public class ObjectEventTriger : MonoBehaviour
         #region PuzzleTrigger
         if (other.gameObject.CompareTag("Item_Obj"))
         {
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             TrigerAbleUI.SetActive(true);
 
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
@@ -58,6 +59,10 @@ public class ObjectEventTriger : MonoBehaviour
             {
                 ClickTriger(other);
                 TrigerAbleUI.SetActive(false);
+            }
+            else if((other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")) && Input.GetKeyDown(KeyCode.Q))
+            {
+                Debug.Log("대사 출력");
             }
         }
         #endregion

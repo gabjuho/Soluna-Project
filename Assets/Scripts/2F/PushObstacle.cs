@@ -47,6 +47,11 @@ public class PushObstacle : MonoBehaviour
             isPush = true;
             coolTime = 15f;
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
+            if (Mathf.Abs(forceDirection.x) > Mathf.Abs(forceDirection.z))
+                forceDirection.z = 0;
+            else
+                forceDirection.x = 0; //만약에 x와 z값이 같으면 어떻게 해야될 지 처리는 아직 하지 않음
+
             forceDirection.y = 0;
             forceDirection.Normalize();
 
