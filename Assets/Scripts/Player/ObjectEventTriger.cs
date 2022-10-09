@@ -30,7 +30,6 @@ LeverLozic lever;
 
     private void Start()
     {
-        lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
         TrigerAbleUI.SetActive(false);
     }
 
@@ -96,6 +95,7 @@ LeverLozic lever;
         #endregion
         if (other.gameObject.CompareTag("NextStage"))
         {
+            lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
             if (lever.lozicClear)
             {
                 Debug.Log("다음씬으로 이동");
