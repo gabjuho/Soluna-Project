@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,7 +30,6 @@ LeverLozic lever;
 
     private void Start()
     {
-        lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
         TrigerAbleUI.SetActive(false);
     }
 
@@ -49,10 +49,10 @@ LeverLozic lever;
             #endregion
 
         }
-        #region MikangMark
-        #region Item_Obj
+        #region PuzzleTrigger
         if (other.gameObject.CompareTag("Item_Obj"))
         {
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             TrigerAbleUI.SetActive(true);
 
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
@@ -62,12 +62,27 @@ LeverLozic lever;
                 ClickTriger(other);
                 TrigerAbleUI.SetActive(false);
             }
-
-
+            else if((other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")) && Input.GetKeyDown(KeyCode.Q))
+            {
+                Debug.Log("��� ���");
+            }
         }
         #endregion
-        
-        #endregion
+
+        if (other.gameObject.CompareTag("Puzzle_Rock") && !ChangeTimeButton.isDay)
+        {
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Q";
+            TrigerAbleUI.SetActive(true);
+
+            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
+            
+            if (Input.GetKey(KeyCode.Q))
+            {
+                other.gameObject.GetComponent<RockSound>().sound.Play();
+                ClickTriger(other);
+                TrigerAbleUI.SetActive(false);
+            }
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -80,6 +95,7 @@ LeverLozic lever;
         #endregion
         if (other.gameObject.CompareTag("NextStage"))
         {
+            lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
             if (lever.lozicClear)
             {
                 Debug.Log("다음씬으로 이동");
@@ -103,6 +119,13 @@ LeverLozic lever;
             //트리거 UI  범위 에서 나가면 비활성화
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
+            #endregion
+        }
+        if(other.gameObject.CompareTag("Puzzle_Rock"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             #endregion
         }
     }
@@ -136,6 +159,9 @@ LeverLozic lever;
                     fieldItems.DestroyItem();                                           //필드의 아이템을 제거
                 }
                 Debug.Log("Gear");
+                break;
+            case EvenetSelection.EventType.Puzzle_Rock: //2�� 3��° ���� �� ��ȣ�ۿ� ��
+                
                 break;
 
         }

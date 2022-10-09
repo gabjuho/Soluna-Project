@@ -8,6 +8,9 @@ TagManager:
   - Item_Obj
   - Elevator
   - Lever
+  - Destroy_Rock
+  - Puzzle_Rock
+  - Angel
   - NextStage
   layers:
   - Default
@@ -17,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Plane
-  - 
+  - Angel
   - 
   - 
   - 

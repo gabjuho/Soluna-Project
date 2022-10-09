@@ -13,7 +13,8 @@ public class ChangeTimeButton : MonoBehaviour
     public GameObject leftWall, rightWall, middleWall; //오른쪽, 왼쪽, 중앙 decoration 오브젝트
     public GameObject leftBookShelf, rightBookShelf, middleBookShelf;
     public MeshRenderer RedCrystal, GreenCrystal, BlueCrystal, PurpleCrystal;
-    public MeshRenderer RedRock, GreenRock, BlueRock, PurpleRock;
+    public MeshRenderer RedRockMesh, GreenRockMesh, BlueRockMesh, PurpleRockMesh;
+    public GameObject RedRock, GreenRock, BlueRock, PurpleRock;
 
     void Start()
     {
@@ -45,25 +46,25 @@ public class ChangeTimeButton : MonoBehaviour
     {
         if (isCoolTime && !isDay)
         {
-            //벽 움직임
-            leftWall.GetComponent<Transform>().position = Vector3.MoveTowards(leftWall.transform.position, new Vector3(5.0f, leftWall.transform.position.y, leftWall.transform.position.z), 5f * Time.deltaTime);
-            middleWall.GetComponent<Transform>().position = Vector3.MoveTowards(middleWall.transform.position, new Vector3(middleWall.transform.position.x, middleWall.transform.position.y, -5.0f), 5f * Time.deltaTime);
-            rightWall.GetComponent<Transform>().position = Vector3.MoveTowards(rightWall.transform.position, new Vector3(-5.0f, rightWall.transform.position.y, rightWall.transform.position.z), 5f * Time.deltaTime);
+            leftWall.GetComponent<Transform>().position = Vector3.MoveTowards(leftWall.transform.position, new Vector3(3.153789e-22f, leftWall.transform.position.y, leftWall.transform.position.z), 3f * Time.deltaTime);
+            middleWall.GetComponent<Transform>().position = Vector3.MoveTowards(middleWall.transform.position, new Vector3(middleWall.transform.position.x, middleWall.transform.position.y, 1.550293e-06f), 3f * Time.deltaTime);
+            rightWall.GetComponent<Transform>().position = Vector3.MoveTowards(rightWall.transform.position, new Vector3(3.153789e-22f, rightWall.transform.position.y, rightWall.transform.position.z), 3f * Time.deltaTime);
 
-            //책장 움직임
-            leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 6f * Time.deltaTime);
-            middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -23f), 6f * Time.deltaTime);
-            rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 6f * Time.deltaTime);
+            leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(5.0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 4f * Time.deltaTime);
+            middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -28.0f), 4f * Time.deltaTime);
+            rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(-5.0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 4f * Time.deltaTime);
         }
         else if(isCoolTime && isDay)
         {
-            leftWall.GetComponent<Transform>().position = Vector3.MoveTowards(leftWall.transform.position, new Vector3(3.153789e-22f, leftWall.transform.position.y, leftWall.transform.position.z), 5f * Time.deltaTime);
-            middleWall.GetComponent<Transform>().position = Vector3.MoveTowards(middleWall.transform.position, new Vector3(middleWall.transform.position.x, middleWall.transform.position.y, 1.550293e-06f), 5f * Time.deltaTime);
-            rightWall.GetComponent<Transform>().position = Vector3.MoveTowards(rightWall.transform.position, new Vector3(3.153789e-22f, rightWall.transform.position.y, rightWall.transform.position.z), 5f * Time.deltaTime);
+            //벽 움직임
+            leftWall.GetComponent<Transform>().position = Vector3.MoveTowards(leftWall.transform.position, new Vector3(5.0f, leftWall.transform.position.y, leftWall.transform.position.z), 3f * Time.deltaTime);
+            middleWall.GetComponent<Transform>().position = Vector3.MoveTowards(middleWall.transform.position, new Vector3(middleWall.transform.position.x, middleWall.transform.position.y, -5.0f), 3f * Time.deltaTime);
+            rightWall.GetComponent<Transform>().position = Vector3.MoveTowards(rightWall.transform.position, new Vector3(-5.0f, rightWall.transform.position.y, rightWall.transform.position.z), 3f * Time.deltaTime);
 
-            leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(5.0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 6f * Time.deltaTime);
-            middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -28.0f), 6f * Time.deltaTime);
-            rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(-5.0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 6f * Time.deltaTime);
+            //책장 움직임
+            leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 4f * Time.deltaTime);
+            middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -23f), 4f * Time.deltaTime);
+            rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 4f * Time.deltaTime);
         }
     }
     void ChangeCrystalRockColor()
@@ -77,10 +78,15 @@ public class ChangeTimeButton : MonoBehaviour
             PurpleCrystal.material = purple;
 
             //돌 색깔 변경
-            RedRock.material = red;
-            GreenRock.material = green;
-            BlueRock.material = blue;
-            PurpleRock.material = purple;
+            RedRockMesh.material = red;
+            GreenRockMesh.material = green;
+            BlueRockMesh.material = blue;
+            PurpleRockMesh.material = purple;
+
+            RedRock.GetComponent<Rigidbody>().isKinematic = false;
+            GreenRock.GetComponent<Rigidbody>().isKinematic = false;
+            BlueRock.GetComponent<Rigidbody>().isKinematic = false;
+            PurpleRock.GetComponent<Rigidbody>().isKinematic = false;
         }
         else
         {
@@ -91,10 +97,15 @@ public class ChangeTimeButton : MonoBehaviour
             PurpleCrystal.material = black;
 
             //돌 색깔 변경
-            RedRock.material = black;
-            GreenRock.material = black;
-            BlueRock.material = black;
-            PurpleRock.material = black;
+            RedRockMesh.material = black;
+            GreenRockMesh.material = black;
+            BlueRockMesh.material = black;
+            PurpleRockMesh.material = black;
+
+            RedRock.GetComponent<Rigidbody>().isKinematic = true;
+            GreenRock.GetComponent<Rigidbody>().isKinematic = true;
+            BlueRock.GetComponent<Rigidbody>().isKinematic = true;
+            PurpleRock.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

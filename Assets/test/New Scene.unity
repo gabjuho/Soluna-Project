@@ -182,6 +182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 297451428}
+  - {fileID: 2068127258}
   m_Father: {fileID: 73042795}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -229,6 +230,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDelayOn: 0
+  isAlt: 0
+  ObjectTriger: 0
+  AltKey: 0
 --- !u!4 &306734081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4753686679862902, guid: b6a68029251c6c54ea270e3724819861, type: 3}
@@ -1309,6 +1313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrigerAbleUI: {fileID: 1112316000}
+  onTriger: 0
+  inventory: {fileID: 0}
 --- !u!135 &1889154439
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1453,6 +1459,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2068127257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068127258}
+  - component: {fileID: 2068127259}
+  m_Layer: 0
+  m_Name: Ui_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2068127258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068127257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 216594257}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2068127259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068127257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbdabb4da10e08f48a22d3b6a4c1872c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CursorTexture: {fileID: 0}
 --- !u!1 &2088285170
 GameObject:
   m_ObjectHideFlags: 0
