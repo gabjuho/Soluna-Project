@@ -11,6 +11,7 @@ TagManager:
   - Destroy_Rock
   - Puzzle_Rock
   - Angel
+  - NextStage
   layers:
   - Default
   - TransparentFX

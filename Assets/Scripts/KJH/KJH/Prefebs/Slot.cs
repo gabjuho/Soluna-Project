@@ -137,7 +137,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                             case ItemType.Object_ToolBox:
                                 if (steam.on_triger)
                                 {
-                                    if (color_lozic.lozicClear && steam.lozicClear == false)
+                                    if (steam.on_starFuel && color_lozic.lozicClear && steam.lozicClear == false)
                                     {
                                         //실행시킬내용
                                         //--------------------------

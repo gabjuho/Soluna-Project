@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ObjectEventTriger : MonoBehaviour
@@ -15,6 +16,8 @@ public class ObjectEventTriger : MonoBehaviour
     public bool onTriger;
     public Inventory inventory;
 
+
+LeverLozic lever;
     #endregion
     private void Awake()
     {
@@ -27,7 +30,7 @@ public class ObjectEventTriger : MonoBehaviour
 
     private void Start()
     {
-
+        lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
         TrigerAbleUI.SetActive(false);
     }
 
@@ -35,7 +38,7 @@ public class ObjectEventTriger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EventTriger"))
         {
-            //Æ®¸®°Å UI¸¦ °ÔÀÓ¿ÀºêÁ§Æ® À§¿¡ Ç¥½Ã && ¹üÀ§ ³»¿¡ »óÈ£ÀÛ¿ë ¿ÀºêÁ§Æ®°¡ ÀÖÀ»½Ã È°¼ºÈ­
+            //íŠ¸ë¦¬ê±° UIë¥¼ ê²Œì„ì˜¤ë¸Œì íŠ¸ ìœ„ì— í‘œì‹œ && ë²”ìœ„ ë‚´ì— ìƒí˜¸ì‘ìš© ì˜¤ë¸Œì íŠ¸ê°€ ìˆì„ì‹œ í™œì„±í™”
             #region TrigrUI
             TrigerAbleUI.SetActive(true);
 
@@ -62,7 +65,7 @@ public class ObjectEventTriger : MonoBehaviour
             }
             else if((other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")) && Input.GetKeyDown(KeyCode.Q))
             {
-                Debug.Log("´ë»ç Ãâ·Â");
+                Debug.Log("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
             }
         }
         #endregion
@@ -91,20 +94,29 @@ public class ObjectEventTriger : MonoBehaviour
             GameObject.Find("ElevatorManager").GetComponent<Elevator>().ControllAnimation();
         }
         #endregion
+        if (other.gameObject.CompareTag("NextStage"))
+        {
+            if (lever.lozicClear)
+            {
+                Debug.Log("ë‹¤ìŒì”¬ìœ¼ë¡œ ì´ë™");
+            }
+            
+            //SceneManager.LoadScene("2F");
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("EventTriger"))
         {
-            //Æ®¸®°Å UI  ¹üÀ§ ¿¡¼­ ³ª°¡¸é ºñÈ°¼ºÈ­
+            //íŠ¸ë¦¬ê±° UI  ë²”ìœ„ ì—ì„œ ë‚˜ê°€ë©´ ë¹„í™œì„±í™”
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
             #endregion
         }
         if (other.gameObject.CompareTag("Item_Obj"))
         {
-            //Æ®¸®°Å UI  ¹üÀ§ ¿¡¼­ ³ª°¡¸é ºñÈ°¼ºÈ­
+            //íŠ¸ë¦¬ê±° UI  ë²”ìœ„ ì—ì„œ ë‚˜ê°€ë©´ ë¹„í™œì„±í™”
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
             #endregion
@@ -120,13 +132,13 @@ public class ObjectEventTriger : MonoBehaviour
 
     void ClickTriger(Collider other)
     {
-        //µô·¹ÀÌÁßÀÌ¶ó¸é ¹İÈ¯.
+        //ë”œë ˆì´ì¤‘ì´ë¼ë©´ ë°˜í™˜.
         if (gameManager.isDelayOn == true) return;
 
-        //ÇöÀç Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®ÀÇ ÀÌº¥Æ® Å¸ÀÔÀ» °¡Á®¿É´Ï´Ù.
+        //í˜„ì¬ ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ì˜ ì´ë²¤íŠ¸ íƒ€ì…ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
         eventSelection = other.gameObject.GetComponent<EvenetSelection>();
 
-        //¿©·¯¹ø Å¬¸¯ÇÏ´Â°É ¸·±â À§ÇØ¼­ µô·¹ÀÌ ÁÖ±â [1.5ÃÊ]
+        //ì—¬ëŸ¬ë²ˆ í´ë¦­í•˜ëŠ”ê±¸ ë§‰ê¸° ìœ„í•´ì„œ ë”œë ˆì´ ì£¼ê¸° [1.5ì´ˆ]
         StartCoroutine(gameManager.DelayTimer(1.5f));
 
         switch (eventSelection._eventType)
@@ -141,14 +153,14 @@ public class ObjectEventTriger : MonoBehaviour
                 Debug.Log("Third");
                 break;
             case EvenetSelection.EventType.Item:
-                FieldItem fieldItems = other.GetComponent<FieldItem>();                //Å¸°Ù¾ÆÀÌÅÛÀ» º¯¼ö¿¡ ÀúÀå
-                if (inventory.AddItem(fieldItems.GetItem()))                            //±×¾ÆÀÌÅÛÀ» ÀúÀå Á¦´ë·Î ÀúÀå½Ã true ¾Æ´Ò½Ã false
+                FieldItem fieldItems = other.GetComponent<FieldItem>();                //íƒ€ê²Ÿì•„ì´í…œì„ ë³€ìˆ˜ì— ì €ì¥
+                if (inventory.AddItem(fieldItems.GetItem()))                            //ê·¸ì•„ì´í…œì„ ì €ì¥ ì œëŒ€ë¡œ ì €ì¥ì‹œ true ì•„ë‹ì‹œ false
                 {
-                    fieldItems.DestroyItem();                                           //ÇÊµåÀÇ ¾ÆÀÌÅÛÀ» Á¦°Å
+                    fieldItems.DestroyItem();                                           //í•„ë“œì˜ ì•„ì´í…œì„ ì œê±°
                 }
                 Debug.Log("Gear");
                 break;
-            case EvenetSelection.EventType.Puzzle_Rock: //2Ãş 3¹øÂ° ÆÛÁñ µ¹ »óÈ£ÀÛ¿ë ½Ã
+            case EvenetSelection.EventType.Puzzle_Rock: //2ï¿½ï¿½ 3ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½
                 
                 break;
 
