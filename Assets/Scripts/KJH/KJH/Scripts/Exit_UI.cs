@@ -30,5 +30,6 @@ public class Exit_UI : MonoBehaviour
     {
         on_Ui = !on_Ui;
         exit_Ui.SetActive(on_Ui);
+        Application.Quit();
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Slot : MonoBehaviour, IPointerClickHandler
 {
@@ -14,6 +15,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     public Image itemIcon;              //아이템의 아이콘
     public float clickTime = 0f;
     Inventory inven;
+    [SerializeField]
+    TextMeshProUGUI item_name;
 
     public ObjectEventTriger E_Trigger;
 
@@ -22,6 +25,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     ColorButtonLozic color_lozic;
     SteamLozic steam;
     SundialLozic sundial;
+
+    public GameObject[] planets;
+    string[] planets_name;
     #endregion
     #region 2F
     Book_Puzzle RightBookUsingPoint;
@@ -31,6 +37,19 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         scene = SceneManager.GetActiveScene();
+        #region 1F
+        if (scene.name.Equals("1F Test"))
+        {
+            planets = new GameObject[6];
+            planets_name = new string[6];
+            planets_name[0] = "Sun_Obj";
+            planets_name[1] = "Mercury_Obj";
+            planets_name[2] = "Venus_Obj";
+            planets_name[3] = "Earth_Obj";
+            planets_name[4] = "Mars_Obj";
+            planets_name[5] = "Jupiter_Obj";
+        }
+        #endregion
     }
 
     private void Start()
@@ -43,6 +62,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
             steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
             sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
+            for(int i = 0; i < planets.Length; i++)
+            {
+                planets[i] = GameObject.Find(planets_name[i]);
+            }
+            
         }
         #endregion
 
@@ -61,10 +85,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     {                                             //
         itemIcon.sprite = item.itemImage;         //아이템이미지를 아이콘으로 복사
         itemIcon.gameObject.SetActive(true);      //아이콘 활성화
+        item_name.text = item.itemName;
     }
     public void RemoveSlot()                             //슬롯 제거
     {
         item = null;                                     //아이템을 비우고
+        item_name.text = "";
         itemIcon.gameObject.SetActive(false);            //아이콘을 비활성화
     }
 
@@ -105,8 +131,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     {
                                         //실행시킬내용
                                         //--------------------------
+                                        
                                         gear.GearSetActive(true);
                                         gear.on_gear = true;
+                                        FieldItem plant_item = planets[0].GetComponent<FieldItem>();
+                                        inven.AddItem(plant_item.GetItem());
+                                        
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -124,6 +154,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         //실행시킬내용
                                         //--------------------------
                                         steam.on_starFuel = true;
+                                        FieldItem plant_item = planets[1].GetComponent<FieldItem>();
+                                        inven.AddItem(plant_item.GetItem());
                                         Debug.Log("별연료 사용");
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
@@ -142,6 +174,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         //실행시킬내용
                                         //--------------------------
                                         steam.on_toolBox = true;
+                                        FieldItem plant_item = planets[2].GetComponent<FieldItem>();
+                                        inven.AddItem(plant_item.GetItem());
                                         Debug.Log("공구박스 사용");
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
@@ -160,6 +194,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         //실행시킬내용
                                         //--------------------------
                                         sundial.on_starPiece = true;
+                                        FieldItem plant_item = planets[3].GetComponent<FieldItem>();
+                                        inven.AddItem(plant_item.GetItem());
                                         Debug.Log("해시계 사용");
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item

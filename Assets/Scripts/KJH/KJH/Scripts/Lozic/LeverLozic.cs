@@ -34,6 +34,8 @@ public class LeverLozic : MonoBehaviour
     [SerializeField]
     AudioClip upSound;
 
+    public Inventory inven;
+    public GameObject[] planets;
     private void Awake()
     {
         
@@ -106,7 +108,8 @@ public class LeverLozic : MonoBehaviour
         if(lever[0].on_lever == currentAnswer[0] && lever[1].on_lever == currentAnswer[1] && lever[2].on_lever == currentAnswer[2] && lever[3].on_lever == currentAnswer[3])
         {
             lozicClear = true;
-            
+            FieldItem plant_item = planets[5].GetComponent<FieldItem>();
+            inven.AddItem(plant_item.GetItem());
             StartCoroutine(clearImageSetActive());
         }
     }

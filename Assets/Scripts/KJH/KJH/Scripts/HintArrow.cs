@@ -19,7 +19,7 @@ public class HintArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hintObj.SetActive(hintManager.on_Hint);
+        
         if (hintManager.on_Hint)
         {
             for(int i = 0; i < lozicManager.solve_Lozic.Length; i++)
