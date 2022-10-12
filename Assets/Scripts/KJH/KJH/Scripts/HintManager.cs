@@ -24,6 +24,9 @@ public class HintManager : MonoBehaviour
     [SerializeField]
     AudioClip hint_used;
 
+    [SerializeField]
+    GameObject hint_arrow;
+
     public bool on_Hint;
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class HintManager : MonoBehaviour
     private void Start()
     {
         hintBtn.gameObject.SetActive(on_Hint);
+        //hint_arrow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +57,7 @@ public class HintManager : MonoBehaviour
     public void OnClickButton()
     {
         on_Hint = false;
+        //hint_arrow.SetActive(true);
         hintBtn.gameObject.SetActive(on_Hint);
         hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
         hintBtn.gameObject.GetComponent<AudioSource>().Play();

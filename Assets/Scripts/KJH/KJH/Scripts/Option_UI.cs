@@ -24,12 +24,6 @@ public class Option_UI : MonoBehaviour
         controll_Ui.SetActive(onControll);
         sound_Ui.SetActive(onSound);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnClickButton()
     {
         onclick = !onclick;

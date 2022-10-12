@@ -17,7 +17,7 @@ public class ObjectEventTriger : MonoBehaviour
     public Inventory inventory;
 
 
-LeverLozic lever;
+    LeverLozic lever;
     #endregion
     private void Awake()
     {

@@ -37,6 +37,8 @@ public class ColorButtonLozic : MonoBehaviour
     GameObject on_gear;
 
     public bool hintUsed;
+    public Inventory inven;
+    public GameObject[] planets;
     private void Awake()
     {
         /*
@@ -201,6 +203,11 @@ public class ColorButtonLozic : MonoBehaviour
                 {
                     Debug.Log("색상로직 클리어");
                     lozicClear = true;
+                    FieldItem plant_item = planets[4].GetComponent<FieldItem>();
+                    inven.AddItem(plant_item.GetItem());
+                    //수정
+                    /*FieldItem plant_item = planets[0].GetComponent<FieldItem>();
+                    inven.AddItem(plant_item.GetItem());*/
                 }
             }
             
