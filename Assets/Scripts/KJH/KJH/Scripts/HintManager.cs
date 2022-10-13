@@ -28,15 +28,18 @@ public class HintManager : MonoBehaviour
     GameObject hint_arrow;
 
     public bool on_Hint;
+    int count;
     private void Awake()
     {
         solveLozic = 0f;
         solveLozic_int = 0;
         on_Hint = false;
+        count = 0;
     }
     private void Start()
     {
         hintBtn.gameObject.SetActive(on_Hint);
+        hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_creat;
         //hint_arrow.SetActive(false);
     }
 
@@ -47,9 +50,13 @@ public class HintManager : MonoBehaviour
         solveLozic_int = (int)Mathf.Round(solveLozic);
         if (solveLozic_int > waitTime)
         {
+            
             on_Hint = true;
-            hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_creat;
-            hintBtn.gameObject.GetComponent<AudioSource>().Play();
+            if(count == 0)
+            {
+                hintBtn.gameObject.GetComponent<AudioSource>().Play();
+                count++;
+            }
             hintBtn.gameObject.SetActive(on_Hint);
         }
     }
