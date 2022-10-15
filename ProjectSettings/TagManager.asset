@@ -12,6 +12,7 @@ TagManager:
   - Puzzle_Rock
   - Angel
   - NextStage
+  - Planet_Puzzle_Trigger
   layers:
   - Default
   - TransparentFX
