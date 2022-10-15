@@ -10,6 +10,8 @@ public class ChangeTimeButton : MonoBehaviour
     public Camera mainCamera; //스카이박스 보여질 카메라
     public Material day, night; //낮, 밤 스카이박스 메터리얼
     public Material red, green, blue, purple, black;
+    public Material redRockDayMat, greenRockDayMat, blueRockDayMat, purpleRockDayMat;
+    public Material redRockNightMat, greenRockNightMat, blueRockNightMat, purpleRockNightMat;
     public GameObject leftWall, rightWall, middleWall; //오른쪽, 왼쪽, 중앙 decoration 오브젝트
     public GameObject leftBookShelf, rightBookShelf, middleBookShelf;
     public MeshRenderer RedCrystal, GreenCrystal, BlueCrystal, PurpleCrystal;
@@ -78,10 +80,10 @@ public class ChangeTimeButton : MonoBehaviour
             PurpleCrystal.material = purple;
 
             //돌 색깔 변경
-            RedRockMesh.material = red;
-            GreenRockMesh.material = green;
-            BlueRockMesh.material = blue;
-            PurpleRockMesh.material = purple;
+            RedRockMesh.material = redRockNightMat;
+            GreenRockMesh.material = greenRockNightMat;
+            BlueRockMesh.material = blueRockNightMat;
+            PurpleRockMesh.material = purpleRockNightMat;
 
             RedRock.GetComponent<Rigidbody>().isKinematic = false;
             GreenRock.GetComponent<Rigidbody>().isKinematic = false;
@@ -97,10 +99,10 @@ public class ChangeTimeButton : MonoBehaviour
             PurpleCrystal.material = black;
 
             //돌 색깔 변경
-            RedRockMesh.material = black;
-            GreenRockMesh.material = black;
-            BlueRockMesh.material = black;
-            PurpleRockMesh.material = black;
+            RedRockMesh.material = redRockDayMat;
+            GreenRockMesh.material = greenRockDayMat;
+            BlueRockMesh.material = blueRockDayMat;
+            PurpleRockMesh.material = purpleRockDayMat;
 
             RedRock.GetComponent<Rigidbody>().isKinematic = true;
             GreenRock.GetComponent<Rigidbody>().isKinematic = true;
