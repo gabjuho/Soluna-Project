@@ -4545,7 +4545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 150
+  MoveSpeed: 90
   SprintSpeed: 90
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -4641,6 +4641,14 @@ MonoBehaviour:
   blue: {fileID: 2100000, guid: 2cf7248575437c04dab1dd6c20d1a5fd, type: 2}
   purple: {fileID: 2100000, guid: 11954cbdc9170e24ebef37eaa0b1c124, type: 2}
   black: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+  redRockDayMat: {fileID: 2100000, guid: 7c59a8ec21b72e54da59ec6e8067be5b, type: 2}
+  greenRockDayMat: {fileID: 2100000, guid: 381168fa0cfccb2429944d7aacf5fa52, type: 2}
+  blueRockDayMat: {fileID: 2100000, guid: 6da951e9fac086844938dc41cc4d5960, type: 2}
+  purpleRockDayMat: {fileID: 2100000, guid: 85d646e31975b1d41b744dec70f654e5, type: 2}
+  redRockNightMat: {fileID: 2100000, guid: 61de7fd45f9656b4b8a5baaf345c4ab7, type: 2}
+  greenRockNightMat: {fileID: 2100000, guid: 6f06a2abf8c22ab4a9589883b63e829b, type: 2}
+  blueRockNightMat: {fileID: 2100000, guid: d85fbffbbccb57741b1e61ac4e3fb799, type: 2}
+  purpleRockNightMat: {fileID: 2100000, guid: ed7d70f200e8c544a942a87348953204, type: 2}
   leftWall: {fileID: 2012870996}
   rightWall: {fileID: 2138987636}
   middleWall: {fileID: 1331076601}
@@ -8669,7 +8677,7 @@ PrefabInstance:
     - target: {fileID: -4943777937672464540, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+      objectReference: {fileID: 2100000, guid: 381168fa0cfccb2429944d7aacf5fa52, type: 2}
     - target: {fileID: -4869306143899440449, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Name
       value: Red_Pillar
@@ -8737,7 +8745,7 @@ PrefabInstance:
     - target: {fileID: -2834249874773221981, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+      objectReference: {fileID: 2100000, guid: 7c59a8ec21b72e54da59ec6e8067be5b, type: 2}
     - target: {fileID: -2314245011921094447, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Name
       value: Purple_Rock
@@ -8857,7 +8865,7 @@ PrefabInstance:
     - target: {fileID: 2775226157375236886, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+      objectReference: {fileID: 2100000, guid: 85d646e31975b1d41b744dec70f654e5, type: 2}
     - target: {fileID: 3058790584785910011, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Name
       value: Blue_Pillar
@@ -8901,7 +8909,7 @@ PrefabInstance:
     - target: {fileID: 4103124080676475333, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+      objectReference: {fileID: 2100000, guid: 6da951e9fac086844938dc41cc4d5960, type: 2}
     - target: {fileID: 5080180100859711472, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -8994,6 +9002,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+    - target: {fileID: 7120643502973992140, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 23fa462596e8ff94e8625c468e021833, type: 2}
     - target: {fileID: 7277885429824127917, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
