@@ -83,6 +83,19 @@ public class ObjectEventTriger : MonoBehaviour
                 TrigerAbleUI.SetActive(false);
             }
         }
+
+        if(other.gameObject.CompareTag("Globe"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(true);
+
+            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
+            #endregion
+
+            #region Triger
+            if (Input.GetKey(KeyCode.E)) ClickTriger(other);
+            #endregion
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -128,6 +141,12 @@ public class ObjectEventTriger : MonoBehaviour
             TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             #endregion
         }
+        if(other.gameObject.CompareTag("Globe"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
+            #endregion
+        }
     }
 
     void ClickTriger(Collider other)
@@ -160,10 +179,8 @@ public class ObjectEventTriger : MonoBehaviour
                 }
                 Debug.Log("Gear");
                 break;
-            case EvenetSelection.EventType.Puzzle_Rock: //2�� 3��° ���� �� ��ȣ�ۿ� ��
-                
+            case EvenetSelection.EventType.Globe: //지구본 클릭 시
                 break;
-
         }
 
         Debug.Log("check");

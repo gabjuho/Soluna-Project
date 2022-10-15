@@ -34,6 +34,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     Book_Puzzle LeftBookUsingPoint;
     Book_Puzzle MiddleBookUsingPoint;
     #endregion
+    #region 3F
+    Puzzle3FManager puzzle3FManager;
+    #endregion
     private void Awake()
     {
         scene = SceneManager.GetActiveScene();
@@ -79,6 +82,10 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         }
         #endregion
 
+        #region 3F
+        if(scene.name.Equals("3F"))
+            puzzle3FManager = GameObject.Find("3F_Manager").GetComponent<Puzzle3FManager>();
+        #endregion
         inven = Inventory.instance;
     }
     public void UpdateSlotUI()                    //인벤토리에 탬먹을시 해당 아이콘 출력
@@ -244,6 +251,24 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     Inventory.instance.RemoveItem(slotNum);
                                 }
                                 break;
+                        }
+                    }
+                    #endregion
+                    #region 3F
+                    if (scene.name.Equals("3F"))
+                    {
+                        if (puzzle3FManager.isClear)
+                            return;
+
+                        if (LiftTrigger.onLift && puzzle3FManager.CheckPlanet(item.itemType)) //맞는 행성이면 아이템 사용됨
+                        {
+                            puzzle3FManager.ActivePlanet();
+                            RemoveSlot();
+                            Inventory.instance.RemoveItem(slotNum);
+                        }
+                        else if(LiftTrigger.onLift && !puzzle3FManager.CheckPlanet(item.itemType)) //틀린 행성이면 아이템 사용이 안되고, 사용됐던 아이템 원상 복귀
+                        {
+                            puzzle3FManager.ResetPlanet();
                         }
                     }
                     #endregion
