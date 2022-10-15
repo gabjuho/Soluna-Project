@@ -13,6 +13,7 @@ TagManager:
   - Angel
   - NextStage
   - Planet_Puzzle_Trigger
+  - Globe
   layers:
   - Default
   - TransparentFX

@@ -257,6 +257,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                     #region 3F
                     if (scene.name.Equals("3F"))
                     {
+                        if (puzzle3FManager.isClear)
+                            return;
+
                         if (LiftTrigger.onLift && puzzle3FManager.CheckPlanet(item.itemType)) //맞는 행성이면 아이템 사용됨
                         {
                             puzzle3FManager.ActivePlanet();

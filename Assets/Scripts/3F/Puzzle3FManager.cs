@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Puzzle3FManager : MonoBehaviour
 {
+    public ClearImage clear_image;
     public Inventory inv;
     public Item[] item;
     public Light[] planet_light;
     public Light[] crystal_light;
+    public bool isClear = false; //3층 클리어 여부
 
     private int count; //현재 맞춘 행성의 개수 -> 나중에 private로 변경
 
@@ -59,6 +61,7 @@ public class Puzzle3FManager : MonoBehaviour
 
     public void PuzzleComplete()
     {
-        
+        isClear = true;
+        clear_image.FadeReady();
     }
 }
