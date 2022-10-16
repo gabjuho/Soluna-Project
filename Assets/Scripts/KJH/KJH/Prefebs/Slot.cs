@@ -28,6 +28,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     public GameObject[] planets;
     string[] planets_name;
+
+    public SoundManager sound;
+    public AudioSource source;
     #endregion
     #region 2F
     Book_Puzzle RightBookUsingPoint;
@@ -62,7 +65,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
             steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
             sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
-            for(int i = 0; i < planets.Length; i++)
+            sound = GameObject.Find("Ui_Manager").GetComponent<SoundManager>();
+            for (int i = 0; i < planets.Length; i++)
             {
                 planets[i] = GameObject.Find(planets_name[i]);
             }
@@ -136,7 +140,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         gear.on_gear = true;
                                         FieldItem plant_item = planets[0].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
-                                        
+                                        sound.sources[0].clip = sound.effectSound[0];
+                                        sound.sources[0].Play();
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();

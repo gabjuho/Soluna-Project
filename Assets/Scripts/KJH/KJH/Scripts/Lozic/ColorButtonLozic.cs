@@ -39,6 +39,9 @@ public class ColorButtonLozic : MonoBehaviour
     public bool hintUsed;
     public Inventory inven;
     public GameObject[] planets;
+
+    [SerializeField]
+    SoundManager sound;
     private void Awake()
     {
         /*

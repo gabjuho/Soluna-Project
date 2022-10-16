@@ -4,19 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField]
-    AudioClip[] effectSound;
-    [SerializeField]
-    AudioClip[] backgroundSound;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AudioClip[] effectSound;
+    public AudioClip[] backgroundSound;
+    public AudioSource[] sources;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
