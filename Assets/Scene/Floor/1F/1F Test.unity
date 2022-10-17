@@ -8994,6 +8994,7 @@ MonoBehaviour:
   - {fileID: 1239211765}
   - {fileID: 1288100600}
   sound: {fileID: 180072684}
+  hint: {fileID: 1701479455}
 --- !u!114 &1178286008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9021,6 +9022,7 @@ MonoBehaviour:
   - {fileID: 1084666275}
   - {fileID: 1239211765}
   - {fileID: 1288100600}
+  hint: {fileID: 1701479455}
 --- !u!114 &1178286009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14073,12 +14075,12 @@ MonoBehaviour:
   solveLozic: 0
   solveLozic_int: 0
   waitTime: 30
-  lozicManager: {fileID: 1178286009}
   hintBtn: {fileID: 1767392140}
   hint_creat: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
   hint_used: {fileID: 8300000, guid: 7838a5aa9de2dd344a946d56816537f0, type: 3}
-  hint_arrow: {fileID: 1701479453}
+  hint_arrow: {fileID: 1701479456}
   on_Hint: 1
+  have_hint: 3
 --- !u!114 &1701479456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14101,6 +14103,7 @@ MonoBehaviour:
   - {fileID: 8776054660495235825}
   - {fileID: 355530546}
   - {fileID: 7882587471807398817}
+  on_ArrowObj: 0
 --- !u!64 &1705647022
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20885,7 +20888,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8499701361930146817, guid: efd51e5bd84bf77419a1f196d62adc6f, type: 3}
+  - {fileID: 2100000, guid: f3d67ecef3c4264479b96505fffa3294, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25399,7 +25402,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4427394405292297522, guid: efd51e5bd84bf77419a1f196d62adc6f, type: 3}
+  - {fileID: 2100000, guid: 0c3058442658e5c4491d3209537bebce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

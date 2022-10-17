@@ -7,14 +7,11 @@ public class HintManager : MonoBehaviour
 {
     [SerializeField]
     LimitTimer timer;
-    [SerializeField]
-    float solveLozic;
+    public float solveLozic;
     [SerializeField]
     int solveLozic_int;
     [SerializeField]
     float waitTime;
-    [SerializeField]
-    LozicManager lozicManager;
 
     [SerializeField]
     Button hintBtn;
@@ -24,11 +21,13 @@ public class HintManager : MonoBehaviour
     [SerializeField]
     AudioClip hint_used;
 
-    [SerializeField]
-    GameObject hint_arrow;
+    public HintArrow hint_arrow;
 
     public bool on_Hint;
     int count;
+
+    int thislozic_index;
+    public int have_hint;
     private void Awake()
     {
         solveLozic = 0f;
@@ -63,11 +62,26 @@ public class HintManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        on_Hint = false;
-        hint_arrow.SetActive(true);
-        hintBtn.gameObject.SetActive(on_Hint);
-        hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
-        hintBtn.gameObject.GetComponent<AudioSource>().Play();
-        solveLozic = 0;
+        if (have_hint > 0)
+        {
+            on_Hint = false;
+            hint_arrow.on_ArrowObj = true;
+            have_hint--;
+            hintBtn.gameObject.SetActive(on_Hint);
+            hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
+            hintBtn.gameObject.GetComponent<AudioSource>().Play();
+            solveLozic = 0;
+        }
+        
+    }
+
+    public void OffHintBtn()
+    {
+        if (on_Hint)
+        {
+            on_Hint = false;
+            solveLozic = 0f;
+            hint_arrow.on_ArrowObj = false;
+        }
     }
 }

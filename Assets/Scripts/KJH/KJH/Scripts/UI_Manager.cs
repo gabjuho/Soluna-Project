@@ -10,8 +10,6 @@ public class UI_Manager : MonoBehaviour
     GameObject tutorial;
     [SerializeField]
     GameObject option;
-    //[Space(20)]
-    //public Image SunMoonImg;
     private void Start()
     {
         tutorial.SetActive(true);

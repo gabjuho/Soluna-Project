@@ -42,6 +42,9 @@ public class ColorButtonLozic : MonoBehaviour
 
     [SerializeField]
     SoundManager sound;
+
+    [SerializeField]
+    HintManager hint;
     private void Awake()
     {
         /*
@@ -208,9 +211,7 @@ public class ColorButtonLozic : MonoBehaviour
                     lozicClear = true;
                     FieldItem plant_item = planets[4].GetComponent<FieldItem>();
                     inven.AddItem(plant_item.GetItem());
-                    //¼öÁ¤
-                    /*FieldItem plant_item = planets[0].GetComponent<FieldItem>();
-                    inven.AddItem(plant_item.GetItem());*/
+                    hint.OffHintBtn();
                 }
             }
             
