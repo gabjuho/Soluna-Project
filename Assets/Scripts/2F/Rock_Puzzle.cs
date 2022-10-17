@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Rock_Puzzle : MonoBehaviour
 {
+    public GameObject hintArrow;
+    HintStateManager hintStateManager;
     public GameObject[] rock = new GameObject[4];
     public GameObject[] rockTrigger = new GameObject[4];
     private GameObject[] destroyRock;
@@ -22,6 +24,7 @@ public class Rock_Puzzle : MonoBehaviour
     }
     void Start()
     {
+        hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
         destroyRock = GameObject.FindGameObjectsWithTag("Destroy_Rock");
     }
 
@@ -58,6 +61,8 @@ public class Rock_Puzzle : MonoBehaviour
     {
         if (ChangeTimeButton.isDay)
             return;
+        hintStateManager.ChangeTarget(HintStateManager.currentPuzzleState);
+        hintArrow.SetActive(false);
         for (int i = 0; i < 4; i++)
             if (!rock[i].GetComponent<Rock>().isCorrect)
                 return;
@@ -66,6 +71,8 @@ public class Rock_Puzzle : MonoBehaviour
             rock[i].GetComponent<Rigidbody>().isKinematic = true;
 
         SecondFloorManager.currentState = SecondFloorManager.SecondFloorState.ThirdPuzzle;
+
+        HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.AllPuzzleClear);
 
         clearImage.SetActive(true);
         Invoke("ChangeFadeOut", 2f);
@@ -76,6 +83,9 @@ public class Rock_Puzzle : MonoBehaviour
     {
         if (!angelIsCool)//천사상 쿨타임이 아니면
         {
+            hintStateManager.ChangeTarget(HintStateManager.currentPuzzleState);
+            hintArrow.SetActive(false);
+
             rock[0].transform.position = new Vector3(0f, 8.338691f, 1.443823e-15f);
             rock[1].transform.position = new Vector3(4.121958f, 7.157758f, 2.954749f);
             rock[2].transform.position = new Vector3(-1.235358f, 7.539322f, -4.474335f);
@@ -86,6 +96,9 @@ public class Rock_Puzzle : MonoBehaviour
     }
     public void ResetPuzzle() //15초 지나면 자동으로 리셋
     {
+        hintStateManager.ChangeTarget(HintStateManager.currentPuzzleState);
+        hintArrow.SetActive(false);
+
         rock[0].transform.position = new Vector3(0f, 8.338691f, 1.443823e-15f);
         rock[1].transform.position = new Vector3(4.121958f, 7.157758f, 2.954749f);
         rock[2].transform.position = new Vector3(-1.235358f, 7.539322f, -4.474335f);

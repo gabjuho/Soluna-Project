@@ -29,15 +29,17 @@ public class ChangeTimeButton : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && !isCoolTime) //R클릭 시 쿨타임 체크 후 아래 코드 진행
         {
-            if (mainCamera.GetComponent<Skybox>().material == day && isDay)
+            if (mainCamera.GetComponent<Skybox>().material == day && isDay) //밤일 때
             {
                 mainCamera.GetComponent<Skybox>().material = night;
                 isDay = false;
+                HintStateManager.ChangeTimeState(HintStateManager.TimeState.Night);
             }
-            else
+            else //낮일 때
             {
                 mainCamera.GetComponent<Skybox>().material = day;
                 isDay = true;
+                HintStateManager.ChangeTimeState(HintStateManager.TimeState.Day);
             }
             ChangeCrystalRockColor();
             isCoolTime = true;

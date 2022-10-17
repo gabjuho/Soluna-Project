@@ -6,6 +6,7 @@ public class SecondFloorManager: MonoBehaviour
 {
     public static GameObject rightBookUsingPoint, leftBookUsingPoint, middleBookUsingPoint;
     public static bool bookPuzzleClear;
+    static HintStateManager hintStateManager;
 
     public enum SecondFloorState
     {
@@ -27,6 +28,7 @@ public class SecondFloorManager: MonoBehaviour
         rightBookUsingPoint = GameObject.Find("RightBookUsingPoint");
         leftBookUsingPoint = GameObject.Find("LeftBookUsingPoint");
         middleBookUsingPoint = GameObject.Find("MiddleBookUsingPoint");
+        hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
     }
 
     public static void CheckBookPuzzleClear() //책 퍼즐이 전부 완료되었는 지 확인하는 함수
@@ -35,6 +37,10 @@ public class SecondFloorManager: MonoBehaviour
             bookPuzzleClear = true;
 
         if (bookPuzzleClear)
+        {
             currentState = SecondFloorState.FirstPuzzle;
+            HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.CrystalCorrect);
+            hintStateManager.ChangeTarget(HintStateManager.PuzzleState.CrystalCorrect);
+        }
     }
 }
