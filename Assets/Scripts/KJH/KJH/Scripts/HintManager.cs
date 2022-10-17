@@ -64,7 +64,7 @@ public class HintManager : MonoBehaviour
     public void OnClickButton()
     {
         on_Hint = false;
-        //hint_arrow.SetActive(true);
+        hint_arrow.SetActive(true);
         hintBtn.gameObject.SetActive(on_Hint);
         hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
         hintBtn.gameObject.GetComponent<AudioSource>().Play();

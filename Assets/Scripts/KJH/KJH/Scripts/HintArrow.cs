@@ -34,7 +34,14 @@ public class HintArrow : MonoBehaviour
                     break;
                 }
             }
-            
+            for (int i = 0; i < lozicManager.solve_Lozic.Length; i++)
+            {
+                if (lozicManager.solve_Lozic[i] == false)
+                {
+                    return;
+                }
+            }
+            hintObj.SetActive(false);
         }
     }
 }
