@@ -8,9 +8,13 @@ using UnityEngine.UI;
 public class ObjectEventTriger : MonoBehaviour
 {
     public GameObject TrigerAbleUI;
+    public GameObject hintArrow;
 
+    HintStateManager hintStateManager;
     GameManager gameManager;
+    TextManager textmanager;
     EvenetSelection eventSelection;
+    int talkindex;
     #region MikangMark
     Elevator elevator;
     public bool onTriger;
@@ -22,15 +26,20 @@ public class ObjectEventTriger : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //textmanager = GameObject.Find("TextManager").GetComponent<TextManager>();
         #region MikangMark
         //elevator = GameObject.Find("ElevatorManager").GetComponent<Elevator>();
         onTriger = false;
         #endregion
+
+        if (SceneManager.GetActiveScene().name.Equals("2F"))
+            hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
     }
 
     private void Start()
     {
         TrigerAbleUI.SetActive(false);
+        //GetText(eventSelection.ID, eventSelection.isCharaTalk);
     }
 
     public void OnTriggerStay(Collider other)
@@ -60,11 +69,20 @@ public class ObjectEventTriger : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 ClickTriger(other);
+
+                if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
+                {
+                    HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookGetting); //힌트 책 가진 상태 변경
+                    HintStateManager.lastItem = other.gameObject.name;
+                    hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
+                    hintArrow.SetActive(false);
+                }
+
                 TrigerAbleUI.SetActive(false);
             }
-            else if((other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")) && Input.GetKeyDown(KeyCode.Q))
+            else if (Input.GetKeyDown(KeyCode.Q) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
             {
-                Debug.Log("��� ���");
+                Debug.Log("대사 출력");
             }
         }
         #endregion
@@ -75,7 +93,7 @@ public class ObjectEventTriger : MonoBehaviour
             TrigerAbleUI.SetActive(true);
 
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
-            
+
             if (Input.GetKey(KeyCode.Q))
             {
                 other.gameObject.GetComponent<RockSound>().sound.Play();
@@ -84,7 +102,7 @@ public class ObjectEventTriger : MonoBehaviour
             }
         }
 
-        if(other.gameObject.CompareTag("Globe"))
+        if (other.gameObject.CompareTag("Globe"))
         {
             #region TrigrUI
             TrigerAbleUI.SetActive(true);
@@ -113,7 +131,7 @@ public class ObjectEventTriger : MonoBehaviour
             {
                 Debug.Log("다음씬으로 이동");
             }
-            
+
             //SceneManager.LoadScene("2F");
         }
     }
@@ -134,14 +152,14 @@ public class ObjectEventTriger : MonoBehaviour
             TrigerAbleUI.SetActive(false);
             #endregion
         }
-        if(other.gameObject.CompareTag("Puzzle_Rock"))
+        if (other.gameObject.CompareTag("Puzzle_Rock"))
         {
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
             TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             #endregion
         }
-        if(other.gameObject.CompareTag("Globe"))
+        if (other.gameObject.CompareTag("Globe"))
         {
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
@@ -184,5 +202,37 @@ public class ObjectEventTriger : MonoBehaviour
         }
 
         Debug.Log("check");
+    }
+    void GetText(int id, bool isCharaTalk)
+    {
+        Debug.Log(id);
+        string textData = textmanager.GetTalk(id, talkindex);
+
+        if (textData == null)
+        {
+            textmanager.isText = false;
+            talkindex = 0;
+            textmanager.TalkCon();
+            return;
+        }
+
+        if (isCharaTalk)
+        {
+            textmanager.DescText.text = textData.Split(':')[0];
+            textmanager.CharaFace_Img.sprite = textmanager.GetPortrait(id, int.Parse(textData.Split(':')[1]));
+
+            textmanager.CharaFace_Img.color = new Color32(255, 255, 255, 255);
+        }
+        else
+        {
+            textmanager.DescText.text = textData;
+
+            textmanager.CharaFace_Img.color = new Color32(255, 255, 255, 0);
+        }
+
+        textmanager.isText = true;
+        talkindex++;
+
+        textmanager.TalkCon();
     }
 }
