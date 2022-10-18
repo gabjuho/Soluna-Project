@@ -10,6 +10,8 @@ public class Crystal_Puzzle : MonoBehaviour
     private string[] AnswerCrystalName = new string[4];
     public static int currentIndex;
     private Rock_Puzzle rock_Puzzle;
+    public Inventory inventory;
+    public Item haewang;
     // Start is called before the first frame update
 
     private void Awake()
@@ -57,6 +59,8 @@ public class Crystal_Puzzle : MonoBehaviour
                 rock_Puzzle.RockPuzzleSet();
                 gameObject.GetComponent<AudioSource>().Play();
                 HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.RockPuzzle);
+
+                inventory.AddItem(haewang);
                 Debug.Log("두번째 퍼즐 클리어");
             }
             else //답과 틀리면

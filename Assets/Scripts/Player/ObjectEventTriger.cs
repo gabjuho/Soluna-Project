@@ -110,6 +110,7 @@ public class ObjectEventTriger : MonoBehaviour
             #region 2F
             else if (Input.GetKeyDown(KeyCode.E) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
             {
+                GetText(other.GetComponent<EvenetSelection>().ID, other.GetComponent<EvenetSelection>().isCharaTalk);
                 Debug.Log("대사 출력");
             }
             #endregion
@@ -182,6 +183,10 @@ public class ObjectEventTriger : MonoBehaviour
             //트리거 UI  범위 에서 나가면 비활성화
             #region InteractionUI
             InteractionUI.SetActive(false);
+            #endregion
+
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
             #endregion
         }
         if (other.gameObject.CompareTag("Puzzle_Rock"))
