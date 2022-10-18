@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ObjectEventTriger : MonoBehaviour
 {
     public GameObject TrigerAbleUI;
+    public GameObject InteractionUI;
 
     GameManager gameManager;
     static public EvenetSelection eventSelection;
@@ -35,6 +36,7 @@ public class ObjectEventTriger : MonoBehaviour
     {
         lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
         TrigerAbleUI.SetActive(false);
+        InteractionUI.SetActive(false);
     }
 
     public void OnTriggerStay(Collider other)
@@ -57,14 +59,14 @@ public class ObjectEventTriger : MonoBehaviour
         #region Item_Obj
         if (other.gameObject.CompareTag("Item_Obj"))
         {
-            TrigerAbleUI.SetActive(true);
+            InteractionUI.SetActive(true);
 
-            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
+            InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.Q))
             {
                 ClickTriger(other);
-                TrigerAbleUI.SetActive(false);
+                InteractionUI.SetActive(false);
             }
 
 
@@ -105,8 +107,8 @@ public class ObjectEventTriger : MonoBehaviour
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             //트리거 UI  범위 에서 나가면 비활성화
-            #region TrigrUI
-            TrigerAbleUI.SetActive(false);
+            #region InteractionUI
+            InteractionUI.SetActive(false);
             #endregion
         }
     }
