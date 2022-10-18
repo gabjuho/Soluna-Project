@@ -14,9 +14,4 @@ public class EvenetSelection : MonoBehaviour
     [Space(20)]
     public eve_Type Event_Type;
     public EventType _eventType;
-
-    public void ChangeID(int _id)
-    {
-        ID = _id;
-    }
 }

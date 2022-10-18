@@ -38,6 +38,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     Sprite[] backImg;
 
     bool onClick;
+
+    TextID_Controll iD_Controll;
     #endregion
     #region 2F
     Book_Puzzle RightBookUsingPoint;
@@ -180,6 +182,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         sound.sources[0].clip = sound.effectSound[0];
                                         sound.sources[0].Play();
                                         hint.OffHintBtn();
+                                        iD_Controll = GameObject.Find("Cylinder015").GetComponent<TextID_Controll>();
+                                        iD_Controll.ChangeTxt(101);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -201,6 +205,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         inven.AddItem(plant_item.GetItem());
                                         Debug.Log("별연료 사용");
                                         hint.OffHintBtn();
+                                        iD_Controll = GameObject.Find("Object043").GetComponent<TextID_Controll>();
+                                        iD_Controll.ChangeTxt(122);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -222,6 +228,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         inven.AddItem(plant_item.GetItem());
                                         Debug.Log("공구박스 사용");
                                         hint.OffHintBtn();
+                                        iD_Controll = GameObject.Find("Object043").GetComponent<TextID_Controll>();
+                                        iD_Controll.ChangeTxt(123);
+                                        TextID_Controll sundialiD_Controll;
+                                        sundialiD_Controll = GameObject.Find("Sundial_Object").GetComponent<TextID_Controll>();
+                                        sundialiD_Controll.ChangeTxt(131);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -243,6 +254,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         inven.AddItem(plant_item.GetItem());
                                         Debug.Log("해시계 사용");
                                         hint.OffHintBtn();
+                                        iD_Controll = GameObject.Find("Sundial_Object").GetComponent<TextID_Controll>();
+                                        iD_Controll.ChangeTxt(132);
+                                        TextID_Controll leveriD_Controll;
+                                        leveriD_Controll = GameObject.Find("Object029").GetComponent<TextID_Controll>();
+                                        leveriD_Controll.ChangeTxt(141);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();

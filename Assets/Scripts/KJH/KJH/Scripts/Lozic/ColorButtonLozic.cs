@@ -45,6 +45,8 @@ public class ColorButtonLozic : MonoBehaviour
 
     [SerializeField]
     HintManager hint;
+
+    TextID_Controll iD_Controll;
     private void Awake()
     {
         /*
@@ -151,6 +153,7 @@ public class ColorButtonLozic : MonoBehaviour
     {
         m_rightbutton.color = rightColor[0];
         m_leftbutton.color = leftColor[0];
+        iD_Controll = GameObject.Find("Box004").GetComponent<TextID_Controll>();
     }
 
     // Update is called once per frame
@@ -167,6 +170,21 @@ public class ColorButtonLozic : MonoBehaviour
                 OnObjectClick(target_Obj);
             }
         }
+        if (on_gear.activeSelf)
+        {
+            if (lozicClear == false)
+            {
+                iD_Controll.ChangeTxt(111);
+            }
+            else
+            {
+                iD_Controll.ChangeTxt(112);
+            }
+        }
+        else
+        {
+            iD_Controll.ChangeTxt(110);
+        }
     }
 
     void OnObjectClick(GameObject target)
@@ -175,6 +193,7 @@ public class ColorButtonLozic : MonoBehaviour
         {
             if(lozicClear == false)
             {
+                
                 if (target.name.Equals("Cylinder037_ButtonObj"))    //오른쪽버튼
                 {
                     if (!CheckAnswer(false))
@@ -207,6 +226,9 @@ public class ColorButtonLozic : MonoBehaviour
                 }
                 if (answser_index == 8)
                 {
+                    TextID_Controll steamiD_Controll;
+                    steamiD_Controll = GameObject.Find("Object043").GetComponent<TextID_Controll>();
+                    steamiD_Controll.ChangeTxt(121);
                     Debug.Log("색상로직 클리어");
                     lozicClear = true;
                     FieldItem plant_item = planets[4].GetComponent<FieldItem>();
@@ -214,9 +236,7 @@ public class ColorButtonLozic : MonoBehaviour
                     hint.OffHintBtn();
                 }
             }
-            
         }
-        
     }
 
     bool CheckAnswer(bool check)

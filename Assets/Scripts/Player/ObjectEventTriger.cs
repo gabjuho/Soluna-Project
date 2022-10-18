@@ -64,7 +64,7 @@ public class ObjectEventTriger : MonoBehaviour
         {
             InteractionUI.SetActive(true);
             TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
-            TrigerAbleUI.SetActive(true);
+            //TrigerAbleUI.SetActive(true);
             InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
             if (Input.GetKey(KeyCode.Q))
