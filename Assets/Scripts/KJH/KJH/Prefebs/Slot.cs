@@ -43,6 +43,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     Book_Puzzle RightBookUsingPoint;
     Book_Puzzle LeftBookUsingPoint;
     Book_Puzzle MiddleBookUsingPoint;
+    HintStateManager hintStateManager;
+    public GameObject hintArrow;
+    #endregion
+    #region 3F
+    Puzzle3FManager puzzle3FManager;
     #endregion
     private void Awake()
     {
@@ -89,9 +94,14 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             RightBookUsingPoint = GameObject.Find("RightBookUsingPoint").GetComponent<Book_Puzzle>();
             LeftBookUsingPoint = GameObject.Find("LeftBookUsingPoint").GetComponent<Book_Puzzle>();
             MiddleBookUsingPoint = GameObject.Find("MiddleBookUsingPoint").GetComponent<Book_Puzzle>();
+            hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
         }
         #endregion
 
+        #region 3F
+        if(scene.name.Equals("3F"))
+            puzzle3FManager = GameObject.Find("3F_Manager").GetComponent<Puzzle3FManager>();
+        #endregion
         inven = Inventory.instance;
     }
     private void Update()
@@ -253,33 +263,127 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                             case ItemType.Object_Book1:
                                 if(ChangeTimeButton.isDay && MiddleBookUsingPoint.on_trigger)
                                 {
+                                    bool bookNothing = true;
+
                                     MiddleBookUsingPoint.isClear = true;
-                                    SecondFloorManager.CheckBookPuzzleClear();
-                                    Debug.Log("마법책 사용");
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
+
+                                    for (int i = 0; i < Inventory.instance.items.Count; i++)
+                                    {
+                                        if (Inventory.instance.items[i].itemType == ItemType.Object_Book1 || Inventory.instance.items[i].itemType == ItemType.Object_Book2 || Inventory.instance.items[i].itemType == ItemType.Object_Book3)
+                                        {
+                                            bookNothing = false;
+                                            HintStateManager.lastItem = Inventory.instance.items[i].itemName;
+                                        }
+                                    }
+
+                                    if (bookNothing)
+                                    {
+                                        hintArrow.SetActive(false);
+                                        HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookNothing);
+                                        hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookNothing);
+                                    }
+                                    else
+                                    {
+                                        hintArrow.SetActive(false);
+                                        hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
+                                    }
+
+                                    SecondFloorManager.CheckBookPuzzleClear();
+                                    Debug.Log("마법책 사용");
+                                    
                                 }
                                 break;
                             case ItemType.Object_Book2:
                                 if (ChangeTimeButton.isDay && RightBookUsingPoint.on_trigger)
                                 {
+                                    bool bookNothing = true;
+
                                     RightBookUsingPoint.isClear = true;
-                                    SecondFloorManager.CheckBookPuzzleClear();
-                                    Debug.Log("시계책 사용");
+
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
+
+                                    for (int i = 0; i < Inventory.instance.items.Count; i++)
+                                    {
+                                        if (Inventory.instance.items[i].itemType == ItemType.Object_Book1 || Inventory.instance.items[i].itemType == ItemType.Object_Book2 || Inventory.instance.items[i].itemType == ItemType.Object_Book3)
+                                        {
+                                            bookNothing = false;
+                                            HintStateManager.lastItem = Inventory.instance.items[i].itemName;
+                                        }
+                                    }
+
+                                    if (bookNothing)
+                                    {
+                                        hintArrow.SetActive(false);
+                                        HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookNothing);
+                                        hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookNothing);
+                                    }
+                                    else
+                                    {
+                                        HintStateManager.lastItem = item.itemName;
+                                        hintArrow.SetActive(false);
+                                        hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
+                                    }
+
+                                    SecondFloorManager.CheckBookPuzzleClear();
+                                    Debug.Log("시계책 사용");
                                 }
                                 break;
                             case ItemType.Object_Book3:
                                 if (ChangeTimeButton.isDay && LeftBookUsingPoint.on_trigger)
                                 {
+                                    bool bookNothing = true;
                                     LeftBookUsingPoint.isClear = true;
-                                    SecondFloorManager.CheckBookPuzzleClear();
-                                    Debug.Log("톱니책 사용");
+
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
+
+                                    for (int i = 0; i < Inventory.instance.items.Count; i++)
+                                    {
+                                        if (Inventory.instance.items[i].itemType == ItemType.Object_Book1 || Inventory.instance.items[i].itemType == ItemType.Object_Book2 || Inventory.instance.items[i].itemType == ItemType.Object_Book3)
+                                        {
+                                            bookNothing = false;
+                                            HintStateManager.lastItem = Inventory.instance.items[i].itemName;
+                                        }
+                                    }
+
+                                    if (bookNothing)
+                                    {
+                                        hintArrow.SetActive(false);
+                                        HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookNothing);
+                                        hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookNothing);
+                                    }
+                                    else
+                                    {
+                                        HintStateManager.lastItem = item.itemName;
+                                        hintArrow.SetActive(false);
+                                        hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
+                                    }
+
+                                    SecondFloorManager.CheckBookPuzzleClear();
+                                    Debug.Log("톱니책 사용");
                                 }
                                 break;
+                        }
+                    }
+                    #endregion
+                    #region 3F
+                    if (scene.name.Equals("3F"))
+                    {
+                        if (puzzle3FManager.isClear)
+                            return;
+
+                        if (LiftTrigger.onLift && puzzle3FManager.CheckPlanet(item.itemType)) //맞는 행성이면 아이템 사용됨
+                        {
+                            puzzle3FManager.ActivePlanet();
+                            RemoveSlot();
+                            Inventory.instance.RemoveItem(slotNum);
+                        }
+                        else if(LiftTrigger.onLift && !puzzle3FManager.CheckPlanet(item.itemType)) //틀린 행성이면 아이템 사용이 안되고, 사용됐던 아이템 원상 복귀
+                        {
+                            puzzle3FManager.ResetPlanet();
                         }
                     }
                     #endregion

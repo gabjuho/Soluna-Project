@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class HintArrow : MonoBehaviour
 {
+    private Scene scene;
     [SerializeField]
     LozicManager lozicManager;
     [SerializeField]
@@ -17,7 +19,12 @@ public class HintArrow : MonoBehaviour
     GameObject[] target;
 
     public bool on_ArrowObj;
+    public static GameObject target2F; //2층 힌트 타겟
 
+    private void Start()
+    {
+        scene = SceneManager.GetActiveScene();
+    }
     // Update is called once per frame
     private void Awake()
     {
@@ -30,18 +37,43 @@ public class HintArrow : MonoBehaviour
     void Update()
     {
         hintObj.SetActive(on_ArrowObj);
-        if (on_ArrowObj)
+        if (hintObj.activeSelf && !hintManager.on_Hint)
         {
-            for(int i = 0; i < lozicManager.solve_Lozic.Length; i++)
+            if (scene.name.Equals("1F Test"))
             {
-                if(lozicManager.solve_Lozic[i] == false)
+                for (int i = 0; i < lozicManager.solve_Lozic.Length; i++)
                 {
-                    hintObj.transform.LookAt(new Vector3(target[i].transform.position.x, player.transform.position.y, target[i].transform.position.z), Vector3.up);
-                    hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
+                    if (lozicManager.solve_Lozic[i] == false)
+                    {
+                        hintObj.transform.LookAt(new Vector3(target[i].transform.position.x, player.transform.position.y, target[i].transform.position.z), Vector3.up);
+                        hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
 
                     hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
-                    break;
+
+                        break;
+                    }
                 }
+            }
+            else if (scene.name.Equals("2F"))
+            {
+                if (target2F == null)
+                {
+                    hintObj.SetActive(false);
+                    return;
+                }
+                //힌트 화살표 출력
+                hintObj.transform.LookAt(new Vector3(target2F.transform.position.x, player.transform.position.y, target2F.transform.position.z), Vector3.up);
+                hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
+
+                hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
+            }
+            else if(scene.name.Equals("3F"))
+            {
+                //힌트 화살표 출력
+                hintObj.transform.LookAt(new Vector3(target2F.transform.position.x, player.transform.position.y, target2F.transform.position.z), Vector3.up);
+                hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
+
+                hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
             }
             for (int i = 0; i < lozicManager.solve_Lozic.Length; i++)
             {

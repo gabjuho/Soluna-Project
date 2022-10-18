@@ -7,7 +7,6 @@ public class EvenetSelection : MonoBehaviour
     public enum EventType { Item_Obj, EventObject }
 
     public enum eve_Type { decoration }
-
     public int ID;
     public bool isTextable;
     public bool isCharaTalk;

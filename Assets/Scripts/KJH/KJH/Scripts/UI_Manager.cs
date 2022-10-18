@@ -12,7 +12,7 @@ public class UI_Manager : MonoBehaviour
     GameObject option;
     private void Start()
     {
-        tutorial.SetActive(true);
+        //tutorial.SetActive(true);
     }
 
     public void MouseImage()

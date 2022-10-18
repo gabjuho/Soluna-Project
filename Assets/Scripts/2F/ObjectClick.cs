@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectClick : MonoBehaviour
 {
+    public GameObject hintArrow;
+    HintStateManager hintStateManager;
     Crystal_Puzzle crystal_Puzzle;
     Camera mainCamera = null;
     private GameObject target;
@@ -16,6 +18,7 @@ public class ObjectClick : MonoBehaviour
     void Start()
     {
         crystal_Puzzle = GameObject.Find("2F_Crystal_Puzzle").GetComponent<Crystal_Puzzle>();
+        hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
     }
 
     // Update is called once per frame
@@ -26,7 +29,11 @@ public class ObjectClick : MonoBehaviour
             target = GetClickedObject(); //타켓한 오브젝트 가져오기
 
             if (gameObject.name.Equals(target.name) && gameObject.transform.GetChild(0).GetComponent<CrystalClickRange>().isTrigger)
-            {                crystal_Puzzle.SetActiveCrystal(gameObject.name);
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+                crystal_Puzzle.SetActiveCrystal(gameObject.name);
+                hintArrow.SetActive(false);
+                hintStateManager.ChangeTarget(HintStateManager.currentPuzzleState);
             }
         }
     }

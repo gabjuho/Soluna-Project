@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Crystal_Puzzle : MonoBehaviour
 {
+    HintStateManager hintStateManager;
     public string[] ActiveCrystalName = new string[4];
+    public AudioClip[] audioClips = new AudioClip[3];
     private string[] AnswerCrystalName = new string[4];
-    private int currentIndex;
+    public static int currentIndex;
+    private Rock_Puzzle rock_Puzzle;
     // Start is called before the first frame update
 
     private void Awake()
@@ -19,6 +22,8 @@ public class Crystal_Puzzle : MonoBehaviour
     }
     void Start()
     {
+        rock_Puzzle = GameObject.Find("2F_Rock_Puzzle").GetComponent<Rock_Puzzle>();
+        hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
     }
 
     public void SetActiveCrystal(string pillar_name)
@@ -49,6 +54,9 @@ public class Crystal_Puzzle : MonoBehaviour
             if (CheckAllActive()) //답이 맞으면, 수정 퍼즐 클리어 상태로 바꿈
             {
                 SecondFloorManager.currentState = SecondFloorManager.SecondFloorState.SecondPuzzle;
+                rock_Puzzle.RockPuzzleSet();
+                gameObject.GetComponent<AudioSource>().Play();
+                HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.RockPuzzle);
                 Debug.Log("두번째 퍼즐 클리어");
             }
             else //답과 틀리면
@@ -78,5 +86,7 @@ public class Crystal_Puzzle : MonoBehaviour
         currentIndex = 0;
         for (int i = 0; i < 4; i++)
             ActiveCrystalName[i] = "\0";
+
+        hintStateManager.ChangeTarget(HintStateManager.currentPuzzleState);
     }
 }

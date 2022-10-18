@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,11 +9,12 @@ public class ObjectEventTriger : MonoBehaviour
 {
     public GameObject TrigerAbleUI;
     public GameObject InteractionUI;
-
+    public GameObject hintArrow;
+    HintStateManager hintStateManager;
     GameManager gameManager;
+
     static public EvenetSelection eventSelection;
     TextManager textmanager;
-
     int talkindex;
     #region MikangMark
     Elevator elevator;
@@ -30,11 +32,13 @@ public class ObjectEventTriger : MonoBehaviour
         //elevator = GameObject.Find("ElevatorManager").GetComponent<Elevator>();
         onTriger = false;
         #endregion
+
+        if (SceneManager.GetActiveScene().name.Equals("2F"))
+            hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
     }
 
     private void Start()
     {
-        lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
         TrigerAbleUI.SetActive(false);
         InteractionUI.SetActive(false);
     }
@@ -55,25 +59,63 @@ public class ObjectEventTriger : MonoBehaviour
             #endregion
 
         }
-        #region MikangMark
-        #region Item_Obj
+        #region PuzzleTrigger
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             InteractionUI.SetActive(true);
-
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
+            TrigerAbleUI.SetActive(true);
             InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
             if (Input.GetKey(KeyCode.Q))
             {
                 ClickTriger(other);
                 InteractionUI.SetActive(false);
+                if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
+                {
+                    HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookGetting); //힌트 책 가진 상태 변경
+                    HintStateManager.lastItem = other.gameObject.name;
+                    hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
+                    hintArrow.SetActive(false);
+                }
+
+                TrigerAbleUI.SetActive(false);
+
             }
-
-
+            else if (Input.GetKeyDown(KeyCode.Q) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
+            {
+                Debug.Log("대사 출력");
+            }
         }
         #endregion
-        
-        #endregion
+
+        if (other.gameObject.CompareTag("Puzzle_Rock") && !ChangeTimeButton.isDay)
+        {
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Q";
+            TrigerAbleUI.SetActive(true);
+
+            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
+
+            if (Input.GetKey(KeyCode.Q))
+            {
+                other.gameObject.GetComponent<RockSound>().sound.Play();
+                ClickTriger(other);
+                TrigerAbleUI.SetActive(false);
+            }
+        }
+
+        if (other.gameObject.CompareTag("Globe"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(true);
+
+            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
+            #endregion
+
+            #region Triger
+            if (Input.GetKey(KeyCode.E)) ClickTriger(other);
+            #endregion
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -86,11 +128,12 @@ public class ObjectEventTriger : MonoBehaviour
         #endregion
         if (other.gameObject.CompareTag("NextStage"))
         {
+            lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
             if (lever.lozicClear)
             {
                 Debug.Log("다음씬으로 이동");
             }
-            
+
             //SceneManager.LoadScene("2F");
         }
     }
@@ -109,6 +152,19 @@ public class ObjectEventTriger : MonoBehaviour
             //트리거 UI  범위 에서 나가면 비활성화
             #region InteractionUI
             InteractionUI.SetActive(false);
+            #endregion
+        }
+        if (other.gameObject.CompareTag("Puzzle_Rock"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
+            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
+            #endregion
+        }
+        if (other.gameObject.CompareTag("Globe"))
+        {
+            #region TrigrUI
+            TrigerAbleUI.SetActive(false);
             #endregion
         }
     }
@@ -139,7 +195,8 @@ public class ObjectEventTriger : MonoBehaviour
                 }
                 Debug.Log("Gear");
                 break;
-
+            case EvenetSelection.EventType.Globe: //지구본 클릭 시
+                break;
         }
 
         Debug.Log("check");
