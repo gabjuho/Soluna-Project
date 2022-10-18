@@ -42,7 +42,6 @@ public class HintStateManager : MonoBehaviour
     public static void ChangePuzzleState(PuzzleState state)
     {
         currentPuzzleState = state;
-
     }
     public static void ChangeTimeState(TimeState state)
     {

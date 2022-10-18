@@ -21,10 +21,6 @@ public class HintArrow : MonoBehaviour
     public bool on_ArrowObj;
     public static GameObject target2F; //2층 힌트 타겟
 
-    private void Start()
-    {
-        scene = SceneManager.GetActiveScene();
-    }
     // Update is called once per frame
     private void Awake()
     {
@@ -32,15 +28,17 @@ public class HintArrow : MonoBehaviour
     }
     private void Start()
     {
+        scene = SceneManager.GetActiveScene();
         hintObj.SetActive(on_ArrowObj);
     }
     void Update()
     {
-        hintObj.SetActive(on_ArrowObj);
-        if (hintObj.activeSelf && !hintManager.on_Hint)
+        if (scene.name.Equals("1F Test"))
         {
-            if (scene.name.Equals("1F Test"))
+            hintObj.SetActive(on_ArrowObj);
+            if (!hintManager.on_Hint)
             {
+
                 for (int i = 0; i < lozicManager.solve_Lozic.Length; i++)
                 {
                     if (lozicManager.solve_Lozic[i] == false)
@@ -48,13 +46,26 @@ public class HintArrow : MonoBehaviour
                         hintObj.transform.LookAt(new Vector3(target[i].transform.position.x, player.transform.position.y, target[i].transform.position.z), Vector3.up);
                         hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
 
-                    hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
+                        hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
 
                         break;
                     }
                 }
+
+                for (int i = 0; i < lozicManager.solve_Lozic.Length; i++)
+                {
+                    if (lozicManager.solve_Lozic[i] == false)
+                    {
+                        return;
+                    }
+                }
+
+                hintObj.SetActive(false);
             }
-            else if (scene.name.Equals("2F"))
+        }
+        else if (scene.name.Equals("2F"))
+        {
+            if (hintObj.activeSelf && !hintManager.on_Hint)
             {
                 if (target2F == null)
                 {
@@ -67,7 +78,7 @@ public class HintArrow : MonoBehaviour
 
                 hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
             }
-            else if(scene.name.Equals("3F"))
+            else if (scene.name.Equals("3F"))
             {
                 //힌트 화살표 출력
                 hintObj.transform.LookAt(new Vector3(target2F.transform.position.x, player.transform.position.y, target2F.transform.position.z), Vector3.up);
@@ -75,14 +86,6 @@ public class HintArrow : MonoBehaviour
 
                 hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
             }
-            for (int i = 0; i < lozicManager.solve_Lozic.Length; i++)
-            {
-                if (lozicManager.solve_Lozic[i] == false)
-                {
-                    return;
-                }
-            }
-            hintObj.SetActive(false);
         }
     }
 }

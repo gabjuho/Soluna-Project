@@ -31,6 +31,8 @@ public class RockPuzzleTrigger : MonoBehaviour
         {
             if (rockType == other.gameObject.GetComponent<Rock>().rockType)
             {
+                //맞는 돌을 트리거에 올릴 시 힌트 이펙트 비활성화
+                other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 gameObject.GetComponent<AudioSource>().Play();
                 Debug.Log("맞는 돌");
                 other.gameObject.GetComponent<Rock>().isCorrect = true;
