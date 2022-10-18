@@ -119,6 +119,10 @@ public class TextManager : MonoBehaviour
         textData.Add(161, new string[] { "깔끔하게 정리되었는걸 :1" });
         #endregion
 
+        #region 2층 책
+        textData.Add(162, new string[] { "책장에 책이 몇 권 빠져있어.. :0", "정리해야하지 않을까? :2" });
+        #endregion
+
         #region 천사상
         //퀴즈전
         textData.Add(170, new string[] { "천사상이야. 손에 칼이 들려있네 :0" });
