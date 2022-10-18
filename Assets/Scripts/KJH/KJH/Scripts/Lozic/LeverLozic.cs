@@ -36,6 +36,9 @@ public class LeverLozic : MonoBehaviour
 
     public Inventory inven;
     public GameObject[] planets;
+
+    [SerializeField]
+    HintManager hint;
     private void Awake()
     {
         
@@ -93,6 +96,7 @@ public class LeverLozic : MonoBehaviour
                         target.GetComponent<AudioSource>().clip = upSound;
                         target.GetComponent<AudioSource>().Play();
                         lever[lever_index].on_lever = false;
+                        hint.OffHintBtn();
                     }
                     CheckClearLozic();
                     //target.transform.Rotate(new Vector3())

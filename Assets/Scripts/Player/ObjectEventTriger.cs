@@ -8,9 +8,8 @@ using UnityEngine.UI;
 public class ObjectEventTriger : MonoBehaviour
 {
     public GameObject TrigerAbleUI;
-    public GameObject hintArrow; //힌트 화살표 오브젝트 필요 시 어느 씬이든 사용 가능
-
-    #region 2F
+    public GameObject InteractionUI;
+    public GameObject hintArrow;
     HintStateManager hintStateManager;
     InventoryUI inventoryUI;
     #endregion
@@ -19,8 +18,9 @@ public class ObjectEventTriger : MonoBehaviour
     #endregion
 
     GameManager gameManager;
+
+    static public EvenetSelection eventSelection;
     TextManager textmanager;
-    EvenetSelection eventSelection;
     int talkindex;
     #region MikangMark
     Elevator elevator;
@@ -33,7 +33,7 @@ public class ObjectEventTriger : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        //textmanager = GameObject.Find("TextManager").GetComponent<TextManager>();
+        textmanager = GameObject.Find("TextManager").GetComponent<TextManager>();
         #region MikangMark
         //elevator = GameObject.Find("ElevatorManager").GetComponent<Elevator>();
         onTriger = false;
@@ -58,7 +58,7 @@ public class ObjectEventTriger : MonoBehaviour
     private void Start()
     {
         TrigerAbleUI.SetActive(false);
-        //GetText(eventSelection.ID, eventSelection.isCharaTalk);
+        InteractionUI.SetActive(false);
     }
 
     public void OnTriggerStay(Collider other)
@@ -68,7 +68,7 @@ public class ObjectEventTriger : MonoBehaviour
             //트리거 UI를 게임오브젝트 위에 표시 && 범위 내에 상호작용 오브젝트가 있을시 활성화
             #region TrigrUI
             TrigerAbleUI.SetActive(true);
-
+            Debug.Log("aa");
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
             #endregion
 
@@ -80,17 +80,18 @@ public class ObjectEventTriger : MonoBehaviour
         #region PuzzleTrigger
         if (other.gameObject.CompareTag("Item_Obj"))
         {
+            InteractionUI.SetActive(true);
             TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             TrigerAbleUI.SetActive(true);
+            InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
-            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
-
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.Q))
             {
                 ClickTriger(other);
 
                 //2층 책에 E 클릭 시 실행 내용
                 #region 2F
+                InteractionUI.SetActive(false);
                 if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
                 {
                     HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookGetting); //힌트 책 가진 상태 변경
@@ -104,6 +105,7 @@ public class ObjectEventTriger : MonoBehaviour
                 #endregion
 
                 TrigerAbleUI.SetActive(false);
+
             }
             //2층 책에 Q 클릭 시 대사 출력
             #region 2F
@@ -179,8 +181,8 @@ public class ObjectEventTriger : MonoBehaviour
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             //트리거 UI  범위 에서 나가면 비활성화
-            #region TrigrUI
-            TrigerAbleUI.SetActive(false);
+            #region InteractionUI
+            InteractionUI.SetActive(false);
             #endregion
         }
         if (other.gameObject.CompareTag("Puzzle_Rock"))
@@ -211,16 +213,12 @@ public class ObjectEventTriger : MonoBehaviour
 
         switch (eventSelection._eventType)
         {
-            case EvenetSelection.EventType.First:
-                Debug.Log("First");
+            case EvenetSelection.EventType.EventObject:
+                GetText(eventSelection.ID, eventSelection.isCharaTalk);
+                Debug.Log("a");
                 break;
-            case EvenetSelection.EventType.Second:
-                Debug.Log("Second");
-                break;
-            case EvenetSelection.EventType.Third:
-                Debug.Log("Third");
-                break;
-            case EvenetSelection.EventType.Item:
+
+            case EvenetSelection.EventType.Item_Obj:
                 FieldItem fieldItems = other.GetComponent<FieldItem>();                //타겟아이템을 변수에 저장
                 if (inventory.AddItem(fieldItems.GetItem()))                            //그아이템을 저장 제대로 저장시 true 아닐시 false
                 {
@@ -238,6 +236,7 @@ public class ObjectEventTriger : MonoBehaviour
 
         Debug.Log("check");
     }
+
     void GetText(int id, bool isCharaTalk)
     {
         Debug.Log(id);

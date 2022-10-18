@@ -8,14 +8,11 @@ public class HintManager : MonoBehaviour
 {
     [SerializeField]
     LimitTimer timer;
-    [SerializeField]
-    float solveLozic;
+    public float solveLozic;
     [SerializeField]
     int solveLozic_int;
     [SerializeField]
     float waitTime;
-    [SerializeField]
-    LozicManager lozicManager;
 
     [SerializeField]
     Button hintBtn;
@@ -25,8 +22,7 @@ public class HintManager : MonoBehaviour
     [SerializeField]
     AudioClip hint_used;
 
-    [SerializeField]
-    GameObject hint_arrow;
+    public HintArrow hint_arrow;
 
     [SerializeField]
     HintStateManager hintStateManager;
@@ -39,6 +35,9 @@ public class HintManager : MonoBehaviour
 
     public bool on_Hint;
     int count;
+
+    int thislozic_index;
+    public int have_hint;
     private void Awake()
     {
         solveLozic = 0f;
@@ -73,25 +72,24 @@ public class HintManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        //1Ãş ÈùÆ®¹öÆ° Ã³¸®
-        #region 1F
-        if (SceneManager.GetActiveScene().name.Equals("1F"))
+        if (have_hint > 0&&SceneManager.GetActiveScene().name.Equals("1F"))
         {
             on_Hint = false;
-            hint_arrow.SetActive(true);
+            hint_arrow.on_ArrowObj = true;
+            have_hint--;
             hintBtn.gameObject.SetActive(on_Hint);
             hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
             hintBtn.gameObject.GetComponent<AudioSource>().Play();
             solveLozic = 0;
         }
         #endregion
-        //2Ãş ÈùÆ®¹öÆ° Ã³¸®
+        //2ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½Æ° Ã³ï¿½ï¿½
         #region 2F
         else if (SceneManager.GetActiveScene().name.Equals("2F"))
         {
             if (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.AllPuzzleClear)
                 return;
-            //³·ÀÏ ¶§ ÈùÆ® ¹öÆ° Å¬¸¯
+            //ë‚®ì¼ ë•Œ íŒíŠ¸ ë²„íŠ¼ í´ë¦­
             if (HintStateManager.currentTime == HintStateManager.TimeState.Day && (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookNothing || HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookGetting)) 
             {
                 on_Hint = false;
@@ -114,7 +112,7 @@ public class HintManager : MonoBehaviour
                 hintBtn.gameObject.SetActive(on_Hint);
                 solveLozic = 0;
             }
-            //¹ãÀÏ ¶§ ¼öÁ¤ ÆÛÁñ ¶§ ÈùÆ® ¹öÆ° Å¬¸¯
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½Æ° Å¬ï¿½ï¿½
             else if (HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.CrystalCorrect)
             {
                 on_Hint = false;
@@ -125,12 +123,12 @@ public class HintManager : MonoBehaviour
                 hintBtn.gameObject.SetActive(on_Hint);
                 solveLozic = 0;
             }
-            //¹ãÀÏ ¶§ µ¹ ÆÛÁñ ¶§ ÈùÆ® ¹öÆ° Å¬¸¯
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½Æ° Å¬ï¿½ï¿½
             else if(HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.RockPuzzle)
             {
                 on_Hint = false;
                 hint_arrow.SetActive(true);
-                //ÈùÆ® ¹öÆ° Å¬¸¯ ½Ã ÈùÆ® µ¹¿¡ ÀÌÆåÆ® È°¼ºÈ­
+                //ï¿½ï¿½Æ® ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® È°ï¿½ï¿½È­
                 hintStateManager.currentRock.transform.GetChild(0).gameObject.SetActive(true);
                 
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
@@ -140,15 +138,26 @@ public class HintManager : MonoBehaviour
             }
             else
             {
-                //´ë»ç Ãâ·Â
+                //ëŒ€ì‚¬ ì¶œë ¥
             }
+            
+    }
+
+    public void OffHintBtn()
+    {
+        if (on_Hint)
+        {
+            on_Hint = false;
+            solveLozic = 0f;
+            hint_arrow.on_ArrowObj = false;
+
         }
         #endregion
-        //3Ãş ÈùÆ®¹öÆ° Ã³¸®
+        //3ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½Æ° Ã³ï¿½ï¿½
         #region 3F
         else if (SceneManager.GetActiveScene().name.Equals("3F"))
         {
-            //3Ãş Å¬¸®¾î µÇ¸é ÈùÆ® Å¬¸¯ ¾ÈµÇ°Ô ÇÏ±â
+            //3ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½Æ® Å¬ï¿½ï¿½ ï¿½ÈµÇ°ï¿½ ï¿½Ï±ï¿½
             if (puzzle3FManager.isClear)
                 return;
 

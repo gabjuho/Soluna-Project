@@ -28,6 +28,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     public GameObject[] planets;
     string[] planets_name;
+
+    public SoundManager sound;
+    public AudioSource source;
+    [SerializeField]
+    HintManager hint;
+
+    [SerializeField]
+    Sprite[] backImg;
+
+    bool onClick;
     #endregion
     #region 2F
     Book_Puzzle RightBookUsingPoint;
@@ -42,6 +52,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     #endregion
     private void Awake()
     {
+        onClick = false;
         scene = SceneManager.GetActiveScene();
         #region 1F
         if (scene.name.Equals("1F Test"))
@@ -68,7 +79,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
             steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
             sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
-            for(int i = 0; i < planets.Length; i++)
+            sound = GameObject.Find("Ui_Manager").GetComponent<SoundManager>();
+            hint = GameObject.Find("Hint").GetComponent<HintManager>();
+            for (int i = 0; i < planets.Length; i++)
             {
                 planets[i] = GameObject.Find(planets_name[i]);
             }
@@ -96,6 +109,24 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         #endregion
         inven = Inventory.instance;
     }
+    private void Update()
+    {
+        if (inven.items.Count > slotNum)
+        {
+            if (onClick == false)
+            {
+                gameObject.GetComponent<Image>().sprite = backImg[1];
+            }
+            else
+            {
+                gameObject.GetComponent<Image>().sprite = backImg[0];
+            }
+        }
+        else
+        {
+            gameObject.GetComponent<Image>().sprite = backImg[2];
+        }
+    }
     public void UpdateSlotUI()                    //인벤토리에 탬먹을시 해당 아이콘 출력
     {                                             //
         itemIcon.sprite = item.itemImage;         //아이템이미지를 아이콘으로 복사
@@ -120,7 +151,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("클릭");
         clickTime = Time.time;
-
+        onClick = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -151,7 +182,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         gear.on_gear = true;
                                         FieldItem plant_item = planets[0].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
-                                        
+                                        sound.sources[0].clip = sound.effectSound[0];
+                                        sound.sources[0].Play();
+                                        hint.OffHintBtn();
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -172,6 +205,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         FieldItem plant_item = planets[1].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
                                         Debug.Log("별연료 사용");
+                                        hint.OffHintBtn();
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -192,6 +226,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         FieldItem plant_item = planets[2].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
                                         Debug.Log("공구박스 사용");
+                                        hint.OffHintBtn();
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -212,6 +247,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         FieldItem plant_item = planets[3].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
                                         Debug.Log("해시계 사용");
+                                        hint.OffHintBtn();
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
