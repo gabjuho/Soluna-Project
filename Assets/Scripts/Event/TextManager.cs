@@ -112,18 +112,60 @@ public class TextManager : MonoBehaviour
         textData.Add(151, new string[] { "문이 열렸어!:3", "2층으로 올라가자. :0" });
         #endregion
 
-        #region 2층 책상 
+        #region 2층 가운데 책장 
         //활성화 전
-        textData.Add(160, new string[] { "책장에 책이 몇 권 빠져있어.. :0", "정리해야하지 않을까? :2" });
-        //해결 - 책 아이템 3권 다 지정 위치에서 사용
-        textData.Add(161, new string[] { "깔끔하게 정리되었는걸 :1" });
+        textData.Add(160, new string[] { "책장에 책이 몇 권 빠져있어.. :0", "뭐라고 적혀있네? :0", "'진실을 말하는 책은 왼쪽에 들어간다.' :0" });
+        //활성화 후
+        textData.Add(161, new string[] { "'진실을 말하는 책은 왼쪽에 들어간다.' :0" });
+
+        //전부 클리어
+        textData.Add(162, new string[] { "모든 책을 정리했다. :1" });
+        #endregion
+
+        #region 2층 왼쪽 책장
+        //활성화 전
+        textData.Add(163, new string[] { "다른 책장을 먼저 살펴볼까? :0" });
+        //클리어
+        textData.Add(164, new string[] { "이미 정리된 책장이야. 다른 문제들을 찾아보자 :1" });
+        #endregion
+
+        #region 2층 오른쪽 책장
+        //활성화 전
+        textData.Add(165, new string[] { "다른 책장을 먼저 살펴볼까? :0" });
+        //클리어
+        textData.Add(166, new string[] { "이미 정리된 책장이야. 다른 문제들을 찾아보자 :1" });
+        #endregion
+
+        #region 2층 마법책
+        //마법책과 상호작용
+        textData.Add(167, new string[] { "이 책에는 '나는 가운데 책장으로 가야해'라고 적혀있어. :0" });
+        //다른 장소에서 사용
+        textData.Add(168, new string[] { "여기는 아닌거 같아. :2","이 책이 진실을 말하는지는 모르겠지만, 가운데 책장으로 가야한다고 적혀있어 :0" });
+        //올바른 곳 사용
+        textData.Add(169, new string[] { "여기가 맞는거 같아 :1" });
+        #endregion
+
+        #region 2층 시계책
+        //마법책과 상호작용
+        textData.Add(170, new string[] { "이 책에는 'A는 거짓말을 하고 있다'라고 적혀있어. :0" });
+        //다른 장소에서 사용
+        textData.Add(171, new string[] { "여기는 아닌거 같아. :2", "이 책이 진실을 말하는지는 모르겠지만, A는 거짓말을 하고 있다고 적혀있어 :0" });
+        //올바른 곳 사용
+        textData.Add(172, new string[] { "여기가 맞는거 같아 :1" });
+        #endregion
+
+        #region 2층 톱니책
+        //마법책과 상호작용
+        textData.Add(173, new string[] { "이 책에는 '왼쪽에는 A가 가야한다'라고 적혀있어. :0" });
+        //다른 장소에서 사용
+        textData.Add(174, new string[] { "여기는 아닌거 같아. :2", "이 책이 진실을 말하는지는 모르겠지만, 왼쪽에는 A가 가야한다고 적혀있어 :0" });
+        //올바른 곳 사용
+        textData.Add(175, new string[] { "여기가 맞는거 같아 :1" });
         #endregion
 
         #region 천사상
-        //퀴즈전
-        textData.Add(170, new string[] { "천사상이야. 손에 칼이 들려있네 :0" });
-        //퀴즈 해결후 - 빨간색, 파란색, 초록색, 보라색
-        textData.Add(171, new string[] { "무슨 소리가 나네? 어디선가 들었던 소리 같은데:3" });
+        //천사상
+        textData.Add(176, new string[] { "모든것을 되돌리는 시간의 천사상이야. :0" });
         #endregion
 
         #region 수정탑
@@ -133,6 +175,15 @@ public class TextManager : MonoBehaviour
         textData.Add(181, new string[] { "이 수정탑을 조정해서 흐트러진 중력을 바꿔야해.:0" });
         //해결
         textData.Add(182, new string[] { "중력이 정상화 되었어. :1" });
+        //틀림
+        textData.Add(183, new string[] { "이게 아닌가봐 다시 해보자 :2" });
+        #endregion
+
+        #region 돌
+        //활성화 전
+        textData.Add(184, new string[] { "무슨 소리가 나네? 어디선가 들었던 소리 같은데 :3" });
+        //활성화 후
+        textData.Add(185, new string[] { "무슨 소리지..? :0" });
         #endregion
 
         #region 거대 별 조각

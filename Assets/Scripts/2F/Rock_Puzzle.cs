@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Rock_Puzzle : MonoBehaviour
 {
+    public Inventory inventory;
+    public Item cheonwang;
     public GameObject hintArrow;
     HintStateManager hintStateManager;
     public GameObject[] rock = new GameObject[4];
@@ -77,6 +79,14 @@ public class Rock_Puzzle : MonoBehaviour
         clearImage.SetActive(true);
         Invoke("ChangeFadeOut", 2f);
 
+        bool isUranos = false;
+        for (int i = 0; i < inventory.items.Count; i++)
+            if (inventory.items[i].itemType == ItemType.Object_Uranus)
+                isUranos = true;
+
+        if(!isUranos)
+            inventory.AddItem(cheonwang);
+        
         Debug.Log("3단계 퍼즐 클리어");
     }
     public void AngelResetPuzzle() //천사상으로 리셋

@@ -7354,6 +7354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905bec7775e66544ea3bad10d1d5ccad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1243603294}
+  cheonwang:
+    itemType: 16
+    itemName: Uranus
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 2e47c82a8819bdb4682466e3f54356ad, type: 3}
   hintArrow: {fileID: 1674894135}
   rock:
   - {fileID: 1701182676}
@@ -17395,6 +17401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b026203ae55a3549a5f48afd7248e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 9be7a2ad712ac6b4d9b412174f025a08, type: 3}
 --- !u!1 &1701182676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6456002676191706604, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
@@ -19208,7 +19215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1522, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842386166
@@ -22806,6 +22813,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: af652fb00dcb7194db11d27764e27b67, type: 3}
   - {fileID: 8300000, guid: 983b75bc13da4394db26e74ad19245cd, type: 3}
   - {fileID: 8300000, guid: 16174e6a1435bf24797eb425ff149af3, type: 3}
+  inventory: {fileID: 1243603294}
+  haewang:
+    itemType: 17
+    itemName: Neptune
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: f7bb82dc17314b8488cb746c1118af47, type: 3}
 --- !u!82 &2045649132
 AudioSource:
   m_ObjectHideFlags: 0

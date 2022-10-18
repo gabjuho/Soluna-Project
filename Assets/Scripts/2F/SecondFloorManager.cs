@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SecondFloorManager: MonoBehaviour
 {
     public static GameObject rightBookUsingPoint, leftBookUsingPoint, middleBookUsingPoint;
     public static bool bookPuzzleClear;
     public static Inventory inventory;
+    public Sprite image;
+    public static Item item = new Item();
     static HintStateManager hintStateManager;
 
     public enum SecondFloorState
@@ -21,6 +24,9 @@ public class SecondFloorManager: MonoBehaviour
 
     private void Awake()
     {
+        item.itemName = "Saturn";
+        item.itemType = ItemType.Object_Saturn;
+        item.itemImage = image;
         currentState = SecondFloorState.NoSolve;
         bookPuzzleClear = false;
     }
@@ -41,6 +47,8 @@ public class SecondFloorManager: MonoBehaviour
         if (bookPuzzleClear)
         {
             currentState = SecondFloorState.FirstPuzzle;
+
+            inventory.AddItem(item);
             
             HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.CrystalCorrect);
             hintStateManager.ChangeTarget(HintStateManager.PuzzleState.CrystalCorrect);
