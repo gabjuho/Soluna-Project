@@ -11,7 +11,7 @@ public class Puzzle3FManager : MonoBehaviour
     public Light[] crystal_light;
     public bool isClear = false; //3층 클리어 여부
 
-    private int count; //현재 맞춘 행성의 개수 -> 나중에 private로 변경
+    public int count = 0; //현재 맞춘 행성의 개수 -> 나중에 private로 변경
 
     void Start()
     {

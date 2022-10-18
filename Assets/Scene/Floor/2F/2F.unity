@@ -4699,7 +4699,7 @@ MonoBehaviour:
   timer: {fileID: 1849147466}
   solveLozic: 0
   solveLozic_int: 0
-  waitTime: 30
+  waitTime: 10
   lozicManager: {fileID: 0}
   hintBtn: {fileID: 1560307204}
   hint_creat: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
@@ -4707,6 +4707,8 @@ MonoBehaviour:
   hint_arrow: {fileID: 1674894135}
   hintStateManager: {fileID: 1983894125}
   rock_puzzle_material: {fileID: 2100000, guid: 8286b8c4a5395e4458f060a067ef1fec, type: 2}
+  inventoryUI: {fileID: 608924711}
+  puzzle3FManager: {fileID: 0}
   on_Hint: 1
 --- !u!114 &413257636
 MonoBehaviour:
@@ -6999,6 +7001,17 @@ Transform:
   m_Father: {fileID: 1957770114}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 79.393, y: -30.122, z: -3.556}
+--- !u!114 &608924711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5024862432612569848, guid: e92593347b2408d44984038e12e5a4e8, type: 3}
+  m_PrefabInstance: {fileID: 368175563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355817e279018ef46a04a71044ae9c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &614602257
 GameObject:
   m_ObjectHideFlags: 0
@@ -8166,11 +8179,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
     itemType: 7
-    itemName: "\uC2DC\uACC4\uCC45"
+    itemName: Clock_Book
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: d8110943dcca0764f862739ad15b7847, type: 3}
+    itemImage: {fileID: 21300000, guid: b7e9c4d4c3ae88742b42313c28e0d712, type: 3}
   mesh: {fileID: 780136738}
-  image: {fileID: 21300000, guid: d8110943dcca0764f862739ad15b7847, type: 3}
+  image: {fileID: 21300000, guid: b7e9c4d4c3ae88742b42313c28e0d712, type: 3}
 --- !u!1 &792750841
 GameObject:
   m_ObjectHideFlags: 0
@@ -12088,7 +12101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 90
+  MoveSpeed: 300
   SprintSpeed: 90
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -15645,7 +15658,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -17084,6 +17097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b026203ae55a3549a5f48afd7248e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1243603294}
 --- !u!1 &1701182676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6456002676191706604, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
@@ -19843,11 +19857,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
     itemType: 8
-    itemName: "\uD1B1\uB2C8\uCC45"
+    itemName: Gear_Book
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: 597f775cecfe26543abb695ae229c3ef, type: 3}
+    itemImage: {fileID: 21300000, guid: 254f7a5d3d9d725478859b20d386cf1c, type: 3}
   mesh: {fileID: 1892960129}
-  image: {fileID: 21300000, guid: 597f775cecfe26543abb695ae229c3ef, type: 3}
+  image: {fileID: 21300000, guid: 254f7a5d3d9d725478859b20d386cf1c, type: 3}
 --- !u!114 &1892960133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23358,11 +23372,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
     itemType: 6
-    itemName: "\uB9C8\uBC95\uCC45"
+    itemName: Magic_Book
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: 45d004104ce96344c8d76b6b1b541560, type: 3}
+    itemImage: {fileID: 21300000, guid: 5e90b198894ff7d479600d6710436f38, type: 3}
   mesh: {fileID: 2124303216}
-  image: {fileID: 21300000, guid: 45d004104ce96344c8d76b6b1b541560, type: 3}
+  image: {fileID: 21300000, guid: 5e90b198894ff7d479600d6710436f38, type: 3}
 --- !u!1 &2126054975
 GameObject:
   m_ObjectHideFlags: 0
@@ -24098,6 +24112,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0c66efd10ae66504eb80259b937f5374, type: 2}
+    - target: {fileID: 6841003676236821729, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0da0d2befa9d1664aba16b4347a9b2f2, type: 2}
     - target: {fileID: 7120643502973992140, guid: acd5e8ef2d2b38c4c8ef2a2b8555738c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

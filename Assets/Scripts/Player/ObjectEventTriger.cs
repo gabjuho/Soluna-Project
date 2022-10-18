@@ -12,6 +12,7 @@ public class ObjectEventTriger : MonoBehaviour
 
     #region 2F
     HintStateManager hintStateManager;
+    InventoryUI inventoryUI;
     #endregion
     #region 3F
     GameObject mainCamera; //플레이어 카메라
@@ -42,6 +43,7 @@ public class ObjectEventTriger : MonoBehaviour
         #region 2F
         if (SceneManager.GetActiveScene().name.Equals("2F"))
         {
+            inventoryUI = GameObject.Find("InventoryCanvas").GetComponent<InventoryUI>();
             hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
             mainCamera = GameObject.Find("CM_PlayerFollowCamera");
         }
@@ -95,6 +97,9 @@ public class ObjectEventTriger : MonoBehaviour
                     HintStateManager.lastItem = other.gameObject.name;
                     hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
                     hintArrow.SetActive(false);
+                    for (int i = 0; i < inventoryUI.slots.Length; i++)
+                        if (inventoryUI.slots[i].transform.GetChild(2).gameObject.activeSelf)
+                            inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
                 }
                 #endregion
 

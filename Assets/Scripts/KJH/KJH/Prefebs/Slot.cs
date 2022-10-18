@@ -34,6 +34,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     Book_Puzzle LeftBookUsingPoint;
     Book_Puzzle MiddleBookUsingPoint;
     HintStateManager hintStateManager;
+    InventoryUI inventoryUI;
     public GameObject hintArrow;
     #endregion
     #region 3F
@@ -82,12 +83,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             LeftBookUsingPoint = GameObject.Find("LeftBookUsingPoint").GetComponent<Book_Puzzle>();
             MiddleBookUsingPoint = GameObject.Find("MiddleBookUsingPoint").GetComponent<Book_Puzzle>();
             hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
+            inventoryUI = GameObject.Find("InventoryCanvas").GetComponent<InventoryUI>();
         }
         #endregion
 
         #region 3F
-        if(scene.name.Equals("3F"))
+        if (scene.name.Equals("3F"))
+        {
             puzzle3FManager = GameObject.Find("3F_Manager").GetComponent<Puzzle3FManager>();
+            inventoryUI = GameObject.Find("InventoryCanvas").GetComponent<InventoryUI>();
+        }
         #endregion
         inven = Inventory.instance;
     }
@@ -230,6 +235,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     bool bookNothing = true;
 
                                     MiddleBookUsingPoint.isClear = true;
+
+                                    //책 사용 시 힌트 효과 없애기
+                                    for (int i=0;i<inventoryUI.slots.Length;i++)
+                                        if (inventoryUI.slots[i].transform.GetChild(2).gameObject.activeSelf)
+                                            inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
+
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
 
@@ -266,6 +277,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
                                     RightBookUsingPoint.isClear = true;
 
+                                    //책 사용 시 힌트 효과 없애기
+                                    for (int i = 0; i < inventoryUI.slots.Length; i++)
+                                        if (inventoryUI.slots[i].transform.GetChild(2).gameObject.activeSelf)
+                                            inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
+
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
 
@@ -286,7 +302,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     }
                                     else
                                     {
-                                        HintStateManager.lastItem = item.itemName;
                                         hintArrow.SetActive(false);
                                         hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
                                     }
@@ -301,6 +316,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     bool bookNothing = true;
                                     LeftBookUsingPoint.isClear = true;
 
+                                    //책 사용 시 힌트 효과 없애기
+                                    for (int i = 0; i < inventoryUI.slots.Length; i++)
+                                        if (inventoryUI.slots[i].transform.GetChild(2).gameObject.activeSelf)
+                                            inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
+
                                     RemoveSlot();
                                     Inventory.instance.RemoveItem(slotNum);
 
@@ -321,7 +341,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     }
                                     else
                                     {
-                                        HintStateManager.lastItem = item.itemName;
                                         hintArrow.SetActive(false);
                                         hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
                                     }
@@ -344,9 +363,15 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                             puzzle3FManager.ActivePlanet();
                             RemoveSlot();
                             Inventory.instance.RemoveItem(slotNum);
+                            for (int i = 0; i < inventoryUI.slots.Length; i++)
+                                if (inventoryUI.slots[i].transform.GetChild(2).gameObject.activeSelf)
+                                    inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
                         }
                         else if(LiftTrigger.onLift && !puzzle3FManager.CheckPlanet(item.itemType)) //틀린 행성이면 아이템 사용이 안되고, 사용됐던 아이템 원상 복귀
                         {
+                            for (int i = 0; i < inventoryUI.slots.Length; i++)
+                                if (inventoryUI.slots[i].transform.GetChild(2).gameObject.activeSelf)
+                                    inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
                             puzzle3FManager.ResetPlanet();
                         }
                     }
