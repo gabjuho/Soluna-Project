@@ -195,6 +195,7 @@ public class ObjectEventTriger : MonoBehaviour
                 }
                 Debug.Log("Gear");
                 break;
+                
             case EvenetSelection.EventType.Globe: //지구본 클릭 시
                 break;
         }

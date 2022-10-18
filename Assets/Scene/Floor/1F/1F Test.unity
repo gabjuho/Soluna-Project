@@ -14498,6 +14498,9 @@ MonoBehaviour:
   hint_creat: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
   hint_used: {fileID: 8300000, guid: 7838a5aa9de2dd344a946d56816537f0, type: 3}
   hint_arrow: {fileID: 1701479456}
+  hint_Obj: {fileID: 0}
+  hintStateManager: {fileID: 0}
+  rock_puzzle_material: {fileID: 0}
   on_Hint: 1
   have_hint: 3
 --- !u!114 &1701479456
@@ -16647,6 +16650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrigerAbleUI: {fileID: 1112316000}
   InteractionUI: {fileID: 282626381}
+  hintArrow: {fileID: 0}
   onTriger: 0
   inventory: {fileID: 919132148151639447}
 --- !u!136 &1889154439

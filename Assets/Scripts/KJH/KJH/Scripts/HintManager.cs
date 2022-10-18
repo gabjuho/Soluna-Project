@@ -23,6 +23,7 @@ public class HintManager : MonoBehaviour
     AudioClip hint_used;
 
     public HintArrow hint_arrow;
+    public GameObject hint_Obj;
 
     [SerializeField]
     HintStateManager hintStateManager;
@@ -44,7 +45,11 @@ public class HintManager : MonoBehaviour
     {
         hintBtn.gameObject.SetActive(on_Hint);
         hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_creat;
-        hint_arrow.SetActive(false);
+        if (SceneManager.GetActiveScene().name.Equals("2F"))
+        {
+            hint_Obj.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame
@@ -67,7 +72,7 @@ public class HintManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        if (have_hint > 0&&SceneManager.GetActiveScene().name.Equals("1F"))
+        if (have_hint > 0 && SceneManager.GetActiveScene().name.Equals("1F Test"))
         {
             on_Hint = false;
             hint_arrow.on_ArrowObj = true;
@@ -77,15 +82,15 @@ public class HintManager : MonoBehaviour
             hintBtn.gameObject.GetComponent<AudioSource>().Play();
             solveLozic = 0;
         }
-        else if(SceneManager.GetActiveScene().name.Equals("2F"))
-            {
+        else if (SceneManager.GetActiveScene().name.Equals("2F"))
+        {
             if (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.AllPuzzleClear)
                 return;
             //낮일 때 힌트 버튼 클릭
-            if (HintStateManager.currentTime == HintStateManager.TimeState.Day && (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookNothing || HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookGetting)) 
+            if (HintStateManager.currentTime == HintStateManager.TimeState.Day && (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookNothing || HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookGetting))
             {
                 on_Hint = false;
-                hint_arrow.SetActive(true);
+                hint_Obj.SetActive(true);
                 hintBtn.gameObject.SetActive(on_Hint);
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
@@ -95,16 +100,16 @@ public class HintManager : MonoBehaviour
             else if (HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.CrystalCorrect)
             {
                 on_Hint = false;
-                hint_arrow.SetActive(true);
+                hint_Obj.SetActive(true);
                 hintBtn.gameObject.SetActive(on_Hint);
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
                 solveLozic = 0;
             }
-            else if(HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.RockPuzzle)
+            else if (HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.RockPuzzle)
             {
                 on_Hint = false;
-                hint_arrow.SetActive(true);
+                hint_Obj.SetActive(true);
                 hintBtn.gameObject.SetActive(on_Hint);
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
@@ -114,7 +119,9 @@ public class HintManager : MonoBehaviour
             {
                 //대사 출력
             }
-            
+
+        }
+
     }
 
     public void OffHintBtn()
@@ -127,5 +134,4 @@ public class HintManager : MonoBehaviour
 
         }
     }
-
 }

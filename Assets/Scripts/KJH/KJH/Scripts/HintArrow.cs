@@ -24,16 +24,14 @@ public class HintArrow : MonoBehaviour
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
+        hintObj.SetActive(on_ArrowObj);
     }
     // Update is called once per frame
     private void Awake()
     {
         on_ArrowObj = false;
     }
-    private void Start()
-    {
-        hintObj.SetActive(on_ArrowObj);
-    }
+
     void Update()
     {
         hintObj.SetActive(on_ArrowObj);
