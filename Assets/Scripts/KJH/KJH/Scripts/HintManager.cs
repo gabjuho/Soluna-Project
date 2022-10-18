@@ -91,7 +91,7 @@ public class HintManager : MonoBehaviour
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
                 solveLozic = 0;
             }
-            //밤일 때 힌트 버튼 클릭
+            //밤일 때 수정 퍼즐 때 힌트 버튼 클릭
             else if (HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.CrystalCorrect)
             {
                 on_Hint = false;
@@ -101,10 +101,13 @@ public class HintManager : MonoBehaviour
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
                 solveLozic = 0;
             }
+            //밤일 때 돌 퍼즐 때 힌트 버튼 클릭
             else if(HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.RockPuzzle)
             {
                 on_Hint = false;
                 hint_arrow.SetActive(true);
+                //힌트 버튼 클릭 시 힌트 돌에 이펙트 활성화
+                hintStateManager.currentRock.transform.GetChild(0).gameObject.SetActive(true);
                 hintBtn.gameObject.SetActive(on_Hint);
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
@@ -114,6 +117,10 @@ public class HintManager : MonoBehaviour
             {
                 //대사 출력
             }
+        }
+        else if (SceneManager.GetActiveScene().name.Equals("3F"))
+        {
+
         }
     }
 
