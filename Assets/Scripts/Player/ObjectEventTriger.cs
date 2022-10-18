@@ -12,7 +12,6 @@ public class ObjectEventTriger : MonoBehaviour
     public GameObject hintArrow;
     HintStateManager hintStateManager;
     InventoryUI inventoryUI;
-    #endregion
     #region 3F
     GameObject mainCamera; //플레이어 카메라
     #endregion
@@ -89,7 +88,7 @@ public class ObjectEventTriger : MonoBehaviour
             {
                 ClickTriger(other);
 
-                //2층 책에 E 클릭 시 실행 내용
+                //2층 책에 Q 클릭 시 실행 내용
                 #region 2F
                 InteractionUI.SetActive(false);
                 if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
@@ -107,9 +106,9 @@ public class ObjectEventTriger : MonoBehaviour
                 TrigerAbleUI.SetActive(false);
 
             }
-            //2층 책에 Q 클릭 시 대사 출력
+            //2층 책에 E 클릭 시 대사 출력
             #region 2F
-            else if (Input.GetKeyDown(KeyCode.Q) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
+            else if (Input.GetKeyDown(KeyCode.E) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
             {
                 Debug.Log("대사 출력");
             }
