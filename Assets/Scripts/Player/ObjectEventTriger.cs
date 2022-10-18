@@ -8,9 +8,15 @@ using UnityEngine.UI;
 public class ObjectEventTriger : MonoBehaviour
 {
     public GameObject TrigerAbleUI;
-    public GameObject hintArrow;
+    public GameObject hintArrow; //힌트 화살표 오브젝트 필요 시 어느 씬이든 사용 가능
 
+    #region 2F
     HintStateManager hintStateManager;
+    #endregion
+    #region 3F
+    GameObject mainCamera; //플레이어 카메라
+    #endregion
+
     GameManager gameManager;
     TextManager textmanager;
     EvenetSelection eventSelection;
@@ -32,8 +38,19 @@ public class ObjectEventTriger : MonoBehaviour
         onTriger = false;
         #endregion
 
+        //2층 힌트 스테이트 매니저 초기화
+        #region 2F
         if (SceneManager.GetActiveScene().name.Equals("2F"))
+        {
             hintStateManager = GameObject.Find("2F_Hint_State_Manager").GetComponent<HintStateManager>();
+            mainCamera = GameObject.Find("CM_PlayerFollowCamera");
+        }
+        #endregion
+        //3층 카메라 오브젝트 초기화
+        #region 3F
+        if (SceneManager.GetActiveScene().name.Equals("3F"))
+            mainCamera = GameObject.Find("CM_PlayerFollowCamera");
+        #endregion
     }
 
     private void Start()
@@ -70,6 +87,8 @@ public class ObjectEventTriger : MonoBehaviour
             {
                 ClickTriger(other);
 
+                //2층 책에 E 클릭 시 실행 내용
+                #region 2F
                 if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
                 {
                     HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookGetting); //힌트 책 가진 상태 변경
@@ -77,16 +96,22 @@ public class ObjectEventTriger : MonoBehaviour
                     hintStateManager.ChangeTarget(HintStateManager.PuzzleState.BookGetting);
                     hintArrow.SetActive(false);
                 }
+                #endregion
 
                 TrigerAbleUI.SetActive(false);
             }
+            //2층 책에 Q 클릭 시 대사 출력
+            #region 2F
             else if (Input.GetKeyDown(KeyCode.Q) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
             {
                 Debug.Log("대사 출력");
             }
+            #endregion
         }
         #endregion
 
+        //2층 돌 퍼즐에 돌 Q 클릭 시 음악 출력
+        #region 2F
         if (other.gameObject.CompareTag("Puzzle_Rock") && !ChangeTimeButton.isDay)
         {
             TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Q";
@@ -101,6 +126,7 @@ public class ObjectEventTriger : MonoBehaviour
                 TrigerAbleUI.SetActive(false);
             }
         }
+        #endregion
 
         if (other.gameObject.CompareTag("Globe"))
         {
@@ -159,7 +185,7 @@ public class ObjectEventTriger : MonoBehaviour
             TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             #endregion
         }
-        if (other.gameObject.CompareTag("Globe"))
+        if (other.gameObject.CompareTag("Globe")) //지구본 오브젝트 (카메라 전환) 모든 씬 통용
         {
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
@@ -197,7 +223,11 @@ public class ObjectEventTriger : MonoBehaviour
                 }
                 Debug.Log("Gear");
                 break;
-            case EvenetSelection.EventType.Globe: //지구본 클릭 시
+            case EvenetSelection.EventType.Globe: //지구본 클릭 시 플레이어 카메라 비활성화 혹은 활성화
+                if (mainCamera.activeSelf)
+                    mainCamera.SetActive(false);
+                else
+                    mainCamera.SetActive(true);
                 break;
         }
 
