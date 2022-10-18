@@ -8,14 +8,11 @@ public class HintManager : MonoBehaviour
 {
     [SerializeField]
     LimitTimer timer;
-    [SerializeField]
-    float solveLozic;
+    public float solveLozic;
     [SerializeField]
     int solveLozic_int;
     [SerializeField]
     float waitTime;
-    [SerializeField]
-    LozicManager lozicManager;
 
     [SerializeField]
     Button hintBtn;
@@ -25,8 +22,7 @@ public class HintManager : MonoBehaviour
     [SerializeField]
     AudioClip hint_used;
 
-    [SerializeField]
-    GameObject hint_arrow;
+    public HintArrow hint_arrow;
 
     [SerializeField]
     HintStateManager hintStateManager;
@@ -34,6 +30,9 @@ public class HintManager : MonoBehaviour
 
     public bool on_Hint;
     int count;
+
+    int thislozic_index;
+    public int have_hint;
     private void Awake()
     {
         solveLozic = 0f;
@@ -68,20 +67,21 @@ public class HintManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        if (SceneManager.GetActiveScene().name.Equals("1F"))
+        if (have_hint > 0&&SceneManager.GetActiveScene().name.Equals("1F"))
         {
             on_Hint = false;
-            hint_arrow.SetActive(true);
+            hint_arrow.on_ArrowObj = true;
+            have_hint--;
             hintBtn.gameObject.SetActive(on_Hint);
             hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
             hintBtn.gameObject.GetComponent<AudioSource>().Play();
             solveLozic = 0;
         }
         else if(SceneManager.GetActiveScene().name.Equals("2F"))
-        {
+            {
             if (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.AllPuzzleClear)
                 return;
-            //³·ÀÏ ¶§ ÈùÆ® ¹öÆ° Å¬¸¯
+            //ë‚®ì¼ ë•Œ íŒíŠ¸ ë²„íŠ¼ í´ë¦­
             if (HintStateManager.currentTime == HintStateManager.TimeState.Day && (HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookNothing || HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.BookGetting)) 
             {
                 on_Hint = false;
@@ -91,7 +91,7 @@ public class HintManager : MonoBehaviour
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
                 solveLozic = 0;
             }
-            //¹ãÀÏ ¶§ ÈùÆ® ¹öÆ° Å¬¸¯
+            //ë°¤ì¼ ë•Œ íŒíŠ¸ ë²„íŠ¼ í´ë¦­
             else if (HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.CrystalCorrect)
             {
                 on_Hint = false;
@@ -112,8 +112,19 @@ public class HintManager : MonoBehaviour
             }
             else
             {
-                //´ë»ç Ãâ·Â
+                //ëŒ€ì‚¬ ì¶œë ¥
             }
+            
+    }
+
+    public void OffHintBtn()
+    {
+        if (on_Hint)
+        {
+            on_Hint = false;
+            solveLozic = 0f;
+            hint_arrow.on_ArrowObj = false;
+
         }
     }
 
