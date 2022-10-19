@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EvenetSelection : MonoBehaviour
 {
-    public enum EventType { Item_Obj, EventObject , Globe }
-
+    public enum EventType { Item_Obj, EventObject, Globe }
     public enum eve_Type { decoration }
     public int ID;
     public bool isTextable;
