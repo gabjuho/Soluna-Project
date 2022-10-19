@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ClearImage : MonoBehaviour
 {
+    public GameObject textPanel;
     private Image image;
     private bool fading;
     private float time = 0f;
@@ -26,6 +27,7 @@ public class ClearImage : MonoBehaviour
         {
             fading = false;
             gameObject.SetActive(false);
+            textPanel.SetActive(false);
             return;
         }
 

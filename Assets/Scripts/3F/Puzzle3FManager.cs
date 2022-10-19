@@ -62,6 +62,7 @@ public class Puzzle3FManager : MonoBehaviour
     public void PuzzleComplete()
     {
         isClear = true;
+        GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(210, true);
         clear_image.FadeReady();
     }
 }

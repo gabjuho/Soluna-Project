@@ -27,7 +27,19 @@ public class AngelClick : MonoBehaviour
 
             if (target != null && gameObject.name.Equals(target.name) && gameObject.transform.GetChild(0).GetComponent<AngelClickRange>().isTrigger)
             {
+                GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(180, true);
+                PlayerMoveDetector.isAngelClick = true;
                 rock_Puzzle.AngelResetPuzzle();
+            }
+        }
+        else if((ChangeTimeButton.isDay || SecondFloorManager.currentState != SecondFloorManager.SecondFloorState.SecondPuzzle) && Input.GetMouseButtonDown(0))
+        {
+            target = GetClickedObject(); //타켓한 오브젝트 가져오기
+
+            if (target != null && gameObject.name.Equals(target.name) && gameObject.transform.GetChild(0).GetComponent<AngelClickRange>().isTrigger)
+            {
+                GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(179, true);
+                PlayerMoveDetector.isAngelClick = true;
             }
         }
     }

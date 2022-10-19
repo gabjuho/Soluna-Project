@@ -127,9 +127,9 @@ public class TextManager : MonoBehaviour
         //활성화 전
         textData.Add(165, new string[] {"비어있는 책을 꽂아야하는데… 규칙이 뭐였는지 기억이 안나 :0", "다른 책장을 먼저 살펴볼까? :0" });
         //활성화 후
-        textData.Add(166, new string[] { "이 책장에 비어있는 책을 꽂아야해 :0", "마법책의 말을 들어보자" });
+        textData.Add(166, new string[] { "이 책장에 비어있는 책을 꽂아야해 :0", "마법책의 말을 들어보자 :0" });
         //왼쪽 책장 클리어 후
-        textData.Add(167, new string[] { "이미 정리된 책장이야. 다른 책장은 다 정리했는지 확인해봐야겠어" });
+        textData.Add(167, new string[] { "이미 정리된 책장이야. 다른 책장은 다 정리했는지 확인해봐야겠어 :1" });
         #endregion
 
         #region 2층 마법책
@@ -162,25 +162,29 @@ public class TextManager : MonoBehaviour
         #region 천사상
         //활성화 전
         textData.Add(179, new string[] { "모든것을 되돌리는 시간의 천사상이야. :0" });
-        //
+
+        //활성화 후 마우스 클릭
+        textData.Add(180, new string[] { "모든 돌이 원래대로 돌아갔어 :3" });
+        //클리어 후
+        textData.Add(181, new string[] { "더 이상 시간의 기운이 느껴지지 않아 :0" });
         #endregion
 
         #region 수정탑
         //활성화 전
-        textData.Add(180, new string[] { "예쁜 수정이 위에 달려있는 수정탑이야. 지금은 신경쓰지 않아도 괜찮을 거 같아.:0" });
+        textData.Add(182, new string[] { "예쁜 수정이 위에 달려있는 수정탑이야. 지금은 신경쓰지 않아도 괜찮을 거 같아.:0" });
         // 책장 퀴즈 해결 후
-        textData.Add(181, new string[] { "이 수정탑을 조정해서 흐트러진 중력을 바꿔야해.:0" });
+        textData.Add(183, new string[] { "이 수정탑을 조정해서 흐트러진 중력을 바꿔야해.:0" });
         //해결
-        textData.Add(182, new string[] { "중력이 정상화 되었어. :1" });
+        textData.Add(184, new string[] { "중력이 정상화 되었어. :1" });
         //틀림
-        textData.Add(183, new string[] { "이게 아닌가봐 다시 해보자 :2" });
+        textData.Add(185, new string[] { "이게 아닌가봐 다시 해보자 :2" });
         #endregion
 
         #region 돌
         //활성화 전
-        textData.Add(184, new string[] { "무슨 소리가 나네? 어디선가 들었던 소리 같은데 :3" });
+        textData.Add(186, new string[] { "무슨 소리가 나네? 어디선가 들었던 소리 같은데 :3" });
         //활성화 후
-        textData.Add(185, new string[] { "무슨 소리지..? :0" });
+        textData.Add(187, new string[] { "무슨 소리지..? :0" });
         #endregion
 
         #region 거대 별 조각
@@ -195,7 +199,7 @@ public class TextManager : MonoBehaviour
         #endregion
 
         #region 3층 퍼즐 끝낸 후
-        textData.Add(210, new string[] { "고쳐졌어!:3", "이제 개기일식이 정상화 될거야!:1" });
+        textData.Add(210, new string[] { "고쳐졌어! 이제 개기일식이 정상화 될거야!:1" });
         #endregion
 
         textData.Add(1000, new string[] { "ID-1000  TEXT test:0", "1:0", "2:0", "3:0", "4:0", "5:0", "Nice, its not have bug:1" });

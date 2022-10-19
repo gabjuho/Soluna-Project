@@ -12625,6 +12625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc544aead873a514f87c48a25b9d43b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textPanel: {fileID: 1143453648}
 --- !u!1 &1049362237
 GameObject:
   m_ObjectHideFlags: 0
@@ -22778,13 +22779,31 @@ GameObject:
   - component: {fileID: 2700423825351240252}
   - component: {fileID: 3283749174284609817}
   - component: {fileID: 569203447}
+  - component: {fileID: 443634541158212636}
   m_Layer: 6
   m_Name: Crystal01_low
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &443634541158212636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443634541158212635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!23 &488893991265077325
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23564,13 +23583,31 @@ GameObject:
   - component: {fileID: 7597009722093939741}
   - component: {fileID: 2726628745518282912}
   - component: {fileID: 1494306387}
+  - component: {fileID: 1264859504539630223}
   m_Layer: 6
   m_Name: Crystal01_low004
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1264859504539630223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264859504539630222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!4 &1273940193508855022
 Transform:
   m_ObjectHideFlags: 0
@@ -23736,13 +23773,31 @@ GameObject:
   - component: {fileID: 2565707057045984728}
   - component: {fileID: 1668906121175203686}
   - component: {fileID: 1890016342}
+  - component: {fileID: 1614768054784064012}
   m_Layer: 6
   m_Name: Crystal01_low001
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1614768054784064012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614768054784064011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!23 &1639363396652417467
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27484,13 +27539,31 @@ GameObject:
   - component: {fileID: 1749669651679512299}
   - component: {fileID: 732947585606601140}
   - component: {fileID: 2097261393}
+  - component: {fileID: 5923911576144122067}
   m_Layer: 6
   m_Name: Crystal01_low003
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5923911576144122067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923911576144122066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!4 &5927120621130672074
 Transform:
   m_ObjectHideFlags: 0
@@ -28650,13 +28723,31 @@ GameObject:
   - component: {fileID: 6361126035905830392}
   - component: {fileID: 884698924436629654}
   - component: {fileID: 72977285}
+  - component: {fileID: 7506210220727886219}
   m_Layer: 6
   m_Name: Crystal01_low007
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7506210220727886219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506210220727886218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!4 &7519610931934609467
 Transform:
   m_ObjectHideFlags: 0
@@ -28759,13 +28850,31 @@ GameObject:
   - component: {fileID: 7622900323224172770}
   - component: {fileID: 7092385532498423925}
   - component: {fileID: 1963862505}
+  - component: {fileID: 7657737770751330752}
   m_Layer: 6
   m_Name: Crystal01_low006
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7657737770751330752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657737770751330751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!33 &7659512344840746538
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29012,13 +29121,31 @@ GameObject:
   - component: {fileID: 5022975231571048996}
   - component: {fileID: 3641092890128952055}
   - component: {fileID: 1395691660}
+  - component: {fileID: 7907724604249919642}
   m_Layer: 6
   m_Name: Crystal01_low002
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7907724604249919642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7907724604249919641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!23 &7925177362302877970
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29072,13 +29199,31 @@ GameObject:
   - component: {fileID: 319867512452097708}
   - component: {fileID: 608212971227501455}
   - component: {fileID: 16965241}
+  - component: {fileID: 7962925551414096746}
   m_Layer: 6
   m_Name: Crystal01_low005
-  m_TagString: Untagged
+  m_TagString: EventTriger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7962925551414096746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962925551414096745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe840267f078d6145ad2b46dc65dac56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 190
+  isTextable: 1
+  isCharaTalk: 1
+  Event_Type: 0
+  _eventType: 1
 --- !u!33 &7994360974523474792
 MeshFilter:
   m_ObjectHideFlags: 0
