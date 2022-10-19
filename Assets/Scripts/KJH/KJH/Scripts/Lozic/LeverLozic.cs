@@ -39,6 +39,8 @@ public class LeverLozic : MonoBehaviour
 
     [SerializeField]
     HintManager hint;
+
+    TextID_Controll iD_Controll;
     private void Awake()
     {
         
@@ -56,6 +58,7 @@ public class LeverLozic : MonoBehaviour
     private void Start()
     {
         sundial = GameObject.Find("Sundial_Object").GetComponent<SundialLozic>();
+        iD_Controll = GameObject.Find("Object029").GetComponent<TextID_Controll>();
     }
     // Update is called once per frame
     void Update()
@@ -111,6 +114,7 @@ public class LeverLozic : MonoBehaviour
     {
         if(lever[0].on_lever == currentAnswer[0] && lever[1].on_lever == currentAnswer[1] && lever[2].on_lever == currentAnswer[2] && lever[3].on_lever == currentAnswer[3])
         {
+            iD_Controll.ChangeTxt(142);
             lozicClear = true;
             FieldItem plant_item = planets[5].GetComponent<FieldItem>();
             inven.AddItem(plant_item.GetItem());
