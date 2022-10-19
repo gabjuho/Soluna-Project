@@ -12,6 +12,9 @@ public class ObjectEventTriger : MonoBehaviour
     public GameObject hintArrow;
     HintStateManager hintStateManager;
     InventoryUI inventoryUI;
+    #region 2F
+    bool firstMiddleBookShelf = true;
+    #endregion
     #region 3F
     GameObject mainCamera; //플레이어 카메라
     #endregion
@@ -108,10 +111,17 @@ public class ObjectEventTriger : MonoBehaviour
             }
             //2층 책에 E 클릭 시 대사 출력
             #region 2F
-            else if (Input.GetKeyDown(KeyCode.E) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
-                GetText(other.GetComponent<EvenetSelection>().ID, other.GetComponent<EvenetSelection>().isCharaTalk);
-                Debug.Log("대사 출력");
+                if ((other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
+                {
+                    Debug.Log("대사 출력");
+                }
+                else if(other.gameObject.name.Equals("Middle_Shelf") && firstMiddleBookShelf)
+                {
+                    firstMiddleBookShelf = false;
+                    
+                }
             }
             #endregion
         }
