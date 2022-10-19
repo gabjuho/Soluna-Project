@@ -75,7 +75,10 @@ public class ObjectEventTriger : MonoBehaviour
             Debug.Log("aa");
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
             #endregion
-
+            if ((other.gameObject.name.Equals("ScriptObject_Magic") || other.gameObject.name.Equals("ScriptObject_Clock") || other.gameObject.name.Equals("ScriptObject_Gear")) && Input.GetKey(KeyCode.Q))
+            {
+                TrigerAbleUI.SetActive(false);
+            }
             #region Triger
             if (Input.GetKey(KeyCode.E)) ClickTriger(other);
             #endregion
@@ -85,20 +88,17 @@ public class ObjectEventTriger : MonoBehaviour
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             InteractionUI.SetActive(true);
-            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
-            TrigerAbleUI.SetActive(true);
             InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
-            TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
             if (Input.GetKey(KeyCode.Q))
             {
+                InteractionUI.SetActive(false);
                 TrigerAbleUI.SetActive(false);
 
                 ClickTriger(other);
 
                 //2층 책에 Q 클릭 시 실행 내용
                 #region 2F
-                InteractionUI.SetActive(false);
                 if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
                 {
                     HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookGetting); //힌트 책 가진 상태 변경
@@ -110,9 +110,6 @@ public class ObjectEventTriger : MonoBehaviour
                             inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
                 }
                 #endregion
-
-                
-
             }
         }
         #endregion
