@@ -13985,6 +13985,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 239046991078380437, guid: 9deca3786803f0b48a394898496fc7a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9deca3786803f0b48a394898496fc7a6, type: 3}
 --- !u!4 &1143453645 stripped
