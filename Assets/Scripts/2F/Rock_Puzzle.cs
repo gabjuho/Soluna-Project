@@ -89,6 +89,8 @@ public class Rock_Puzzle : MonoBehaviour
 
         GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(181, true);
         PlayerMoveDetector.isAngelClick = true;
+        if(GuideLine.currentPuzzle < 3)
+            GuideLine.currentPuzzle++;
 
         Debug.Log("3단계 퍼즐 클리어");
     }

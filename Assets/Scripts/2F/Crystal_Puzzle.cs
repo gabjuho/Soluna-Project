@@ -64,6 +64,7 @@ public class Crystal_Puzzle : MonoBehaviour
 
                 GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(184, true);
                 PlayerMoveDetector.isCrystalClick = true;
+                GuideLine.currentPuzzle++;
 
                 Debug.Log("두번째 퍼즐 클리어");
             }

@@ -47,6 +47,7 @@ public class SecondFloorManager: MonoBehaviour
         if (bookPuzzleClear)
         {
             currentState = SecondFloorState.FirstPuzzle;
+            GuideLine.currentPuzzle++;
 
             inventory.AddItem(item);
 
