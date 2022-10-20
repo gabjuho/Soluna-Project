@@ -3436,9 +3436,9 @@ MonoBehaviour:
     itemType: 11
     itemName: Venus
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: b74b06661d8afe943ab19f23dd357535, type: 3}
+    itemImage: {fileID: 21300000, guid: 9935eae2496d70a45bd435811fd7d188, type: 3}
   mesh: {fileID: 0}
-  image: {fileID: 21300000, guid: b74b06661d8afe943ab19f23dd357535, type: 3}
+  image: {fileID: 21300000, guid: 9935eae2496d70a45bd435811fd7d188, type: 3}
 --- !u!1 &485824184
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,9 +6318,9 @@ MonoBehaviour:
     itemType: 9
     itemName: Sun
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: 39a8bee1b7de9b54998b775b3cd8cd8d, type: 3}
+    itemImage: {fileID: 21300000, guid: 8e928126997ce224db45ab754b68f922, type: 3}
   mesh: {fileID: 0}
-  image: {fileID: 21300000, guid: 39a8bee1b7de9b54998b775b3cd8cd8d, type: 3}
+  image: {fileID: 21300000, guid: 8e928126997ce224db45ab754b68f922, type: 3}
 --- !u!1 &860634647
 GameObject:
   m_ObjectHideFlags: 0
@@ -8092,9 +8092,9 @@ MonoBehaviour:
     itemType: 10
     itemName: Mercury
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: 82ecb4a0643a4074ca2a3386c35eb308, type: 3}
+    itemImage: {fileID: 21300000, guid: d66ed21162bd3bc4fa2c3c6e6fc9ae74, type: 3}
   mesh: {fileID: 0}
-  image: {fileID: 21300000, guid: 82ecb4a0643a4074ca2a3386c35eb308, type: 3}
+  image: {fileID: 21300000, guid: d66ed21162bd3bc4fa2c3c6e6fc9ae74, type: 3}
 --- !u!1 &1061935387
 GameObject:
   m_ObjectHideFlags: 0
@@ -8504,9 +8504,9 @@ MonoBehaviour:
     itemType: 12
     itemName: Earth
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: 3b02a527a83b04c4e9610db6ecaf43e1, type: 3}
+    itemImage: {fileID: 21300000, guid: 29382c5477429ab49b854e319da9a7b2, type: 3}
   mesh: {fileID: 0}
-  image: {fileID: 21300000, guid: 3b02a527a83b04c4e9610db6ecaf43e1, type: 3}
+  image: {fileID: 21300000, guid: 29382c5477429ab49b854e319da9a7b2, type: 3}
 --- !u!64 &1099285370
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9814,9 +9814,9 @@ MonoBehaviour:
     itemType: 13
     itemName: Mars
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: 36147d8bfe32561488b7a578507270be, type: 3}
+    itemImage: {fileID: 21300000, guid: 9935eae2496d70a45bd435811fd7d188, type: 3}
   mesh: {fileID: 0}
-  image: {fileID: 21300000, guid: 36147d8bfe32561488b7a578507270be, type: 3}
+  image: {fileID: 21300000, guid: 9935eae2496d70a45bd435811fd7d188, type: 3}
 --- !u!1 &1255313752
 GameObject:
   m_ObjectHideFlags: 0
@@ -10559,9 +10559,9 @@ MonoBehaviour:
     itemType: 14
     itemName: Jupiter
     itemMaterial: {fileID: 0}
-    itemImage: {fileID: 21300000, guid: d3928cc7db9dcc64186538324bb50b9c, type: 3}
+    itemImage: {fileID: 21300000, guid: 8651032b3a066874eb7332141f66b9de, type: 3}
   mesh: {fileID: 0}
-  image: {fileID: 21300000, guid: d3928cc7db9dcc64186538324bb50b9c, type: 3}
+  image: {fileID: 21300000, guid: 8651032b3a066874eb7332141f66b9de, type: 3}
 --- !u!1 &1305324186
 GameObject:
   m_ObjectHideFlags: 0
