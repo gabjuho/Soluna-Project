@@ -78,14 +78,6 @@ public class HintArrow : MonoBehaviour
 
                 hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
             }
-            else if (scene.name.Equals("3F"))
-            {
-                //힌트 화살표 출력
-                hintObj.transform.LookAt(new Vector3(target2F.transform.position.x, player.transform.position.y, target2F.transform.position.z), Vector3.up);
-                hintObj.transform.Rotate(new Vector3(hintObj.transform.rotation.x, hintObj.transform.rotation.y + 90, hintObj.transform.rotation.z));
-
-                hintObj.transform.position = player.transform.position + -hintObj.transform.right * 1f;
-            }
         }
     }
 }

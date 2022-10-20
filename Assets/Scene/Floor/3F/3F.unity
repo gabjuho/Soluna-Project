@@ -9232,7 +9232,7 @@ MonoBehaviour:
   timer: {fileID: 1540302892}
   solveLozic: 0
   solveLozic_int: 0
-  waitTime: 5
+  waitTime: 30
   hintBtn: {fileID: 1121293064}
   hint_creat: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
   hint_used: {fileID: 8300000, guid: 7838a5aa9de2dd344a946d56816537f0, type: 3}
