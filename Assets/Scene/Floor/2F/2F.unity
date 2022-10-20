@@ -5025,7 +5025,7 @@ MonoBehaviour:
   hint_creat: {fileID: 8300000, guid: 9c0b476a373a8034f8e1e7dd26a5e04b, type: 3}
   hint_used: {fileID: 8300000, guid: 7838a5aa9de2dd344a946d56816537f0, type: 3}
   hint_arrow: {fileID: 413257636}
-  hint_obj: {fileID: 1674894135}
+  hint_Obj: {fileID: 1674894135}
   hintStateManager: {fileID: 1983894125}
   rock_puzzle_material: {fileID: 2100000, guid: 8286b8c4a5395e4458f060a067ef1fec, type: 2}
   inventoryUI: {fileID: 608924711}

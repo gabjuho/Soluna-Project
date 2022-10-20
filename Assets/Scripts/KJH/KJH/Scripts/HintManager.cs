@@ -71,8 +71,8 @@ public class HintManager : MonoBehaviour
             }
             hintBtn.gameObject.SetActive(on_Hint);
 
-            if (SceneManager.GetActiveScene().name.Equals("2F") && hint_obj.activeSelf)
-                hint_obj.SetActive(false);
+            if (SceneManager.GetActiveScene().name.Equals("2F") && hint_Obj.activeSelf)
+                hint_Obj.SetActive(false);
         }
     }
 
