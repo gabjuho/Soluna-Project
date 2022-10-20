@@ -49,7 +49,15 @@ public class SecondFloorManager: MonoBehaviour
             currentState = SecondFloorState.FirstPuzzle;
 
             inventory.AddItem(item);
-            
+
+            GameObject.Find("Middle_Shelf").GetComponent<EvenetSelection>().ChangeID(164);
+            GameObject.Find("Left_Shelf").GetComponent<EvenetSelection>().ChangeID(164);
+            GameObject.Find("Right_Shelf").GetComponent<EvenetSelection>().ChangeID(164);
+            GameObject.Find("Blue_Pillar").GetComponent<EvenetSelection>().ChangeID(183);
+            GameObject.Find("Red_Pillar").GetComponent<EvenetSelection>().ChangeID(183);
+            GameObject.Find("Green_Pillar").GetComponent<EvenetSelection>().ChangeID(183);
+            GameObject.Find("Purple_Pillar").GetComponent<EvenetSelection>().ChangeID(183);
+
             HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.CrystalCorrect);
             hintStateManager.ChangeTarget(HintStateManager.PuzzleState.CrystalCorrect);
         }

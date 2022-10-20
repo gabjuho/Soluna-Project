@@ -287,6 +287,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     bool bookNothing = true;
 
                                     MiddleBookUsingPoint.isClear = true;
+                                    GameObject.Find("Middle_Shelf").GetComponent<EvenetSelection>().ChangeID(163);
 
                                     //책 사용 시 힌트 효과 없애기
                                     for (int i=0;i<inventoryUI.slots.Length;i++)
@@ -321,6 +322,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     Debug.Log("마법책 사용");
                                     
                                 }
+                                else if(ChangeTimeButton.isDay && !MiddleBookUsingPoint.on_trigger)
+                                {
+                                    GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(171, true);
+                                    PlayerMoveDetector.isItemUse = true;
+                                }
                                 break;
                             case ItemType.Object_Book2:
                                 if (ChangeTimeButton.isDay && RightBookUsingPoint.on_trigger)
@@ -328,6 +334,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     bool bookNothing = true;
 
                                     RightBookUsingPoint.isClear = true;
+                                    GameObject.Find("Right_Shelf").GetComponent<EvenetSelection>().ChangeID(167);
 
                                     //책 사용 시 힌트 효과 없애기
                                     for (int i = 0; i < inventoryUI.slots.Length; i++)
@@ -361,12 +368,18 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     SecondFloorManager.CheckBookPuzzleClear();
                                     Debug.Log("시계책 사용");
                                 }
+                                else if (ChangeTimeButton.isDay && !RightBookUsingPoint.on_trigger)
+                                {
+                                    GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(174, true);
+                                    PlayerMoveDetector.isItemUse = true;
+                                }
                                 break;
                             case ItemType.Object_Book3:
                                 if (ChangeTimeButton.isDay && LeftBookUsingPoint.on_trigger)
                                 {
                                     bool bookNothing = true;
                                     LeftBookUsingPoint.isClear = true;
+                                    GameObject.Find("Left_Shelf").GetComponent<EvenetSelection>().ChangeID(167);
 
                                     //책 사용 시 힌트 효과 없애기
                                     for (int i = 0; i < inventoryUI.slots.Length; i++)
@@ -399,6 +412,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
                                     SecondFloorManager.CheckBookPuzzleClear();
                                     Debug.Log("톱니책 사용");
+                                }
+                                else if (ChangeTimeButton.isDay && !LeftBookUsingPoint.on_trigger)
+                                {
+                                    GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(177, true);
+                                    PlayerMoveDetector.isItemUse = true;
                                 }
                                 break;
                         }

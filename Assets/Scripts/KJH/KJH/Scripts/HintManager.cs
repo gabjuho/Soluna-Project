@@ -63,7 +63,6 @@ public class HintManager : MonoBehaviour
         solveLozic_int = (int)Mathf.Round(solveLozic);
         if (solveLozic_int > waitTime)
         {
-
             on_Hint = true;
             if (count == 0)
             {
@@ -71,6 +70,9 @@ public class HintManager : MonoBehaviour
                 count++;
             }
             hintBtn.gameObject.SetActive(on_Hint);
+
+            if (SceneManager.GetActiveScene().name.Equals("2F") && hint_obj.activeSelf)
+                hint_obj.SetActive(false);
         }
     }
 
