@@ -88,6 +88,8 @@ public class ObjectEventTriger : MonoBehaviour
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             InteractionUI.SetActive(true);
+            //TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
+            //TrigerAbleUI.SetActive(true);
             InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
             if (Input.GetKey(KeyCode.Q))

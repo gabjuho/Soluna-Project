@@ -31,6 +31,7 @@ public class HintArrow : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         hintObj.SetActive(on_ArrowObj);
     }
+
     void Update()
     {
         if (scene.name.Equals("1F Test"))
