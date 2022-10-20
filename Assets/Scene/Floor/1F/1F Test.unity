@@ -14518,6 +14518,8 @@ MonoBehaviour:
   hint_Obj: {fileID: 0}
   hintStateManager: {fileID: 0}
   rock_puzzle_material: {fileID: 0}
+  inventoryUI: {fileID: 0}
+  puzzle3FManager: {fileID: 0}
   on_Hint: 1
   have_hint: 3
 --- !u!114 &1701479456
