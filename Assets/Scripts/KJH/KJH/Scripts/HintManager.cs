@@ -109,7 +109,7 @@ public class HintManager : MonoBehaviour
                         }
                     }
                 }
-                hint_obj.SetActive(true);
+                hint_Obj.SetActive(true);
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
                 hintBtn.gameObject.GetComponent<AudioSource>().Play();
                 hintBtn.gameObject.SetActive(on_Hint);
@@ -129,7 +129,7 @@ public class HintManager : MonoBehaviour
             else if (HintStateManager.currentTime == HintStateManager.TimeState.Night && HintStateManager.currentPuzzleState == HintStateManager.PuzzleState.RockPuzzle)
             {
                 on_Hint = false;
-                hint_obj.SetActive(true);
+                hint_Obj.SetActive(true);
                 //��Ʈ ��ư Ŭ�� �� ��Ʈ ���� ����Ʈ Ȱ��ȭ
                 hintStateManager.currentRock.transform.GetChild(0).gameObject.SetActive(true);
                 hintBtn.gameObject.GetComponent<AudioSource>().clip = hint_used;
@@ -144,9 +144,9 @@ public class HintManager : MonoBehaviour
             
         }
 
-    }
+    
 
-        }
+        
         #endregion
         //3�� ��Ʈ��ư ó��
         #region 3F
