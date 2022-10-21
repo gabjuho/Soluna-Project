@@ -78,7 +78,7 @@ public class HintManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        if (have_hint > 0 && SceneManager.GetActiveScene().name.Equals("1F Test"))
+        if (have_hint > 0 && SceneManager.GetActiveScene().name.Equals("1F"))
         {
             on_Hint = false;
             hint_arrow.on_ArrowObj = true;

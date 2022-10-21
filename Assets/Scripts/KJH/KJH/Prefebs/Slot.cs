@@ -57,7 +57,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         onClick = false;
         scene = SceneManager.GetActiveScene();
         #region 1F
-        if (scene.name.Equals("1F Test"))
+        if (scene.name.Equals("1F"))
         {
             planets = new GameObject[6];
             planets_name = new string[6];
@@ -75,7 +75,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     {
         E_Trigger = GameObject.Find("Player").GetComponentInChildren<ObjectEventTriger>();
         #region 1F
-        if (scene.name.Equals("1F Test"))                           //1층에서 사용
+        if (scene.name.Equals("1F"))                           //1층에서 사용
         {
             gear = GameObject.Find("Gear_Plane").GetComponent<GearLozic>();
             color_lozic = GameObject.Find("Lozic").GetComponent<ColorButtonLozic>();
@@ -168,7 +168,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                 {
                     Debug.Log("Del");
                     #region 1F
-                    if (scene.name.Equals("1F Test"))                   //1F Test씬에서만 작동
+                    if (scene.name.Equals("1F"))                   //1F씬에서만 작동
                     {
                         switch (item.itemType)
                         {
@@ -179,7 +179,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                     {
                                         //실행시킬내용
                                         //--------------------------
-                                        
+                                        Debug.Log("Gear");
                                         gear.GearSetActive(true);
                                         gear.on_gear = true;
                                         FieldItem plant_item = planets[0].GetComponent<FieldItem>();

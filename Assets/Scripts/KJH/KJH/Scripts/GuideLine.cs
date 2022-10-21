@@ -25,7 +25,7 @@ public class GuideLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name.Equals("1F Test"))
+        if (SceneManager.GetActiveScene().name.Equals("1F"))
         {
             for (int i = 0; i < lozic.solve_Lozic.Length; i++)
             {
