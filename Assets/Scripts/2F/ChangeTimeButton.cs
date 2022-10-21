@@ -66,9 +66,9 @@ public class ChangeTimeButton : MonoBehaviour
             rightWall.GetComponent<Transform>().position = Vector3.MoveTowards(rightWall.transform.position, new Vector3(-5.0f, rightWall.transform.position.y, rightWall.transform.position.z), 3f * Time.deltaTime);
 
             //책장 움직임
-            leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(-1.16f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 4f * Time.deltaTime);
-            middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -23.5f), 4f * Time.deltaTime);
-            rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(1.28f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 4f * Time.deltaTime);
+            leftBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(leftBookShelf.transform.position, new Vector3(0f, leftBookShelf.transform.position.y, leftBookShelf.transform.position.z), 4f * Time.deltaTime);
+            middleBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(middleBookShelf.transform.position, new Vector3(middleBookShelf.transform.position.x, middleBookShelf.transform.position.y, -23f), 4f * Time.deltaTime);
+            rightBookShelf.GetComponent<Transform>().position = Vector3.MoveTowards(rightBookShelf.transform.position, new Vector3(0f, rightBookShelf.transform.position.y, rightBookShelf.transform.position.z), 4f * Time.deltaTime);
         }
     }
     void ChangeCrystalRockColor()
