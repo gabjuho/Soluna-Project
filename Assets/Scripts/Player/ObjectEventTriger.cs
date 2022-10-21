@@ -22,7 +22,7 @@ public class ObjectEventTriger : MonoBehaviour
     TextManager textmanager;
     int talkindex;
     #region MikangMark
-    Elevator elevator;
+    //Elevator elevator;
     public bool onTriger;
     public Inventory inventory;
 
@@ -150,13 +150,13 @@ public class ObjectEventTriger : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        #region Elevator
+        /*#region Elevator
         if (other.gameObject.CompareTag("Elevator"))
         {
 
             GameObject.Find("ElevatorManager").GetComponent<Elevator>().ControllAnimation();
         }
-        #endregion
+        #endregion*/
         if (other.gameObject.CompareTag("NextStage"))
         {
             lever = GameObject.Find("Lozic").GetComponent<LeverLozic>();
