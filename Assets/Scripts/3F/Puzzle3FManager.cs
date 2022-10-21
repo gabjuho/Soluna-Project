@@ -40,6 +40,7 @@ public class Puzzle3FManager : MonoBehaviour
             crystal_light[count - 1].enabled = true;
 
         count++; //맞은 행성 개수 1증가
+        GuideLine.current3FPuzzle++;
 
         if (count == 9)
             PuzzleComplete();
@@ -57,11 +58,13 @@ public class Puzzle3FManager : MonoBehaviour
             inv.AddItem(item[i]);
 
         count = 0;
+        GuideLine.current3FPuzzle = 0;
     }
 
     public void PuzzleComplete()
     {
         isClear = true;
+        GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(210, true);
         clear_image.FadeReady();
     }
 }

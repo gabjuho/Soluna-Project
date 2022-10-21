@@ -12,6 +12,11 @@ public class ObjectEventTriger : MonoBehaviour
     public GameObject hintArrow;
     HintStateManager hintStateManager;
     InventoryUI inventoryUI;
+    #region 2F
+    int firstMiddleBookShelf = 0;
+    int firstLeftBookShelf = 0;
+    int firstRightBookShelf = 0;
+    #endregion
     #region 3F
     GameObject mainCamera; //플레이어 카메라
     #endregion
@@ -70,7 +75,10 @@ public class ObjectEventTriger : MonoBehaviour
             Debug.Log("aa");
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
             #endregion
-
+            if ((other.gameObject.name.Equals("ScriptObject_Magic") || other.gameObject.name.Equals("ScriptObject_Clock") || other.gameObject.name.Equals("ScriptObject_Gear")) && Input.GetKey(KeyCode.Q))
+            {
+                TrigerAbleUI.SetActive(false);
+            }
             #region Triger
             if (Input.GetKey(KeyCode.E)) ClickTriger(other);
             #endregion
@@ -80,17 +88,19 @@ public class ObjectEventTriger : MonoBehaviour
         if (other.gameObject.CompareTag("Item_Obj"))
         {
             InteractionUI.SetActive(true);
-            TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
+            //TrigerAbleUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "E";
             //TrigerAbleUI.SetActive(true);
             InteractionUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
 
             if (Input.GetKey(KeyCode.Q))
             {
+                InteractionUI.SetActive(false);
+                TrigerAbleUI.SetActive(false);
+
                 ClickTriger(other);
 
                 //2층 책에 Q 클릭 시 실행 내용
                 #region 2F
-                InteractionUI.SetActive(false);
                 if (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book"))
                 {
                     HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.BookGetting); //힌트 책 가진 상태 변경
@@ -102,18 +112,7 @@ public class ObjectEventTriger : MonoBehaviour
                             inventoryUI.slots[i].transform.GetChild(2).gameObject.SetActive(false);
                 }
                 #endregion
-
-                TrigerAbleUI.SetActive(false);
-
             }
-            //2층 책에 E 클릭 시 대사 출력
-            #region 2F
-            else if (Input.GetKeyDown(KeyCode.E) && (other.gameObject.name.Equals("Magic_Book") || other.gameObject.name.Equals("Clock_Book") || other.gameObject.name.Equals("Gear_Book")))
-            {
-                GetText(other.GetComponent<EvenetSelection>().ID, other.GetComponent<EvenetSelection>().isCharaTalk);
-                Debug.Log("대사 출력");
-            }
-            #endregion
         }
         #endregion
 
@@ -213,12 +212,36 @@ public class ObjectEventTriger : MonoBehaviour
         eventSelection = other.gameObject.GetComponent<EvenetSelection>();
 
         //여러번 클릭하는걸 막기 위해서 딜레이 주기 [1.5초]
-        StartCoroutine(gameManager.DelayTimer(1.5f));
+        StartCoroutine(gameManager.DelayTimer(0.5f));
 
         switch (eventSelection._eventType)
         {
             case EvenetSelection.EventType.EventObject:
+                if (other.gameObject.name.Equals("Middle_Shelf"))
+                {
+                    if (firstMiddleBookShelf >= 4)
+                        other.gameObject.GetComponent<EvenetSelection>().ChangeID(161);
+                    else
+                        firstMiddleBookShelf++;
+                }
+                else if(other.gameObject.name.Equals("Left_Shelf"))
+                {
+                    if(firstLeftBookShelf >= 2)
+                        other.gameObject.GetComponent<EvenetSelection>().ChangeID(166);
+                    else
+                        firstLeftBookShelf++;
+                }
+                else if (other.gameObject.name.Equals("Right_Shelf"))
+                {
+                    if (firstRightBookShelf >= 2)
+                        other.gameObject.GetComponent<EvenetSelection>().ChangeID(166);
+                    else
+                        firstRightBookShelf++;
+                }
                 GetText(eventSelection.ID, eventSelection.isCharaTalk);
+                
+                
+                
                 Debug.Log("a");
                 break;
 
@@ -241,7 +264,7 @@ public class ObjectEventTriger : MonoBehaviour
         Debug.Log("check");
     }
 
-    void GetText(int id, bool isCharaTalk)
+    public void GetText(int id, bool isCharaTalk)
     {
         Debug.Log(id);
         string textData = textmanager.GetTalk(id, talkindex);

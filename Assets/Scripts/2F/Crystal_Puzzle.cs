@@ -61,10 +61,17 @@ public class Crystal_Puzzle : MonoBehaviour
                 HintStateManager.ChangePuzzleState(HintStateManager.PuzzleState.RockPuzzle);
 
                 inventory.AddItem(haewang);
+
+                GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(184, true);
+                PlayerMoveDetector.isCrystalClick = true;
+                GuideLine.currentPuzzle++;
+
                 Debug.Log("두번째 퍼즐 클리어");
             }
             else //답과 틀리면
             {
+                GameObject.Find("ObjectTriger").GetComponent<ObjectEventTriger>().GetText(185, true);
+                PlayerMoveDetector.isCrystalClick = true;
                 initializeCrystalPuzzle(); //퍼즐 초기화
             }
         }
