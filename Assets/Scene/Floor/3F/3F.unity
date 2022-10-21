@@ -2050,9 +2050,9 @@ MonoBehaviour:
   FootstepAudioClips: []
   FootstepAudioVolume: 0.5
   JumpHeight: 1
-  Gravity: -9.81
+  Gravity: -5
   JumpTimeout: 1
-  FallTimeout: 0.25
+  FallTimeout: 2
   Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.28

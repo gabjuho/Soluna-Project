@@ -1352,6 +1352,8 @@ MonoBehaviour:
   - {fileID: 694812822}
   guide_ClearImg: {fileID: 21300000, guid: cd67ab5cca9ec8b41b6396e60ac31017, type: 3}
   guideDeco_ClearImg: {fileID: 21300000, guid: 0d994447008ca234caf1d02d12d3c7c8, type: 3}
+  guide_NotClearImg: {fileID: 0}
+  guideDeco_NotClearImg: {fileID: 0}
   lozic: {fileID: 1178286009}
 --- !u!64 &213919406
 MeshCollider:
@@ -10299,9 +10301,9 @@ MonoBehaviour:
   FootstepAudioClips: []
   FootstepAudioVolume: 0.5
   JumpHeight: 1
-  Gravity: -9.81
+  Gravity: -5
   JumpTimeout: 1
-  FallTimeout: 0.25
+  FallTimeout: 2
   Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.28
