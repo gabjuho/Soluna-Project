@@ -7,6 +7,7 @@ public class Puzzle3FManager : MonoBehaviour
     public ClearImage clear_image;
     public Inventory inv;
     public Item[] item;
+    public Item[] startItem;
     public Light[] planet_light;
     public Light[] crystal_light;
     public bool isClear = false; //3층 클리어 여부
@@ -21,7 +22,7 @@ public class Puzzle3FManager : MonoBehaviour
     private void AddTestItem()
     {
         for (int i = 0; i < 9; i++)
-            inv.AddItem(item[i]);
+            inv.AddItem(startItem[i]);
     }
 
     public bool CheckPlanet(ItemType itemType) //사용한 아이템이 맞는 행성인지 체크

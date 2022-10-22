@@ -15104,6 +15104,43 @@ MonoBehaviour:
     itemName: Neptune
     itemMaterial: {fileID: 0}
     itemImage: {fileID: 21300000, guid: f7bb82dc17314b8488cb746c1118af47, type: 3}
+  startItem:
+  - itemType: 9
+    itemName: Sun
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 8e928126997ce224db45ab754b68f922, type: 3}
+  - itemType: 13
+    itemName: Mars
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 9935eae2496d70a45bd435811fd7d188, type: 3}
+  - itemType: 10
+    itemName: Mercury
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: d66ed21162bd3bc4fa2c3c6e6fc9ae74, type: 3}
+  - itemType: 11
+    itemName: Venus
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 9b595a0575610794d9bae6cf7e63661c, type: 3}
+  - itemType: 12
+    itemName: Earth
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 29382c5477429ab49b854e319da9a7b2, type: 3}
+  - itemType: 14
+    itemName: Jupiter
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 8651032b3a066874eb7332141f66b9de, type: 3}
+  - itemType: 15
+    itemName: Saturn
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 9be7a2ad712ac6b4d9b412174f025a08, type: 3}
+  - itemType: 17
+    itemName: Neptune
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: f7bb82dc17314b8488cb746c1118af47, type: 3}
+  - itemType: 16
+    itemName: Uranus
+    itemMaterial: {fileID: 0}
+    itemImage: {fileID: 21300000, guid: 2e47c82a8819bdb4682466e3f54356ad, type: 3}
   planet_light:
   - {fileID: 1500777662}
   - {fileID: 716661027}
