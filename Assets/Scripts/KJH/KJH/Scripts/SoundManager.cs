@@ -8,4 +8,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] backgroundSound;
     public AudioSource[] sources;
 
+    public void SoundPlay(int source,int clip)
+    {
+        sources[source].clip = effectSound[clip];
+        sources[source].Play();
+    }
+
 }

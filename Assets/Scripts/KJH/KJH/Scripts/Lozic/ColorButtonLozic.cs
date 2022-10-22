@@ -47,6 +47,8 @@ public class ColorButtonLozic : MonoBehaviour
     HintManager hint;
 
     TextID_Controll iD_Controll;
+    [SerializeField]
+    SoundManager m_sound;
     private void Awake()
     {
         /*
@@ -198,9 +200,11 @@ public class ColorButtonLozic : MonoBehaviour
                 {
                     if (!CheckAnswer(false))
                     {
+                        m_sound.SoundPlay(1, 2);
                         ResetLozic();
                         return;
                     }
+                    m_sound.SoundPlay(1, 1);
                     answser_index++;
                     right++;
                     m_rightbutton.color = rightColor[right % 8];
@@ -211,9 +215,11 @@ public class ColorButtonLozic : MonoBehaviour
                 {
                     if (!CheckAnswer(true))
                     {
+                        m_sound.SoundPlay(2, 2);
                         ResetLozic();
                         return;
                     }
+                    m_sound.SoundPlay(2, 1);
                     answser_index++;
                     right++;
                     m_rightbutton.color = rightColor[right % 8];
@@ -229,6 +235,7 @@ public class ColorButtonLozic : MonoBehaviour
                     TextID_Controll steamiD_Controll;
                     steamiD_Controll = GameObject.Find("Object043").GetComponent<TextID_Controll>();
                     steamiD_Controll.ChangeTxt(121);
+                    m_sound.SoundPlay(1, 3);
                     Debug.Log("색상로직 클리어");
                     lozicClear = true;
                     FieldItem plant_item = planets[4].GetComponent<FieldItem>();

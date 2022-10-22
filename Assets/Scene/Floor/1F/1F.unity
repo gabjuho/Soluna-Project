@@ -1856,8 +1856,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 19678f038b5ed504b8c1a58f9d4c78a0, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1866,7 +1866,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.4955711
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -9557,6 +9557,7 @@ MonoBehaviour:
   - {fileID: 1288100600}
   sound: {fileID: 180072684}
   hint: {fileID: 1701479455}
+  m_sound: {fileID: 180072684}
 --- !u!114 &1178286008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15110,7 +15111,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1748906299}
   - component: {fileID: 1748906298}
-  - component: {fileID: 1748906297}
   - component: {fileID: 1748906300}
   - component: {fileID: 1748906301}
   m_Layer: 0
@@ -15120,14 +15120,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1748906297
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748906296}
-  m_Enabled: 1
 --- !u!20 &1748906298
 Camera:
   m_ObjectHideFlags: 0
@@ -20687,6 +20679,7 @@ GameObject:
   - component: {fileID: 1278566604}
   - component: {fileID: 1278566605}
   - component: {fileID: 919132148151639447}
+  - component: {fileID: 919132148151639448}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -20707,6 +20700,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+--- !u!81 &919132148151639448
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148151639446}
+  m_Enabled: 1
 --- !u!4 &946152173927468539
 Transform:
   m_ObjectHideFlags: 0
@@ -28326,7 +28327,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 717d7718930738b4fa6c3a8de8de369a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

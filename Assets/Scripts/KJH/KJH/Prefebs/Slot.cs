@@ -184,8 +184,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         gear.on_gear = true;
                                         FieldItem plant_item = planets[0].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
-                                        sound.sources[0].clip = sound.effectSound[0];
-                                        sound.sources[0].Play();
+                                        sound.SoundPlay(0, 0);
                                         hint.OffHintBtn();
                                         iD_Controll = GameObject.Find("Cylinder015").GetComponent<TextID_Controll>();
                                         iD_Controll.ChangeTxt(101);
@@ -212,6 +211,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         hint.OffHintBtn();
                                         iD_Controll = GameObject.Find("Object043").GetComponent<TextID_Controll>();
                                         iD_Controll.ChangeTxt(122);
+                                        sound.SoundPlay(3, 5);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
