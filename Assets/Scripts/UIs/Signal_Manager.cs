@@ -12,6 +12,6 @@ public class Signal_Manager : MonoBehaviour
 
     public void To1F()
     {
-        SceneManager.LoadScene("1F");
+        SceneManager.LoadScene("2F");
     }
 }
