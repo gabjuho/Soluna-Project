@@ -30,7 +30,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     string[] planets_name;
 
     public SoundManager sound;
-    public AudioSource source;
     [SerializeField]
     HintManager hint;
 
@@ -184,7 +183,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         gear.on_gear = true;
                                         FieldItem plant_item = planets[0].GetComponent<FieldItem>();
                                         inven.AddItem(plant_item.GetItem());
-                                        sound.SoundPlay(0, 0);
+                                        
                                         hint.OffHintBtn();
                                         iD_Controll = GameObject.Find("Cylinder015").GetComponent<TextID_Controll>();
                                         iD_Controll.ChangeTxt(101);
@@ -211,7 +210,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         hint.OffHintBtn();
                                         iD_Controll = GameObject.Find("Object043").GetComponent<TextID_Controll>();
                                         iD_Controll.ChangeTxt(122);
-                                        sound.SoundPlay(3, 5);
+                                        sound.SoundPlay(4, 5);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -238,6 +237,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         TextID_Controll sundialiD_Controll;
                                         sundialiD_Controll = GameObject.Find("Sundial_Object").GetComponent<TextID_Controll>();
                                         sundialiD_Controll.ChangeTxt(131);
+                                        sound.SoundPlay(4, 7);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();
@@ -264,6 +264,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                                         TextID_Controll leveriD_Controll;
                                         leveriD_Controll = GameObject.Find("Object029").GetComponent<TextID_Controll>();
                                         leveriD_Controll.ChangeTxt(141);
+                                        sound.SoundPlay(5, 8);
                                         //--------------------------
                                         item.SendItem();                        //아이템 정보 넘기기 리턴형 Item
                                         RemoveSlot();

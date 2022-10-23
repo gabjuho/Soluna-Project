@@ -22,14 +22,17 @@ public class ObjectEventTriger : MonoBehaviour
     #endregion
 
     GameManager gameManager;
-
+    #region 1F
+    SteamLozic steam;
+    #endregion
     static public EvenetSelection eventSelection;
     TextManager textmanager;
     int talkindex;
     #region MikangMark
     public bool onTriger;
     public Inventory inventory;
-
+    public SoundManager sound;
+    int one = 0;
 
     LeverLozic lever;
     #endregion
@@ -62,6 +65,11 @@ public class ObjectEventTriger : MonoBehaviour
     {
         TrigerAbleUI.SetActive(false);
         InteractionUI.SetActive(false);
+        if (SceneManager.GetActiveScene().name.Equals("1F"))
+        {
+            steam = GameObject.Find("Steam_Plane").GetComponent<SteamLozic>();
+        }
+            
     }
 
     public void OnTriggerStay(Collider other)
@@ -71,7 +79,6 @@ public class ObjectEventTriger : MonoBehaviour
             //트리거 UI를 게임오브젝트 위에 표시 && 범위 내에 상호작용 오브젝트가 있을시 활성화
             #region TrigrUI
             TrigerAbleUI.SetActive(true);
-            Debug.Log("aa");
             TrigerAbleUI.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + new Vector3(0, 0.9f, 0));
             #endregion
             if ((other.gameObject.name.Equals("ScriptObject_Magic") || other.gameObject.name.Equals("ScriptObject_Clock") || other.gameObject.name.Equals("ScriptObject_Gear")) && Input.GetKey(KeyCode.Q))
@@ -155,9 +162,8 @@ public class ObjectEventTriger : MonoBehaviour
             if (lever.lozicClear)
             {
                 Debug.Log("다음씬으로 이동");
+                SceneManager.LoadScene("2F");
             }
-
-            //SceneManager.LoadScene("2F");
         }
     }
 
@@ -168,6 +174,7 @@ public class ObjectEventTriger : MonoBehaviour
             //트리거 UI  범위 에서 나가면 비활성화
             #region TrigrUI
             TrigerAbleUI.SetActive(false);
+            one = 0;
             #endregion
         }
         if (other.gameObject.CompareTag("Item_Obj"))
@@ -198,6 +205,7 @@ public class ObjectEventTriger : MonoBehaviour
 
     void ClickTriger(Collider other)
     {
+        
         //딜레이중이라면 반환.
         if (gameManager.isDelayOn == true) return;
 
@@ -232,9 +240,53 @@ public class ObjectEventTriger : MonoBehaviour
                         firstRightBookShelf++;
                 }
                 GetText(eventSelection.ID, eventSelection.isCharaTalk);
-                
-                
-                
+                if (other.gameObject.name.Equals("Cylinder015"))
+                {
+                    if(one == 0)
+                    {
+                        sound.SoundPlay(0, 0);
+                        one++;
+                    }
+                }
+                if (other.gameObject.name.Equals("Box004"))
+                {
+                    if (one == 0)
+                    {
+                        sound.SoundPlay(1, 1);
+                        one++;
+                    }
+                }
+                if (other.gameObject.name.Equals("Object043"))
+                {
+                    if (steam.on_starFuel)
+                    {
+                        if(one == 0)
+                        {
+                            sound.SoundPlay(4, 4);
+                            one++;
+                        }
+                        
+                    }
+                    else
+                    {
+                        if(one == 0)
+                        {
+                            sound.SoundPlay(4, 6);
+                            one++;
+                        }
+                        
+                    }
+                }
+                if (other.gameObject.name.Equals("Object029"))
+                {
+                    if (one == 0)
+                    {
+                        sound.SoundPlay(6, 9);
+                        one++;
+                    }
+                }
+
+
                 Debug.Log("a");
                 break;
 

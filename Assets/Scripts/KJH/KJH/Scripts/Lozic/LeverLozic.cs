@@ -91,7 +91,6 @@ public class LeverLozic : MonoBehaviour
                         target.GetComponent<AudioSource>().Play();
                         lever[lever_index].on_lever = true;
 
-                        ;
                     }
                     else
                     {

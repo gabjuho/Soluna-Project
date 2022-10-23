@@ -200,11 +200,10 @@ public class ColorButtonLozic : MonoBehaviour
                 {
                     if (!CheckAnswer(false))
                     {
-                        m_sound.SoundPlay(1, 2);
+                        m_sound.SoundPlay(2, 2);
                         ResetLozic();
                         return;
                     }
-                    m_sound.SoundPlay(1, 1);
                     answser_index++;
                     right++;
                     m_rightbutton.color = rightColor[right % 8];
@@ -215,11 +214,10 @@ public class ColorButtonLozic : MonoBehaviour
                 {
                     if (!CheckAnswer(true))
                     {
-                        m_sound.SoundPlay(2, 2);
+                        m_sound.SoundPlay(3, 2);
                         ResetLozic();
                         return;
                     }
-                    m_sound.SoundPlay(2, 1);
                     answser_index++;
                     right++;
                     m_rightbutton.color = rightColor[right % 8];
